@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// firebase.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -14,7 +14,7 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
+  apiKey: "AIzaSyBBqZ4KTsOmg2J-vqb9Ry15FSZ5kvDYKYc", // Lấy từ biến môi trường
   authDomain: "my-website-cinema.firebaseapp.com",
   databaseURL: "https://my-website-cinema-default-rtdb.firebaseio.com",
   projectId: "my-website-cinema",
@@ -29,14 +29,14 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and providers
-const auth = getAuth();
+export const auth = getAuth(); // Xuất khẩu đối tượng auth
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
 
-// Hàm đăng ký với Email/Password
-const signUpWithEmail = async (email, password) => {
+// Các hàm đăng nhập và đăng ký
+export const signUpWithEmail = async (email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -49,8 +49,7 @@ const signUpWithEmail = async (email, password) => {
   }
 };
 
-// Hàm đăng nhập với Email/Password
-const signInWithEmail = async (email, password) => {
+export const signInWithEmail = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -62,9 +61,7 @@ const signInWithEmail = async (email, password) => {
     console.error("Error signing in:", error.message);
   }
 };
-
-// Hàm đăng nhập với Google
-const signInWithGoogle = async () => {
+export const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
     console.log("User signed in with Google:", result.user);
@@ -73,8 +70,7 @@ const signInWithGoogle = async () => {
   }
 };
 
-// Hàm đăng nhập với Facebook
-const signInWithFacebook = async () => {
+export const signInWithFacebook = async () => {
   try {
     const result = await signInWithPopup(auth, facebookProvider);
     console.log("User signed in with Facebook:", result.user);
@@ -83,8 +79,7 @@ const signInWithFacebook = async () => {
   }
 };
 
-// Hàm đăng nhập với GitHub
-const signInWithGithub = async () => {
+export const signInWithGithub = async () => {
   try {
     const result = await signInWithPopup(auth, githubProvider);
     console.log("User signed in with GitHub:", result.user);
@@ -92,20 +87,3 @@ const signInWithGithub = async () => {
     console.error("Error signing in with GitHub:", error.message);
   }
 };
-
-// Hàm đăng nhập với Twitter
-const signInWithTwitter = async () => {
-  try {
-    const result = await signInWithPopup(auth, twitterProvider);
-    console.log("User signed in with Twitter:", result.user);
-  } catch (error) {
-    console.error("Error signing in with Twitter:", error.message);
-  }
-};
-///////// các phương thức gọi khi click vào button
-// <button onClick={() => signInWithGoogle()}>Đăng nhập với Google</button>
-// <button onClick={() => signInWithFacebook()}>Đăng nhập với Facebook</button>
-// <button onClick={() => signInWithGithub()}>Đăng nhập với GitHub</button>
-// <button onClick={() => signInWithTwitter()}>Đăng nhập với Twitter</button>
-// <button onClick={() => signInWithEmail(email, password)}>Đăng nhập với Email</button>
-// <button onClick={() => signUpWithEmail(email, password)}>Đăng ký với Email</button>

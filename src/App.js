@@ -1,9 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import PrivacyPolicy from "./pages/PrivacyPolicy"; // Import trang Chính sách quyền riêng tư
+// import Home from "./pages/Home";
+// import MovieDetail from "./pages/MovieDetail"; // Trang chi tiết phim
+import LoginForm from "./components/LoginForm"; // Trang đăng nhập
+// import SignupForm from "./components/SignupForm"; // Trang đăng ký
 
 function App() {
   return (
@@ -11,12 +13,12 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          {/* Home here */}
-          {/* <Route path="/" element={<Home />} /> Trang Home */}
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          {/* <Route path="/" element={<Home />} />
+          cho chọn phim
+          <Route path="/genres/:genre" element={<Home />} />
+          <Route path="/movie/:movieId" element={<MovieDetail />} /> */}
+          <Route path="/login" element={<LoginForm />} />{" "}
         </Routes>
-
-        {/* Footer nằm ngoài Routes để luôn hiển thị */}
         <Footer />
       </div>
     </Router>
