@@ -7,6 +7,8 @@ import {
   signInWithFacebook,
   signInWithGithub,
 } from "../firebase"; // Import các hàm từ firebase.js
+import { toast, ToastContainer } from "react-toastify"; // Import react-toastify
+import "react-toastify/dist/ReactToastify.css"; // Import stylesheet của react-toastify
 import "../assets/styles/LoginForm.css"; // Import file CSS
 
 const LoginForm = () => {
@@ -22,9 +24,11 @@ const LoginForm = () => {
         password
       );
       console.log("User signed in:", userCredential.user);
+      toast.success("Đăng nhập thành công!"); // Hiển thị thông báo đăng nhập thành công
       navigate("/home"); // Chuyển hướng đến trang home nếu đăng nhập thành công
     } catch (error) {
       console.error("Error signing in:", error.message);
+      toast.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin."); // Hiển thị thông báo thất bại
     }
   };
 
@@ -49,6 +53,7 @@ const LoginForm = () => {
       <button onClick={signInWithGoogle}>Đăng nhập với Google</button>
       <button onClick={signInWithFacebook}>Đăng nhập với Facebook</button>
       <button onClick={signInWithGithub}>Đăng nhập với GitHub</button>
+      <ToastContainer /> {/* Hiển thị các thông báo */}
     </div>
   );
 };
