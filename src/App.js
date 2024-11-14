@@ -16,7 +16,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Xin chào các bạn nha
+            Xin chào cô chú, anh chị
           </a>
 
           {/* Chính sách quyền riêng tư có thể đưa vào footer hoặc header*/}
