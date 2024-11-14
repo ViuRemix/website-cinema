@@ -1,0 +1,259 @@
+/* Header.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.8rem 9rem;
+  background-color: #040404;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color: #e0f2fe;
+  /* font chữ  */
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Header.css */
+.logo-icon {
+  width: 50px; /* Điều chỉnh kích thước phù hợp */
+  height: 50px;
+  margin-right: 0.5rem;
+  border-radius: 50%; /* Thêm viền tròn nếu bạn muốn */
+}
+/* css cho dropdown */
+/* Styling for the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: white !important;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu .dropdown-item {
+  padding: 8px 16px;
+  color: black;
+  text-decoration: none;
+  display: block;
+  transition: all 0.5s ease;
+  width: auto;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #000000;
+  width: auto;
+  border-radius: 2px;
+  width: auto;
+  transform: scale(1.1); /* hoặc hiệu ứng khác */
+}
+
+/* header a */
+.header-nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+/* css cho tìm kiếm */
+/* Container của thanh tìm kiếm */
+.header-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  text-align: center;
+  position: relative;
+}
+
+/* Ô nhập liệu */
+.header-search input {
+  width: 100%;
+  height: 45px;
+  max-width: 400px; /* Kích thước tối đa */
+  padding: 0.8rem 1.5rem; /* Thêm khoảng cách cho nội dung */
+  padding-right: 40px; /* Dự phòng không gian cho icon */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
+}
+
+/* Hiệu ứng khi người dùng focus vào ô nhập liệu */
+.header-search input:focus {
+  outline: none;
+  border-color: #0073e6; /* Màu viền khi focus */
+  background-color: #f0f8ff; /* Nền sáng hơn khi focus */
+  box-shadow: 0 0 8px rgba(0, 115, 230, 0.3); /* Hiệu ứng bóng mờ khi focus */
+}
+
+/* Icon tìm kiếm */
+.header-search i {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  border-radius: 20%;
+  padding: 14px 17px 14px;
+  transform: translateY(-50%); /* Căn giữa icon theo chiều dọc */
+  font-size: 1.2rem;
+  color: #000000; /* Màu icon tìm kiếm */
+  cursor: pointer; /* Thêm con trỏ tay khi hover */
+  pointer-events: auto; /* Đảm bảo icon có thể nhận sự kiện chuột */
+}
+
+/* Nút tìm kiếm */
+.header-search button {
+  position: absolute;
+  right: 1px; /* Căn lề phải */
+  top: 50%;
+  transform: translateY(-50%); /* Căn giữa theo chiều dọc */
+  background-color: transparent;
+  border: none;
+  cursor: pointer; /* Đảm bảo con trỏ chuột thay đổi khi hover */
+  padding: 0 10px;
+  background-color: #0073e6; /* Màu nền của nút */
+  border-radius: 0 20px 20px 0; /* Bo tròn các góc phải */
+  transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover vào nút tìm kiếm */
+.header-search button:hover {
+  background-color: #005bb5; /* Nút đổi màu khi hover */
+}
+
+.header-search button:hover {
+  background-color: #333;
+}
+/* Style cho các nút Login và Signup */
+.header-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Khoảng cách giữa các nút */
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút Login */
+.btn.login {
+  background-color: #4caf50; /* Màu nền xanh lá */
+  color: white;
+  border: none;
+  box-shadow: 0 6px 15px rgba(42, 224, 48, 0.724); /* Hiệu ứng shadow khi hover */
+}
+
+.btn.login:hover {
+  background-color: #15991c; /* Màu khi hover */
+}
+
+.btn.login:active {
+  background-color: #388e3c; /* Màu khi nhấn */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Nút Signup */
+.btn.signup {
+  background-color: #2196f3; /* Màu nền xanh dương */
+  color: white;
+  border: none;
+  box-shadow: 0 6px 15px rgba(10, 98, 198, 0.724);
+}
+
+.btn.signup:hover {
+  background-color: #1b73bb; /* Màu khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn.signup:active {
+  background-color: #015bb6; /* Màu khi nhấn */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header.css */
+
+.header-nav a {
+  position: relative;
+  margin: 0 0.5rem;
+  padding: 0.5rem 0.5rem;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.3s ease;
+  color: #e0f2fe;
+}
+
+.header-nav a:hover {
+  color: #01e94ec7; /* Đổi màu chữ khi hover để nổi bật trên nền */
+}
+
+/* Hiệu ứng nền */
+.header-nav a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.3s ease;
+  z-index: -1; /* Đặt nền ở phía sau chữ */
+}
+
+.header-nav a:hover::before {
+  left: 0; /* Nền di chuyển từ trái sang phải khi hover */
+}
+
+/* Hiệu ứng gạch chân */
+.header-nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 4px;
+  left: 0;
+  background-color: #2fbb50; /* Màu gạch chân */
+  transition: width 0.3s ease;
+}
+
+.header-nav a:hover::after {
+  width: 100%; /* Gạch chân mở rộng hết chiều dài khi hover */
+}
+
+/* css cho thiết bị dí động nhỏ hơn */

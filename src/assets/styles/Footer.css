@@ -1,108 +1,107 @@
 .footer {
-    background-color: #000;
-    color: #ffffff;
-    padding: 40px;
-    text-align: left;
-  }
-  
-  .footer-container {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .footer-question {
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-  
-  .footer-question a {
-    color: #ffffff;
-    text-decoration: underline;
-  }
-  
-  .footer-links {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 20px 0;
-  }
-  
-  .footer-column {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px 0;
-  }
-  
-  .footer-column a {
-    display: block;
-    color: #ffffff;
-    font-size: 14px;
-    margin-bottom: 8px;
-    text-decoration: none;
-  }
-  
-  .footer-column a:hover {
-    color: #007bff;
-    text-decoration: underline;
-  }
-  
-  
-  .footer-language {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
-  }
-  
-  .footer-language-button {
-    background: none;
-    border: 1px solid #ffffff;
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
-  .footer-language-button:hover {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #ffffff;
-  }
-  
-  /* Mũi tên cho dropdown */
-  .arrow {
-    font-size: 12px;
-    transition: transform 0.3s ease;
-  }
-  
-  /* Xoay mũi tên khi menu dropdown mở */
-  .arrow.open {
-    transform: rotate(180deg);
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #333;
-    border: 1px solid #737373;
-    width: 100%;
-    margin-top: 5px;
-    z-index: 1;
-  }
-  
-  .dropdown-item {
-    padding: 10px 20px;
-    color: #ffffff;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: left;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #007bff;
-    color: #ffffff;
-  }
-  
+  background-color: #000;
+  color: #ffffff;
+  padding: 40px;
+  text-align: left;
+}
+
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-question {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.footer-question a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px 0;
+}
+
+.footer-column a {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.footer-column a:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.footer-language {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.footer-language-button {
+  background: none;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-language-button:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #ffffff;
+}
+
+/* Mũi tên cho dropdown */
+.arrow {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* Xoay mũi tên khi menu dropdown mở */
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #333;
+  border: 1px solid #737373;
+  width: 100%;
+  margin-top: 5px;
+  z-index: 1;
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-item:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
