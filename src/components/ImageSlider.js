@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import './style/ImageSlider.css';
+import React, { useState, useEffect } from "react";
+import "./style/ImageSlider.css";
 
 // Import các ảnh từ thư mục assets
-import image1 from '../assets/quangcao1.jpg';
-import image2 from '../assets/quangcao2.jpeg';
-import image3 from '../assets/quangcao3.jpg';
+import image1 from "../assets/quangcao1.jpg";
+import image2 from "../assets/quangcao2.jpeg";
+import image3 from "../assets/quangcao3.jpg";
 
 const images = [image1, image2, image3];
 
@@ -13,14 +13,14 @@ const ImageSlider = () => {
 
   // Hàm chuyển sang ảnh tiếp theo
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   // Hàm chuyển về ảnh trước
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
@@ -33,9 +33,13 @@ const ImageSlider = () => {
 
   return (
     <div className="slider">
-      <button className="prev" onClick={prevSlide}>❮</button>
+      <button className="prev" onClick={prevSlide}>
+        ❮
+      </button>
       <img src={images[currentIndex]} alt="slideshow" className="slide-image" />
-      <button className="next" onClick={nextSlide}>❯</button>
+      <button className="next" onClick={nextSlide}>
+        ❯
+      </button>
     </div>
   );
 };

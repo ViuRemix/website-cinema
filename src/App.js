@@ -20,10 +20,9 @@ function App() {
           cho chọn phim
           <Route path="/genres/:genre" element={<Home />} />
           <Route path="/movie/:movieId" element={<MovieDetail />} /> */}
-          <Route path = "/" element={<Home/>}/>
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginForm />} />{" "}
         </Routes>
-
         {/* Footer nằm ngoài Routes để luôn hiển thị */}
         <Footer />
       </div>

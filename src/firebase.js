@@ -31,7 +31,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 // Initialize Firebase Authentication and providers
-export const auth = getAuth(); // Xuất khẩu đối tượng auth
+export const auth = getAuth(app); // Đảm bảo auth dùng app config
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -83,6 +83,7 @@ export const signInWithEmail = async (email, password) => {
     }, 2000);
   }
 };
+
 export const signInWithGoogle = async (setUser, setLoading) => {
   setLoading(true); // Bắt đầu loading
   try {

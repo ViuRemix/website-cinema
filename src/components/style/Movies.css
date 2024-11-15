@@ -21,7 +21,7 @@
 /* Hiệu ứng hover cho card */
 .movie-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 12px rgba(244, 242, 242, 0.189);
 }
 
 /* Style cho ảnh trong card */
@@ -34,7 +34,6 @@
   margin-bottom: 10px;
 }
 
-
 /* Style cho tiêu đề phim */
 .movie-card h3 {
   font-size: 18px;
@@ -46,7 +45,7 @@
 /* Style cho thông tin thể loại phim */
 .movie-card p {
   font-size: 14px;
-  color: #ffffff;
+  color: #b8b8b8; /* Màu chữ nhẹ nhàng */
 }
 
 /* Style cho dropdown */
