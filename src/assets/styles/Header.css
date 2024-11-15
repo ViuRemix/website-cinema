@@ -68,7 +68,7 @@
   width: auto;
   border-radius: 2px;
   width: auto;
-  transform: scale(1.1); /* hoặc hiệu ứng khác */
+  transform: scale(1.1);
 }
 
 /* header a */
@@ -160,7 +160,7 @@
 
 .btn {
   padding: 10px 20px;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -181,6 +181,7 @@
 
 .btn.login:hover {
   background-color: #15991c; /* Màu khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .btn.login:active {
@@ -254,6 +255,55 @@
 
 .header-nav a:hover::after {
   width: 100%; /* Gạch chân mở rộng hết chiều dài khi hover */
+}
+/* loading */
+/* Thêm vào file CSS của bạn (ví dụ: styles.css) */
+.loading {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+}
+/* CSS cho dropdown RIÊNG BIỆT trong header */
+.header-dropdown .dropdown-toggle {
+  color: #737373; /* Màu chữ của dropdown trong header */
+  font-weight: bold;
+}
+
+/* Bỏ đi sự kiện hover để không hiển thị dropdown */
+.header-dropdown .dropdown-menu {
+  background-color: #f8f9fa; /* Màu nền của menu dropdown */
+  border: 1px solid #ddd;
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 999; /* Đảm bảo dropdown xuất hiện trên các phần tử khác */
+}
+
+.header-dropdown .dropdown-item {
+  color: #333;
+  padding: 8px 55px;
+  text-decoration: none;
+}
+.header-dropdown .info {
+  text-align: center;
+  padding-left: 28%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Chỉ hiển thị dropdown khi người dùng click và có class show */
+.header-dropdown .dropdown-menu.show {
+  display: block; /* Hiển thị dropdown khi có class show */
+}
+
+.header-dropdown .dropdown-item:hover {
+  background-color: #e9ecef; /* Màu nền khi hover */
+  color: #000; /* Màu chữ khi hover */
+}
+
+.header-dropdown .dropdown-item:active {
+  background-color: #ced4da; /* Màu nền khi click */
 }
 
 /* css cho thiết bị dí động nhỏ hơn */

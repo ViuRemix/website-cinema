@@ -83,34 +83,50 @@ export const signInWithEmail = async (email, password) => {
     }, 2000);
   }
 };
-
-export const signInWithGoogle = async () => {
+export const signInWithGoogle = async (setUser, setLoading) => {
+  setLoading(true); // Bắt đầu loading
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    console.log("User signed in with Google:", result.user);
+    const result = await signInWithPopup(auth, googleProvider); // Đăng nhập với Google
+    const loggedInUser = result.user; // Lấy thông tin người dùng
+    setUser(loggedInUser); // Cập nhật thông tin người dùng vào state
+    localStorage.setItem("user", JSON.stringify(loggedInUser)); // Lưu thông tin người dùng vào localStorage
+
+    // Hiển thị thông báo thành công
     const toastId = toast.success(
-      `Chào mừng ${result.user.displayName}! Bạn đã đăng nhập thành công với Google.`
+      `Chào mừng ${
+        loggedInUser.displayName || loggedInUser.email
+      }! Bạn đã đăng nhập thành công với Google.`
     );
     setTimeout(() => {
       toast.dismiss(toastId); // Tắt thông báo sau 2 giây
     }, 2000);
   } catch (error) {
     console.error("Error signing in with Google:", error.message);
+    // Hiển thị thông báo lỗi
     const toastId = toast.error(
       "Đã có lỗi xảy ra trong quá trình đăng nhập với Google."
     );
     setTimeout(() => {
       toast.dismiss(toastId); // Tắt thông báo sau 2 giây
     }, 2000);
+  } finally {
+    setLoading(false); // Kết thúc loading
   }
 };
 
-export const signInWithFacebook = async () => {
+export const signInWithFacebook = async (setUser, setLoading) => {
+  setLoading(true); // Bắt đầu loading
   try {
-    const result = await signInWithPopup(auth, facebookProvider);
-    console.log("User signed in with Facebook:", result.user);
+    const result = await signInWithPopup(auth, facebookProvider); // Đăng nhập với Facebook
+    const loggedInUser = result.user; // Lấy thông tin người dùng
+    setUser(loggedInUser); // Cập nhật thông tin người dùng vào state
+    localStorage.setItem("user", JSON.stringify(loggedInUser)); // Lưu thông tin người dùng vào localStorage
+
+    // Hiển thị thông báo thành công
     const toastId = toast.success(
-      `Chào mừng ${result.user.displayName}! Bạn đã đăng nhập thành công với Facebook.`
+      `Chào mừng ${
+        loggedInUser.displayName || loggedInUser.email
+      }! Bạn đã đăng nhập thành công với Facebook.`
     );
     setTimeout(() => {
       toast.dismiss(toastId); // Tắt thông báo sau 2 giây
@@ -123,15 +139,24 @@ export const signInWithFacebook = async () => {
     setTimeout(() => {
       toast.dismiss(toastId); // Tắt thông báo sau 2 giây
     }, 2000);
+  } finally {
+    setLoading(false); // Kết thúc loading
   }
 };
 
-export const signInWithGithub = async () => {
+export const signInWithGithub = async (setUser, setLoading) => {
+  setLoading(true); // Bắt đầu loading
   try {
-    const result = await signInWithPopup(auth, githubProvider);
-    console.log("User signed in with GitHub:", result.user);
+    const result = await signInWithPopup(auth, githubProvider); // Đăng nhập với Github
+    const loggedInUser = result.user; // Lấy thông tin người dùng
+    setUser(loggedInUser); // Cập nhật thông tin người dùng vào state
+    localStorage.setItem("user", JSON.stringify(loggedInUser)); // Lưu thông tin người dùng vào localStorage
+
+    // Hiển thị thông báo thành công
     const toastId = toast.success(
-      `Chào mừng ${result.user.displayName}! Bạn đã đăng nhập thành công với GitHub.`
+      `Chào mừng ${
+        loggedInUser.displayName || loggedInUser.email
+      }! Bạn đã đăng nhập thành công với GitHub.`
     );
     setTimeout(() => {
       toast.dismiss(toastId); // Tắt thông báo sau 2 giây
@@ -144,5 +169,7 @@ export const signInWithGithub = async () => {
     setTimeout(() => {
       toast.dismiss(toastId); // Tắt thông báo sau 2 giây
     }, 2000);
+  } finally {
+    setLoading(false); // Kết thúc loading
   }
 };
