@@ -276,7 +276,6 @@
   border: 1px solid #ddd;
   min-width: 150px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: none;
   z-index: 999; /* Đảm bảo dropdown xuất hiện trên các phần tử khác */
 }
 

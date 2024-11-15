@@ -1,4 +1,3 @@
-// firebase.js
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -7,19 +6,19 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   GithubAuthProvider,
-  TwitterAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { toast } from "react-toastify"; // Import react-toastify
-import "react-toastify/dist/ReactToastify.css"; // Đừng quên import CSS
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyADU7EwmE6oMz-hLHk4HN1CgqvuYMI4zrQ",
   authDomain: "website-watching-film.firebaseapp.com",
   projectId: "website-watching-film",
-  storageBucket: "website-watching-film.firebasestorage.app",
+  storageBucket: "website-watching-film.appspot.com",
   messagingSenderId: "486270135974",
   appId: "1:486270135974:web:fa2d64578fa1d6f8dc4e67",
   measurementId: "G-QHFDNWJJ40",
@@ -28,148 +27,85 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+export const auth = getAuth(app); // Export auth here
 
-// Initialize Firebase Authentication and providers
-export const auth = getAuth(app); // Đảm bảo auth dùng app config
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
-const githubProvider = new GithubAuthProvider();
-const twitterProvider = new TwitterAuthProvider();
-
-// Các hàm đăng nhập và đăng ký
+// Sign up with email and password
 export const signUpWithEmail = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log("User signed up:", userCredential.user);
-    const toastId = toast.success(
-      `Chào mừng ${userCredential.user.displayName}! Bạn đã đăng ký thành công.`
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    await createUserWithEmailAndPassword(auth, email, password);
+    toast.success("Sign Up Successful!");
   } catch (error) {
-    console.error("Error signing up:", error.message);
-    const toastId = toast.error("Đã có lỗi xảy ra trong quá trình đăng ký.");
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    toast.error(error.message);
   }
 };
 
+// Sign in with email and password
 export const signInWithEmail = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log("User signed in:", userCredential.user);
-    const toastId = toast.success(
-      `Chào mừng trở lại, ${userCredential.user.displayName}! Bạn đã đăng nhập thành công.`
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    await signInWithEmailAndPassword(auth, email, password);
+    toast.success("Sign In Successful!");
   } catch (error) {
-    console.error("Error signing in:", error.message);
-    const toastId = toast.error("Đã có lỗi xảy ra trong quá trình đăng nhập.");
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    toast.error(error.message);
   }
 };
 
+// Đăng nhập với Google
 export const signInWithGoogle = async (setUser, setLoading) => {
-  setLoading(true); // Bắt đầu loading
+  const provider = new GoogleAuthProvider();
   try {
-    const result = await signInWithPopup(auth, googleProvider); // Đăng nhập với Google
-    const loggedInUser = result.user; // Lấy thông tin người dùng
-    setUser(loggedInUser); // Cập nhật thông tin người dùng vào state
-    localStorage.setItem("user", JSON.stringify(loggedInUser)); // Lưu thông tin người dùng vào localStorage
-
-    // Hiển thị thông báo thành công
-    const toastId = toast.success(
-      `Chào mừng ${
-        loggedInUser.displayName || loggedInUser.email
-      }! Bạn đã đăng nhập thành công với Google.`
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    setLoading(true);
+    const result = await signInWithPopup(auth, provider);
+    setUser(result.user); // Cập nhật user sau khi đăng nhập
+    toast.success("Đăng nhập thành công với Google!");
   } catch (error) {
-    console.error("Error signing in with Google:", error.message);
-    // Hiển thị thông báo lỗi
-    const toastId = toast.error(
-      "Đã có lỗi xảy ra trong quá trình đăng nhập với Google."
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    // Kiểm tra lỗi 'popup-closed-by-user'
+    if (error.code === "auth/popup-closed-by-user") {
+      toast.info("Bạn đã đóng cửa sổ xác thực trước khi hoàn tất.");
+    } else {
+      toast.error(error.message);
+    }
   } finally {
-    setLoading(false); // Kết thúc loading
+    setLoading(false);
   }
 };
 
+// Sign in with Facebook
 export const signInWithFacebook = async (setUser, setLoading) => {
-  setLoading(true); // Bắt đầu loading
+  const provider = new FacebookAuthProvider();
   try {
-    const result = await signInWithPopup(auth, facebookProvider); // Đăng nhập với Facebook
-    const loggedInUser = result.user; // Lấy thông tin người dùng
-    setUser(loggedInUser); // Cập nhật thông tin người dùng vào state
-    localStorage.setItem("user", JSON.stringify(loggedInUser)); // Lưu thông tin người dùng vào localStorage
-
-    // Hiển thị thông báo thành công
-    const toastId = toast.success(
-      `Chào mừng ${
-        loggedInUser.displayName || loggedInUser.email
-      }! Bạn đã đăng nhập thành công với Facebook.`
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    setLoading(true);
+    const result = await signInWithPopup(auth, provider);
+    setUser(result.user); // Set user after login
+    toast.success("Đăng nhập thành công với Facebook!");
   } catch (error) {
-    console.error("Error signing in with Facebook:", error.message);
-    const toastId = toast.error(
-      "Đã có lỗi xảy ra trong quá trình đăng nhập với Facebook."
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    toast.error(error.message);
   } finally {
-    setLoading(false); // Kết thúc loading
+    setLoading(false);
   }
 };
 
+// Sign in with Github
 export const signInWithGithub = async (setUser, setLoading) => {
-  setLoading(true); // Bắt đầu loading
+  const provider = new GithubAuthProvider();
   try {
-    const result = await signInWithPopup(auth, githubProvider); // Đăng nhập với Github
-    const loggedInUser = result.user; // Lấy thông tin người dùng
-    setUser(loggedInUser); // Cập nhật thông tin người dùng vào state
-    localStorage.setItem("user", JSON.stringify(loggedInUser)); // Lưu thông tin người dùng vào localStorage
-
-    // Hiển thị thông báo thành công
-    const toastId = toast.success(
-      `Chào mừng ${
-        loggedInUser.displayName || loggedInUser.email
-      }! Bạn đã đăng nhập thành công với GitHub.`
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    setLoading(true);
+    const result = await signInWithPopup(auth, provider);
+    setUser(result.user); // Set user after login
+    toast.success("Đăng nhập thành công với Github!");
   } catch (error) {
-    console.error("Error signing in with GitHub:", error.message);
-    const toastId = toast.error(
-      "Đã có lỗi xảy ra trong quá trình đăng nhập với GitHub."
-    );
-    setTimeout(() => {
-      toast.dismiss(toastId); // Tắt thông báo sau 2 giây
-    }, 2000);
+    toast.error(error.message);
   } finally {
-    setLoading(false); // Kết thúc loading
+    setLoading(false);
   }
 };
+
+// Hàm đăng xuất
+export const logOut = async () => {
+  try {
+    await signOut(auth);
+    toast.success("Đăng xuất thành công!");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+//

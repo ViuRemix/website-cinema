@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Dùng useNavigate để chuyển hướng
 import { signInWithEmailAndPassword } from "firebase/auth"; // Import từ Firebase Auth
 import {
@@ -14,42 +14,49 @@ import "../assets/styles/LoginForm.css"; // Import file CSS
 const LoginForm = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // Thêm trạng thái loading
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // Khởi tạo useNavigate
+
+  useEffect(() => {
+    // Kiểm tra nếu có người dùng thì chuyển hướng đến trang home
+    if (auth.currentUser) {
+      navigate("/"); // Chuyển hướng đến trang home khi đã đăng nhập
+    }
+  }, [navigate]); // Chỉ lắng nghe sự thay đổi của navigate, không cần lắng nghe setUser
 
   const handleLogin = async () => {
     try {
-      setLoading(true); // Bắt đầu loading
+      setLoading(true);
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = userCredential.user;
-      console.log("User signed in:", user);
-      setUser(user); // Cập nhật user vào state
-      toast.success("Đăng nhập thành công!"); // Hiển thị thông báo đăng nhập thành công
-      navigate("/home"); // Chuyển hướng đến trang home nếu đăng nhập thành công
+      setUser(user); // Cập nhật user vào state của parent component
+      toast.success("Đăng nhập thành công!");
+
+      // Sau khi đăng nhập thành công, chuyển hướng đến trang home
+      navigate("/");
     } catch (error) {
-      console.error("Error signing in:", error.message);
-      toast.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin."); // Hiển thị thông báo thất bại
+      toast.error("Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.");
     } finally {
-      setLoading(false); // Kết thúc loading
+      setLoading(false);
     }
   };
-
+  // xử lý đăng nhập với gg
   const handleGoogleLogin = async () => {
     setLoading(true); // Bắt đầu loading
     await signInWithGoogle(setUser, setLoading); // Truyền setUser và setLoading vào signInWithGoogle
     setLoading(false); // Kết thúc loading khi xong
   };
-
+  // xử lý đăng nhập với Fb
   const handleFacebookLogin = async () => {
     setLoading(true); // Bắt đầu loading
     await signInWithFacebook(setUser, setLoading); // Truyền setUser và setLoading vào signInWithFacebook
     setLoading(false); // Kết thúc loading khi xong
   };
-
+  // xử lý đăng nhập với github
   const handleGithubLogin = async () => {
     setLoading(true); // Bắt đầu loading
     await signInWithGithub(setUser, setLoading); // Truyền setUser và setLoading vào signInWithGithub

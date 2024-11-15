@@ -3,16 +3,17 @@ import { Link, useNavigate } from "react-router-dom";
 import "../assets/styles/Header.css";
 import logoPhim from "./logo-phim.jpg";
 
-import { signInWithGoogle, signInWithFacebook } from "../firebase";
+import { auth, signInWithGoogle, logOut } from "../firebase"; // Nhớ import hàm logOut từ firebase.js
+import { onAuthStateChanged } from "firebase/auth";
 
-const Header = ({ user, setUser }) => {
+const Header = () => {
+  const [user, setUser] = useState(null); // Trạng thái người dùng
+  const [loading, setLoading] = useState(false); // Trạng thái loading khi đăng nhập
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Trạng thái của dropdown
   const [searchQuery, setSearchQuery] = useState(""); // Lưu giá trị tìm kiếm
   const [movies, setMovies] = useState([]); // Lưu kết quả tìm kiếm phim
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng đến trang kết quả tìm kiếm
 
-  const [loading, setLoading] = useState(false); // Trạng thái loading
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Trạng thái của dropdown
   // Hàm gọi API tìm kiếm phim
   const searchMovies = async (query) => {
     try {
@@ -20,14 +21,13 @@ const Header = ({ user, setUser }) => {
         `https://api.themoviedb.org/3/search/movie?query=${query}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTJlZjhlZmZmZWFkYmIyNDQ5ZDE1YmEwYWUwMTZmYSIsIm5iZiI6MTczMTU5NzAyMS45NTQ3Nywic3ViIjoiNjczNTdlZWU4MGZkYTZlM2UzNzQyZDc0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.pzUNog-mTfhkP8V2u1hRrHvBw3_lM-upPfc198MXSoc`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTJlZjhlZmZmZWFkYmIyNDQ5ZDE1YmEwYWUwMTZmYSIsIm5iZiI6MTczMTU5NzAyMS45NTQ3Nywic3ViIjoiNjczNTdlZWU4MGZkYTZlM2UzNzQyZDc0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.pzUNog-mTfhkP8V2u1hRrHvBw3_lM-upPfc198MXSoc`, /// api key movie
           },
         }
       );
       const data = await response.json();
       setMovies(data.results || []);
-      // Chuyển đến trang Home với dữ liệu phim
-      navigate("/", { state: { movies: data.results || [] } });
+      navigate("/", { state: { movies: data.results || [] } }); // Chuyển đến trang Home với dữ liệu phim
     } catch (error) {
       console.error("Lỗi khi gọi API phim:", error);
     }
@@ -49,31 +49,48 @@ const Header = ({ user, setUser }) => {
     }
   };
 
-  // Sử dụng useEffect để kiểm tra đăng nhập
+  // Lắng nghe sự thay đổi trạng thái đăng nhập người dùng
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      setUser(JSON.parse(loggedInUser));
+    // Kiểm tra xem có thông tin người dùng đã lưu trong localStorage không
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser)); // Nếu có thì cập nhật lại state user
     }
-  }, [setUser]); // chỉ chạy một lần khi component render
 
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser); // Cập nhật trạng thái user
+        localStorage.setItem("user", JSON.stringify(currentUser)); // Lưu thông tin người dùng vào localStorage
+      } else {
+        setUser(null); // Nếu không có người dùng, set lại user là null
+        localStorage.removeItem("user"); // Xóa người dùng khỏi localStorage
+      }
+
+      setLoading(false); // Đã xong quá trình xác thực
+    });
+
+    return () => unsubscribe(); // Dọn dẹp khi component bị hủy
+  }, []);
+
+  // Đăng nhập với Google
   const handleSignIn = async () => {
     setLoading(true); // Bắt đầu loading khi đăng nhập
     await signInWithGoogle(setUser, setLoading); // Truyền setUser và setLoading vào hàm signInWithGoogle
     setLoading(false); // Kết thúc loading khi đăng nhập xong
   };
 
-  // CHO ĐĂNG XUẤT
+  // Đăng xuất
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    logOut();
     setUser(null); // Đặt lại trạng thái user thành null
     window.location.reload(); // Tải lại trang để cập nhật giao diện
   };
 
-  // cho Dropdown
+  // Chuyển đổi trạng thái của dropdown
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState); // Chuyển trạng thái dropdown
   };
+
   return (
     <header className="header">
       <div className="header-logo">
@@ -99,7 +116,7 @@ const Header = ({ user, setUser }) => {
         <div className="dropdown">
           <Link to="/movies">
             Phim
-            <i class="bx bx-chevron-down"></i>
+            <i className="bx bx-chevron-down"></i>
           </Link>
           <ul className="dropdown-menu">
             <li>
@@ -133,7 +150,7 @@ const Header = ({ user, setUser }) => {
         <div className="dropdown">
           <Link to="/genres">
             Thể loại
-            <i class="bx bx-chevron-down"></i>
+            <i className="bx bx-chevron-down"></i>
           </Link>
 
           <ul className="dropdown-menu">
@@ -186,22 +203,23 @@ const Header = ({ user, setUser }) => {
       <div className="header-buttons">
         {loading ? (
           <span>Đang đăng nhập...</span>
-        ) : user ? ( // Nếu đã đăng nhập
+        ) : user ? (
+          // Nếu đã đăng nhập
           <div className="header-dropdown dropdown">
             <Link
-              to="/movies"
+              // to="/"
               className="btn dropdown-toggle"
               id="headerDropdownMenuButton"
-              onClick={toggleDropdown} // Gọi hàm toggleDropdown khi click
-              aria-expanded={isDropdownOpen ? "true" : "false"}
+              aria-expanded="false"
             >
               Xin chào, {user.displayName || user.email}
             </Link>
             <ul
-              className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`} // Thêm class show khi dropdown mở
+              className="dropdown-menu"
               aria-labelledby="headerDropdownMenuButton"
             >
               <li>
+                {/* đăng xuất */}
                 <button onClick={handleLogout} className="dropdown-item info">
                   Đăng xuất
                 </button>
@@ -210,6 +228,7 @@ const Header = ({ user, setUser }) => {
           </div>
         ) : (
           <>
+            {/* Hiển thị các nút Login và Signup nếu chưa đăng nhập */}
             <Link to="/login" className="btn login">
               Login
             </Link>
