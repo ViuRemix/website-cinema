@@ -5,11 +5,33 @@ import logoPhim from "./logo-phim.jpg";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState(""); // Lưu giá trị tìm kiếm
+  const [movies, setMovies] = useState([]); // Lưu kết quả tìm kiếm phim
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng đến trang kết quả tìm kiếm
+
+  // Hàm gọi API tìm kiếm phim
+  const searchMovies = async (query) => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${query}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTJlZjhlZmZmZWFkYmIyNDQ5ZDE1YmEwYWUwMTZmYSIsIm5iZiI6MTczMTU5NzAyMS45NTQ3Nywic3ViIjoiNjczNTdlZWU4MGZkYTZlM2UzNzQyZDc0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.pzUNog-mTfhkP8V2u1hRrHvBw3_lM-upPfc198MXSoc`,
+          },
+        }
+      );
+      const data = await response.json();
+      setMovies(data.results || []);
+      // Chuyển đến trang Home với dữ liệu phim
+      navigate("/", { state: { movies: data.results || [] } });
+    } catch (error) {
+      console.error("Lỗi khi gọi API phim:", error);
+    }
+  };
 
   // Xử lý khi người dùng nhấn Enter
   const handleSearch = (e) => {
     if (e.key === "Enter" && searchQuery.trim() !== "") {
+      searchMovies(searchQuery); // Gọi API tìm kiếm phim
       navigate(`/search?query=${searchQuery}`);
     }
   };
@@ -17,6 +39,7 @@ const Header = () => {
   // Xử lý khi người dùng click vào biểu tượng tìm kiếm
   const handleSearchClick = () => {
     if (searchQuery.trim() !== "") {
+      searchMovies(searchQuery); // Gọi API tìm kiếm phim
       navigate(`/search?query=${searchQuery}`);
     }
   };
@@ -131,9 +154,11 @@ const Header = () => {
       </nav>
 
       <div className="header-buttons">
+        {/* Nút Login */}
         <Link to="/login" className="btn login">
           Login
         </Link>
+        {/* Nút Signup */}
         <Link to="/signup" className="btn signup">
           Signup
         </Link>
