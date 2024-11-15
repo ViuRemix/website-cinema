@@ -204,31 +204,60 @@ const Header = () => {
         {loading ? (
           <span>Đang đăng nhập...</span>
         ) : user ? (
-          // Nếu đã đăng nhập
           <div className="header-dropdown dropdown">
-            <Link
-              // to="/"
+            <button
               className="btn dropdown-toggle"
+              onClick={toggleDropdown}
               id="headerDropdownMenuButton"
-              aria-expanded="false"
+              aria-expanded={isDropdownOpen}
             >
-              Xin chào, {user.displayName || user.email}
-            </Link>
-            <ul
-              className="dropdown-menu"
-              aria-labelledby="headerDropdownMenuButton"
-            >
-              <li>
-                {/* đăng xuất */}
-                <button onClick={handleLogout} className="dropdown-item info">
-                  Đăng xuất
-                </button>
-              </li>
-            </ul>
+              <img
+                src={user.photoURL || "https://via.placeholder.com/40"}
+                alt="User Avatar"
+                className="user-avatar"
+              />
+              Tài Khoản{" "}
+              <i
+                class="bi bi-person-circle"
+                style={{ width: 30, color: "white" }}
+              ></i>
+            </button>
+            {isDropdownOpen && (
+              <ul
+                className="dropdown-menu profile-dropdown"
+                aria-labelledby="headerDropdownMenuButton"
+              >
+                <li className="profile-header">
+                  <img
+                    src={user.photoURL || "https://via.placeholder.com/70"}
+                    alt="Avatar"
+                    className="profile-avatar"
+                  />
+                  <span className="profile-name">
+                    {user.displayName || "Tên của bạn"}
+                  </span>
+                  <div>
+                    <span className="profile-email">Email: {user.email}</span>
+                  </div>
+                </li>
+                <li className="dropdown-item">
+                  <Link to="/profile">Hồ sơ của tôi</Link>
+                </li>
+                <li className="dropdown-item">
+                  <Link to="/settings">Cài đặt</Link>
+                </li>
+                <li className="dropdown-item">
+                  Thông báo <span className="notification-allow">Allow</span>
+                </li>
+                <li className="dropdown-item logout" onClick={handleLogout}>
+                  Đăng xuất{" "}
+                  <i class="bx bx-log-out" style={{ paddingRight: "58%" }}></i>
+                </li>
+              </ul>
+            )}
           </div>
         ) : (
           <>
-            {/* Hiển thị các nút Login và Signup nếu chưa đăng nhập */}
             <Link to="/login" className="btn login">
               Login
             </Link>
