@@ -16,14 +16,13 @@ import "react-toastify/dist/ReactToastify.css"; // Đừng quên import CSS
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBBqZ4KTsOmg2J-vqb9Ry15FSZ5kvDYKYc", // Lấy từ biến môi trường
-  authDomain: "my-website-cinema.firebaseapp.com",
-  databaseURL: "https://my-website-cinema-default-rtdb.firebaseio.com",
-  projectId: "my-website-cinema",
-  storageBucket: "my-website-cinema.firebasestorage.app",
-  messagingSenderId: "651908411692",
-  appId: "1:651908411692:web:e91dd914347397180c7c89",
-  measurementId: "G-BZK7L58ZB5",
+  apiKey: "AIzaSyADU7EwmE6oMz-hLHk4HN1CgqvuYMI4zrQ",
+  authDomain: "website-watching-film.firebaseapp.com",
+  projectId: "website-watching-film",
+  storageBucket: "website-watching-film.firebasestorage.app",
+  messagingSenderId: "486270135974",
+  appId: "1:486270135974:web:fa2d64578fa1d6f8dc4e67",
+  measurementId: "G-QHFDNWJJ40",
 };
 
 // Initialize Firebase

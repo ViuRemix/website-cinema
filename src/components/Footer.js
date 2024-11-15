@@ -42,7 +42,7 @@ const Footer = () => {
           </div>
           <div className="footer-column">
             <a href="#">Trung tâm đa phương tiện</a>
-            <a href="#">Điều khoản sử dụng</a>
+            <Link to="/terms">Điều khoản sử dụng</Link>
             <a href="#">Liên hệ với chúng tôi</a>
             <Link to="/privacy-policy" className="App-link">
               Chính Sách Quyền Riêng Tư

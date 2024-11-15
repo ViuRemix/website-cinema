@@ -5,6 +5,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 // import MovieDetail from "./pages/MovieDetail"; // Trang chi tiết phim
 import LoginForm from "./components/LoginForm"; // Trang đăng nhập
+import PrivacyPolicy from "./pages/PrivacyPolicy"; // Trang Riêng tử
+import TermsOfService from "./pages/TermsOfService"; // Trang đăng điều khoản FB
 // import SignupForm from "./components/SignupForm"; // Trang đăng ký
 
 function App() {
@@ -22,6 +24,9 @@ function App() {
           <Route path="/movie/:movieId" element={<MovieDetail />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginForm />} />{" "}
+          {/* CHO CÁC ĐIỀU KHOẢN */}
+          <Route path="/terms" element={<TermsOfService />} />{" "}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />{" "}
         </Routes>
         {/* Footer nằm ngoài Routes để luôn hiển thị */}
         <Footer />

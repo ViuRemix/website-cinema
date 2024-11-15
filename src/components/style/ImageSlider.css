@@ -1,7 +1,7 @@
 /* Định dạng cho slider */
 .slider {
   position: relative;
-  width: 100%; 
+  width: 100%;
   max-width: 600px;
   height: 300px;
   object-fit: cover;
@@ -19,7 +19,8 @@
 }
 
 /* Định dạng cho các nút chuyển ảnh */
-.prev, .next {
+.prev,
+.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -41,6 +42,7 @@
 }
 
 /* Hiệu ứng khi hover vào nút chuyển ảnh */
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
