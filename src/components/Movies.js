@@ -10,6 +10,10 @@ import inter from '../assets/inters.jpg';
 import fault from '../assets/fault.webp';
 import gladiator from '../assets/gladiator1.jpg';
 import lala from '../assets/lala1.jpg';
+import forrest from '../assets/forrest.jpg';
+import matrix from '../assets/matrix.jpg';
+import godfather from '../assets/godfather.jpg';
+
 
 
 // Mảng dữ liệu phim với ảnh đã được import
@@ -21,8 +25,10 @@ const movies = [
     { id: 4, title: 'Avatar', genre: 'Sci-Fi', imageUrl: avatarImg },
     { id: 5, title: 'Interstellar', genre: 'Sci-Fi', imageUrl: inter },  // Đổi title và genre
     { id: 6, title: 'The Fault in Our Stars', genre: 'Romance', imageUrl: fault }, // Đổi title và genre
-    { id: 7, title: 'Gladiator', genre: 'Action', imageUrl: gladiator }, // Đổi title và genre
-    { id: 8, title: 'La La Land', genre: 'Romance', imageUrl: lala}, // Đổi title và genre
+    { id: 7, title: 'Inception', genre: 'Sci-Fi', imageUrl: gladiator }, // Đổi title và genre
+    { id: 8, title: 'Forrest Gump', genre: 'Comedy', imageUrl: forrest }, // Đổi title và genre
+    { id: 9, title: 'The Matrix', genre: 'Action', imageUrl: matrix }, // Đổi title và genre
+    { id: 10, title: 'The Godfather', genre: 'Crime', imageUrl: godfather}, // Đổi title và genre
   ];
   
 
