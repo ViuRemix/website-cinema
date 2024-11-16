@@ -8,6 +8,7 @@ import {
   GithubAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  TwitterAuthProvider,
   signOut,
 } from "firebase/auth";
 import { toast } from "react-toastify";
@@ -99,11 +100,26 @@ export const signInWithGithub = async (setUser, setLoading) => {
   }
 };
 
+export const signInWithTwitter = async (setUser, setLoading) => {
+  const provider = new TwitterAuthProvider();
+  try {
+    setLoading(true);
+    const result = await signInWithPopup(auth, provider);
+    setUser(result.user); // Cập nhật user sau khi đăng nhập
+    toast.success("Đăng nhập thành công với Twitter!");
+  } catch (error) {
+    toast.error(error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 // Hàm đăng xuất
 export const logOut = async () => {
   try {
     await signOut(auth);
     toast.success("Đăng xuất thành công!");
+    window.location.reload(); // Tải lại trang để cập nhật giao diện
   } catch (error) {
     toast.error(error.message);
   }

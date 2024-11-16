@@ -42,12 +42,13 @@ function App() {
         <Header user={user} setUser={setUser} />{" "}
         {/* Truyền user và setUser vào Header */}
         <Routes>
-          {/* <Route path="/" element={<Home />} />
+          {/*
           cho chọn phim
           <Route path="/genres/:genre" element={<Home />} />
           <Route path="/movie/:movieId" element={<MovieDetail />} /> */}
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginForm />} />{" "}
+          {/* nhớ chuyển prop không thì sẽ bị setUser is not a function */}
+          <Route path="/login" element={<LoginForm setUser={setUser} />} />
           {/* CHO footer link chuyển trang*/}
           <Route path="/terms" element={<TermsOfService />} />{" "}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />{" "}

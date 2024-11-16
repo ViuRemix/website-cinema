@@ -1,3 +1,6 @@
+/* Footer.css */
+
+/* Chỉnh kiểu dáng footer chung */
 .footer {
   background-color: #000;
   color: #ffffff;
@@ -5,11 +8,13 @@
   text-align: left;
 }
 
+/* Chỉnh container của footer */
 .footer-container {
   max-width: 1000px;
   margin: 0 auto;
 }
 
+/* Phần câu hỏi và liên hệ */
 .footer-question {
   margin-bottom: 20px;
   font-size: 16px;
@@ -20,6 +25,11 @@
   text-decoration: underline;
 }
 
+.footer-question a:hover {
+  text-decoration: none;
+}
+
+/* Các liên kết trong footer */
 .footer-links {
   display: flex;
   justify-content: space-between;
@@ -47,6 +57,7 @@
   text-decoration: underline;
 }
 
+/* Nút chọn ngôn ngữ */
 .footer-language {
   position: relative;
   display: inline-block;
@@ -82,6 +93,7 @@
   transform: rotate(180deg);
 }
 
+/* Menu dropdown */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -104,4 +116,51 @@
 .dropdown-item:hover {
   background-color: #007bff;
   color: #ffffff;
+}
+
+/* Media Queries for responsive design */
+
+/* Thiết bị có kích thước nhỏ hơn 768px */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 0 20px;
+  }
+
+  .footer-links {
+    flex-direction: column; /* Xếp thành cột */
+  }
+
+  .footer-column {
+    flex: none;
+    width: 100%; /* Mỗi cột chiếm 100% chiều rộng */
+  }
+
+  .footer-language-button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  .footer-country {
+    font-size: 14px;
+  }
+}
+
+/* Thiết bị có kích thước rất nhỏ hơn 480px */
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 0 15px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+  }
+
+  .footer-column {
+    flex: none;
+    width: 100%;
+  }
+
+  .footer-language-button {
+    font-size: 14px;
+  }
 }

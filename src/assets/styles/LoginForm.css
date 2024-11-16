@@ -1,11 +1,41 @@
 /* Định dạng cho container của form đăng nhập */
-.login-form {
-  max-width: 400px;
-  margin: 100px auto;
+.group-login-form {
+  /* css cho chỉnh */
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 20px;
+  background-attachment: fixed; /* Đảm bảo hình nền không di chuyển khi cuộn */
+  background-image: url(D:\WebsiteCinema\website-cinema\src\components\login-images.jpg);
+}
+.group-login-form h1 {
+  color: #ef1010;
+  font-size: 48px; /* Chữ lớn */
+  font-weight: bold;
+  padding-left: 10%;
+  text-shadow: 1px 6px 7px rgb(255, 3, 3); /* Tạo bóng đổ */
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  font-family: "Arial", sans-serif;
+}
+
+.login-form {
+  max-width: 450px;
+  margin: 0px auto;
+  padding: 30px;
   background-color: #fff;
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(255, 254, 254, 0.402);
+  transition: height 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+  overflow: hidden; /* Ẩn các phần nội dung tràn */
+  margin-bottom: 50px;
+}
+.login-form h2 {
+  padding: 15px;
+  color: #ddd;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 /* Định dạng input trong form đăng nhập */
@@ -13,7 +43,7 @@
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #ef1010;
   border-radius: 5px;
   font-size: 16px;
   transition: border-color 0.3s;
@@ -29,7 +59,7 @@
 .login-form button {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 20px 0;
   background-color: #4e90fd;
   color: #fff;
   border: none;
@@ -38,7 +68,9 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
+.login-form .btn-login:active {
+  background-color: #404bc1 !important;
+}
 /* Hiệu ứng hover cho các button */
 .login-form button:hover {
   background-color: #3577d3;
@@ -68,4 +100,147 @@
 
 .login-form button:nth-child(5):hover {
   background-color: #444;
+}
+/* Căn chỉnh cho container của nút đăng nhập mạng xã hội */
+.social-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Khoảng cách giữa các nút */
+  margin-top: 15px;
+}
+
+/* Định dạng chung cho các nút mạng xã hội */
+.social-login button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Kích thước nút vuông */
+  height: 50px;
+  border: none;
+  border-radius: 50%; /* Tạo nút tròn */
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Hiệu ứng hover cho các nút */
+.social-login button:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+
+/* Nút Google */
+.social-login .google-btn {
+  background-color: rgba(219, 68, 55, 0.9);
+}
+
+.social-login .google-btn:hover {
+  background-color: rgba(193, 53, 29, 0.9);
+}
+
+/* Nút Facebook */
+.social-login .facebook-btn {
+  background-color: rgba(59, 89, 152, 0.9);
+}
+
+.social-login .facebook-btn:hover {
+  background-color: rgba(45, 67, 115, 0.9);
+}
+
+/* Nút GitHub */
+.social-login .github-btn {
+  background-color: rgba(51, 51, 51, 0.9);
+}
+
+.social-login .github-btn:hover {
+  background-color: rgba(68, 68, 68, 0.9);
+}
+
+/* Nút Twitter */
+.social-login .twitter-btn {
+  background-color: rgba(29, 161, 242, 0.9);
+}
+
+.social-login .twitter-btn:hover {
+  background-color: rgba(26, 145, 218, 0.9);
+}
+
+/* Căn giữa chữ "Hoặc" */
+.login-form h3 {
+  text-align: center;
+  font-size: 16px;
+  margin: 20px 0;
+  color: #edeaea;
+  position: relative;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Đường ngang trước và sau chữ "Hoặc" */
+.login-form h3::before,
+.login-form h3::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ddd;
+}
+
+.login-form h3::before {
+  left: 0;
+}
+
+.login-form h3::after {
+  right: 0;
+}
+
+/* thống báo  */
+/* Thêm viền đỏ cho ô input khi có lỗi */
+.form-floating.error input {
+  border: 1px solid red;
+}
+
+/* Định dạng cho text lỗi */
+.error-text {
+  font-size: 14px;
+  color: red;
+  text-align: left;
+}
+/* phần dưới */
+.additional-links {
+  text-align: center; /* Căn giữa nội dung */
+  margin-top: 10px; /* Thêm khoảng cách phía trên */
+  color: #fff; /* Màu chữ trắng để nổi bật trên nền đen */
+}
+
+.additional-links p {
+  color: #868585;
+  margin: 20px 0; /* Thêm khoảng cách giữa các đoạn văn */
+}
+
+.additional-links a {
+  color: #ffffff; /* Màu xanh lá cho liên kết */
+  text-decoration: none; /* Xóa gạch dưới */
+}
+
+.additional-links a:hover {
+  text-decoration: underline; /* Gạch dưới khi hover */
+}
+/* css cho nhớ ghi tôi */
+.form-check-input {
+  margin-left: 20px !important; /* Đưa checkbox sang trái */
+  position: relative;
+  width: 25px !important;
+  border-radius: 1px !important;
+  background-color: #333;
+  border-color: rgb(255, 255, 255) !important; /* Ví dụ thay đổi màu viền */
+}
+
+.form-check-label {
+  color: #ffffff;
+  font-size: 17px;
+  padding-top: 8px;
+  position: relative; /* Đặt label ở vị trí tương đối để dễ dàng canh chỉnh */
+  margin-left: -190px; /* Khoảng cách giữa checkbox và label */
 }

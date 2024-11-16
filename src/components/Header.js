@@ -5,6 +5,8 @@ import logoPhim from "./logo-phim.jpg";
 
 import { auth, signInWithGoogle, logOut } from "../firebase"; // Nhớ import hàm logOut từ firebase.js
 import { onAuthStateChanged } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Đảm bảo style cho Toast
 
 const Header = () => {
   const [user, setUser] = useState(null); // Trạng thái người dùng
@@ -72,7 +74,7 @@ const Header = () => {
     return () => unsubscribe(); // Dọn dẹp khi component bị hủy
   }, []);
 
-  // Đăng nhập với Google
+  // Đăng ký với Google
   const handleSignIn = async () => {
     setLoading(true); // Bắt đầu loading khi đăng nhập
     await signInWithGoogle(setUser, setLoading); // Truyền setUser và setLoading vào hàm signInWithGoogle
@@ -81,8 +83,9 @@ const Header = () => {
 
   // Đăng xuất
   const handleLogout = () => {
-    logOut();
+    logOut(); // Đăng xuất
     setUser(null); // Đặt lại trạng thái user thành null
+    toast.success("Đăng xuất thành công!"); // Hiển thị thông báo thành công
     window.location.reload(); // Tải lại trang để cập nhật giao diện
   };
 
@@ -109,21 +112,30 @@ const Header = () => {
   // END ALLOW AND MUTE
 
   return (
-    <header className="header">
+    <header className="header sticky-top">
       <div className="header-logo">
-        <img src={logoPhim} alt="Logo" className="logo-icon" />
+        <Link to="/">
+          <img src={logoPhim} alt="Logo" className="logo-icon" />
+        </Link>
         <span>Cinema</span>
       </div>
 
-      <div className="header-search">
+      <div className="input-group mb-3 header-search">
         <input
           type="text"
+          className="form-control"
           placeholder="Tìm kiếm phim hay..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyDown={handleSearch}
+          aria-label="Tìm kiếm phim hay..."
+          aria-describedby="search-icon"
         />
-        <button onClick={handleSearchClick}>
+        <button
+          className="btn btn-search"
+          type="button"
+          onClick={handleSearchClick}
+        >
           <i className="bx bx-search"></i>
         </button>
       </div>
@@ -216,7 +228,7 @@ const Header = () => {
         <Link to="/favorites">Yêu thích</Link>
         <Link to="/about">Giới thiệu</Link>
       </nav>
-
+      {/* user ?    kiểm tra xem user có tồn tại không người dùng có đang đăng nhập không */}
       <div className="header-buttons">
         {loading ? (
           <span>Đang đăng nhập...</span>
@@ -231,7 +243,7 @@ const Header = () => {
               <img
                 src={
                   user.photoURL ||
-                  "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyOel_Kg6LSBouZjynF0WO9JxBmTQR1KOpRg&s"
                 }
                 alt="User Avatar"
                 className="user-avatar"
@@ -251,7 +263,7 @@ const Header = () => {
                   <img
                     src={
                       user.photoURL ||
-                      "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyOel_Kg6LSBouZjynF0WO9JxBmTQR1KOpRg&s"
                     }
                     alt="Avatar"
                     className="profile-avatar"
@@ -325,6 +337,7 @@ const Header = () => {
           </>
         )}
       </div>
+      <ToastContainer />
     </header>
   );
 };
