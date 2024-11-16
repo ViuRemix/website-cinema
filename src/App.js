@@ -27,6 +27,15 @@ import Contact from "./pages/footerLinks/Contact"; // Liên hệ với chúng t�
 function App() {
   const [user, setUser] = useState(null); // Quản lý trạng thái người dùng
 
+  // Hàm cập nhật thông tin người dùng
+  const updateUser = (updatedInfo) => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      ...updatedInfo, // Gộp thông tin mới với thông tin cũ
+    }));
+    console.log("User updated:", updatedInfo);
+  };
+
   return (
     <Router>
       <div className="App">

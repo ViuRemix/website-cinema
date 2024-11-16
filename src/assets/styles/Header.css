@@ -189,24 +189,6 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Nút Signup */
-.btn.signup {
-  background-color: #2196f3; /* Màu nền xanh dương */
-  color: white;
-  border: none;
-  box-shadow: 0 6px 15px rgba(10, 98, 198, 0.724);
-}
-
-.btn.signup:hover {
-  background-color: #1b73bb; /* Màu khi hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn.signup:active {
-  background-color: #015bb6; /* Màu khi nhấn */
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-}
-
 /* Header.css */
 
 .header-nav a {
@@ -373,6 +355,7 @@
 
 .profile-name {
   font-weight: bold;
+  padding-right: 15px;
   font-size: 16px;
   color: #333;
   margin: 0;
@@ -416,6 +399,60 @@
   color: #ff4d4f;
   text-align: center;
   padding: 12px 20px;
+}
+
+/* css cho phần thông báo  */
+.notification-allow {
+  position: relative; /* Định vị cho các thành phần bên trong */
+}
+
+/* Button chính */
+.notification-allow .btn {
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #5426d1;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* Hiệu ứng hover cho button */
+.notification-allow .btn:hover {
+  background-color: #eaeaea;
+}
+
+/* Menu dropdown */
+.notification-allow .dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px); /* Hiển thị ngay dưới nút, cách 4px */
+  left: 0;
+  z-index: 1000;
+  min-width: 100px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+/* Hiển thị menu khi aria-expanded = true */
+.notification-allow .btn[aria-expanded="true"] + .dropdown-menu {
+  display: block; /* Hiển thị menu khi button được click */
+}
+
+/* Các mục trong menu */
+.notification-allow .dropdown-menu .dropdown-item {
+  padding: 8px 26px; /* Khoảng cách bên trong */
+  font-size: 14px; /* Kích thước chữ */
+  color: #333; /* Màu chữ */
+  cursor: pointer; /* Hiệu ứng tay */
+  transition: background-color 0.3s ease; /* Hiệu ứng hover mượt */
+}
+
+/* Hiệu ứng hover cho item */
+.notification-allow .dropdown-menu .dropdown-item-allow:hover {
+  background-color: #0c51ac; /* Nền xám nhạt */
+  color: #0056b3; /* Chữ xanh đậm */
 }
 
 /* css cho thiết bị dí động nhỏ hơn */

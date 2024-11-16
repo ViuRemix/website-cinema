@@ -90,6 +90,23 @@ const Header = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState); // Chuyển trạng thái dropdown
   };
+  // END TRÁNG THÁI DROPDOWM
+
+  // Hiện thị allow và mute
+  const [isMuted, setIsMuted] = useState(false);
+  const [isAllow, setIsAllow] = useState(false);
+
+  // Hàm xử lý khi click vào nút
+  const handleToggle = (toggleType) => {
+    if (toggleType === "allow") {
+      setIsAllow(!isAllow); // Đổi trạng thái Allow
+      setIsMuted(false); // Reset Mute
+    } else if (toggleType === "mute") {
+      setIsMuted(!isMuted); // Đổi trạng thái Mute
+      setIsAllow(false); // Reset Allow
+    }
+  };
+  // END ALLOW AND MUTE
 
   return (
     <header className="header">
@@ -212,15 +229,18 @@ const Header = () => {
               aria-expanded={isDropdownOpen}
             >
               <img
-                src={user.photoURL || "https://via.placeholder.com/40"}
+                src={
+                  user.photoURL ||
+                  "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                }
                 alt="User Avatar"
                 className="user-avatar"
               />
               Tài Khoản{" "}
-              <i
+              {/* <i
                 class="bi bi-person-circle"
                 style={{ width: 30, color: "white" }}
-              ></i>
+              ></i> */}
             </button>
             {isDropdownOpen && (
               <ul
@@ -229,12 +249,16 @@ const Header = () => {
               >
                 <li className="profile-header">
                   <img
-                    src={user.photoURL || "https://via.placeholder.com/70"}
+                    src={
+                      user.photoURL ||
+                      "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                    }
                     alt="Avatar"
                     className="profile-avatar"
                   />
                   <span className="profile-name">
-                    {user.displayName || "Tên của bạn"}
+                    {user.displayName ||
+                      (user.email ? user.email.split("@")[0] : "Tên của bạn")}
                   </span>
                   <div>
                     <span className="profile-email">Email: {user.email}</span>
@@ -247,7 +271,41 @@ const Header = () => {
                   <Link to="/settings">Cài đặt</Link>
                 </li>
                 <li className="dropdown-item">
-                  Thông báo <span className="notification-allow">Allow</span>
+                  Thông báo{" "}
+                  <div className="btn-group notification-allow">
+                    <button
+                      type="button"
+                      className="btn dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                      onClick={handleToggle} // Gọi hàm xử lý khi click sẽ hiện cho phép và mute
+                    >
+                      {isAllow ? "Allow" : isMuted ? "Mute" : "Allow"}{" "}
+                      <i class="bi bi-caret-down-fill"></i>
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a
+                          className="dropdown-item dropdown-item-allow"
+                          href="#"
+                          onClick={() => handleToggle("allow")} // Gọi toggle cho Allow
+                        >
+                          {/* khi bấm allow thì hiện allow */}
+                          {isAllow ? "Allow" : "Allow"}
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-item dropdown-item-allow"
+                          href="#"
+                          onClick={() => handleToggle("mute")} // Gọi toggle cho Mute
+                        >
+                          {/* khi bấm mute thì hiện mute */}
+                          {isMuted ? "Mute" : "Mute"}
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
                 <li className="dropdown-item logout" onClick={handleLogout}>
                   Đăng xuất{" "}
@@ -259,11 +317,11 @@ const Header = () => {
         ) : (
           <>
             <Link to="/login" className="btn login">
-              Login
+              Đăng Nhập <i class="bi bi-person-square"></i>
             </Link>
-            <Link to="/signup" className="btn signup">
+            {/* <Link to="/signup" className="btn signup">
               Signup
-            </Link>
+            </Link> */}
           </>
         )}
       </div>

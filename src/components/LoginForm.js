@@ -48,18 +48,21 @@ const LoginForm = ({ setUser }) => {
   const handleGoogleLogin = async () => {
     setLoading(true); // Bắt đầu loading
     await signInWithGoogle(setUser, setLoading); // Truyền setUser và setLoading vào signInWithGoogle
+    navigate("/"); //Chuyển trang khi bấm login thành công bằng gg
     setLoading(false); // Kết thúc loading khi xong
   };
   // xử lý đăng nhập với Fb
   const handleFacebookLogin = async () => {
     setLoading(true); // Bắt đầu loading
-    await signInWithFacebook(setUser, setLoading); // Truyền setUser và setLoading vào signInWithFacebook
+    await signInWithFacebook(setUser, setLoading); // Truyền setUser và setLoading vào signInWithFacebook\
+    navigate("/"); //Chuyển trang khi bấm login thành công bằng FB
     setLoading(false); // Kết thúc loading khi xong
   };
   // xử lý đăng nhập với github
   const handleGithubLogin = async () => {
     setLoading(true); // Bắt đầu loading
     await signInWithGithub(setUser, setLoading); // Truyền setUser và setLoading vào signInWithGithub
+    navigate("/"); //Chuyển trang khi bấm login thành công bằng github
     setLoading(false); // Kết thúc loading khi xong
   };
 
