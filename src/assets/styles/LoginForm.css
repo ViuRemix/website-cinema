@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
   padding: 20px;
   background-attachment: fixed; /* Đảm bảo hình nền không di chuyển khi cuộn */
-  background-image: url(D:\WebsiteCinema\website-cinema\src\components\login-images.jpg);
+  background-image: url(./login-images.jpg);
 }
 .group-login-form h1 {
   color: #ef1010;
