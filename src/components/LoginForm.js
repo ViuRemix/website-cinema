@@ -212,6 +212,7 @@ const LoginForm = ({ setUser }) => {
               className="form-check-input"
               id="exampleCheck1"
             />
+
             <label className="form-check-label" for="exampleCheck1">
               Ghi nhớ tôi
             </label>
