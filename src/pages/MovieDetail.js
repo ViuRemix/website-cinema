@@ -25,15 +25,15 @@ const MovieDetail = () => {
         const data = await response.json();
         setMovie(data);
       } catch (error) {
-        console.error(t("loading"), error);
+        console.error(t("Error fetching movie details:"), error);
       }
     };
-
+    // gọi api
     fetchMovieDetails();
   }, [id, t]);
 
   if (!movie) {
-    return <div>{t("loading")}</div>; // Hiển thị "Đang tải" theo ngôn ngữ
+    return <div>{t("loading...")}</div>; // Hiển thị "Đang tải" theo ngôn ngữ
   }
 
   const url = window.location.href;
@@ -108,8 +108,11 @@ const MovieDetail = () => {
             <i className="bi bi-share-fill"></i> {t("chia sẻ")}
           </button>
           <h4>Ngôn ngữ: {movie.spoken_languages[0]?.name}</h4>
-          <button className="watch-button">
-            <i class="bi bi-play-circle-fill"></i>
+          <button
+            className="watch-button"
+            onClick={() => navigate(`/watch/${id}`)} // Chuyển hướng đến WatchMovie để xem phim
+          >
+            <i className="bi bi-play-circle-fill"></i>
             Xem phim
           </button>
         </div>

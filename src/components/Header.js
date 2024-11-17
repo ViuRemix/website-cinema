@@ -23,7 +23,7 @@ const Header = () => {
         `https://api.themoviedb.org/3/search/movie?query=${query}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTJlZjhlZmZmZWFkYmIyNDQ5ZDE1YmEwYWUwMTZmYSIsIm5iZiI6MTczMTU5NzAyMS45NTQ3Nywic3ViIjoiNjczNTdlZWU4MGZkYTZlM2UzNzQyZDc0Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.pzUNog-mTfhkP8V2u1hRrHvBw3_lM-upPfc198MXSoc`, /// api key movie
+            Authorization: `Bearer  eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTJlZjhlZmZmZWFkYmIyNDQ5ZDE1YmEwYWUwMTZmYSIsIm5iZiI6MTczMTg1MjMwMy45MTgwMDYyLCJzdWIiOiI2NzM1N2VlZTgwZmRhNmUzZTM3NDJkNzQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.l8pM0QqjZVzqo5gg0Por5R1tqGWhQAzV1wrY7bOoolI`, /// api key movie
           },
         }
       );
@@ -74,7 +74,7 @@ const Header = () => {
     return () => unsubscribe(); // Dọn dẹp khi component bị hủy
   }, []);
 
-  // Đăng ký
+  // Đăng ký với Google
   const handleSignIn = async () => {
     setLoading(true); // Bắt đầu loading khi đăng nhập
     await signInWithGoogle(setUser, setLoading); // Truyền setUser và setLoading vào hàm signInWithGoogle
@@ -86,7 +86,7 @@ const Header = () => {
     logOut(); // Đăng xuất
     setUser(null); // Đặt lại trạng thái user thành null
     toast.success("Đăng xuất thành công!"); // Hiển thị thông báo thành công
-    navigate("/"); /// khi đăng xuất xong sẽ chuyển tới trang home
+    navigate("/"); /// khi đăng xuất xong sẽ chuyển tới trang
     window.location.reload(); // Tải lại trang để cập nhật giao diện
   };
 

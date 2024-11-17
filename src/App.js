@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 // import MovieDetail from "./pages/MovieDetail"; // Trang chi tiết phim
 import LoginForm from "./components/LoginForm"; // Trang đăng nhập
 import MovieDetail from "./pages/MovieDetail";
+import WatchMovie from "./pages/WatchMovies";
 
 // các footer link
 
@@ -44,6 +45,7 @@ function App() {
         {/* Truyền user và setUser vào Header */}
         <Routes>
           <Route path="/movie/:id" element={<MovieDetail />} />
+          <Route path="/watch/:id" element={<WatchMovie />} />
           {/*
           cho chọn phim
           <Route path="/genres/:genre" element={<Home />} />
