@@ -74,7 +74,7 @@ const Header = () => {
     return () => unsubscribe(); // Dọn dẹp khi component bị hủy
   }, []);
 
-  // Đăng ký với Google
+  // Đăng ký
   const handleSignIn = async () => {
     setLoading(true); // Bắt đầu loading khi đăng nhập
     await signInWithGoogle(setUser, setLoading); // Truyền setUser và setLoading vào hàm signInWithGoogle
@@ -86,6 +86,7 @@ const Header = () => {
     logOut(); // Đăng xuất
     setUser(null); // Đặt lại trạng thái user thành null
     toast.success("Đăng xuất thành công!"); // Hiển thị thông báo thành công
+    navigate("/"); /// khi đăng xuất xong sẽ chuyển tới trang home
     window.location.reload(); // Tải lại trang để cập nhật giao diện
   };
 

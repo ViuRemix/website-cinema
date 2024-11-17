@@ -42,7 +42,6 @@ const MovieDetail = () => {
   return (
     <div className="movie-detail">
       <div className="movie-image">
-        <h1>{movie.title}</h1>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
@@ -50,26 +49,56 @@ const MovieDetail = () => {
         />
       </div>
       <div className="movie-tittle-right">
-        <div className="movie-description">
-          <p>
-            {t("Tổng quan")}: {movie.overview}
-          </p>
+        <h1 style={{ fontFamily: '"Lato", sans-serif' }}>
+          <b>{movie.title}</b>{" "}
+        </h1>
+        <div class="container">
+          <div className="movie-info row">
+            <div className="col-3 order-first">
+              <p>
+                {" "}
+                <span style={{ paddingRight: 8 }}>Đạo diễn: </span>
+                {movie.director || t("notAvailable")}
+              </p>
+            </div>
+            <div className="col order-first">
+              <p>
+                {" "}
+                <span style={{ paddingRight: 8 }}>
+                  <i class="bi bi-calendar2-week"></i>
+                  {"  "}
+                </span>
+                {new Date(movie.release_date).getFullYear()}
+              </p>
+            </div>
+            <div className="col-7 order-first">
+              <b>
+                <span style={{ paddingRight: 8 }}>
+                  <i class="bi bi-clock"></i>
+                </span>
+                {movie.runtime
+                  ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`
+                  : "N/A"}
+              </b>
+            </div>
+            <div className="col-7 order-first">
+              <p>
+                <span style={{ paddingRight: 8 }}> Thể loại: </span>
+                {movie.genres.map((genre) => genre.name).join(", ")}
+              </p>
+            </div>
+          </div>
+          <div
+            className="movie-description"
+            style={{
+              textAlign: "left",
+              color: "#C0C0C0",
+              fontFamily: '"Nanum Gothic",sans-serif"',
+            }}
+          >
+            <p className="movie-overview">{movie.overview}</p>
+          </div>
         </div>
-        <div className="movie-info">
-          <div>
-            <span>{t("Đạo diễn")}:</span>
-            <p>{movie.director || t("notAvailable")}</p>
-          </div>
-          <div>
-            <span>{t("Năm")}:</span>
-            <p>{new Date(movie.release_date).getFullYear()}</p>
-          </div>
-          <div>
-            <span>{t("Thể loại")}:</span>
-            <p>{movie.genres.map((genre) => genre.name).join(", ")}</p>
-          </div>
-        </div>
-
         <div className="btn-group-action">
           <button
             className="btn btn-share"
@@ -79,9 +108,9 @@ const MovieDetail = () => {
             <i className="bi bi-share-fill"></i> {t("chia sẻ")}
           </button>
           <h4>Ngôn ngữ: {movie.spoken_languages[0]?.name}</h4>
-          <button className="watch-button" style={{ display: "flex" }}>
-            <i class="bi bi-play-circle-fill" style={{ paddingRight: 10 }}></i>
-            {t("Xem phim")}
+          <button className="watch-button">
+            <i class="bi bi-play-circle-fill"></i>
+            Xem phim
           </button>
         </div>
 
