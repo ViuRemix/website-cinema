@@ -66,9 +66,9 @@ function Movies() {
                 {/* Kiểm tra nếu không có poster_path thì dùng ảnh mặc định */}
                 <img
                   src={
-                    movie.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                      : movie.imageUrl
+                    movie.imageUrl || // Dùng ảnh đã import từ local
+                    `https://image.tmdb.org/t/p/w500${movie.poster_path}` || // Nếu có poster từ API, dùng ảnh đó
+                    "/default-image.jpg" // Nếu không có gì, dùng ảnh mặc định
                   }
                   alt={movie.title}
                   className="movie-card-img"
