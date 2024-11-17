@@ -7,7 +7,7 @@ const WatchMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState([]); // Đảm bảo videos luôn là mảng rỗng
   const apiKey = "ca2ef8efffeadbb2449d15ba0ae016fa";
 
   useEffect(() => {
@@ -22,14 +22,14 @@ const WatchMovie = () => {
         console.error("Error fetching movie details:", error);
       }
     };
-
+    // video đang phát
     const fetchNowPlayingMovies = async () => {
       try {
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`
         );
         const data = await response.json();
-        setNowPlayingMovies(data.results);
+        setNowPlayingMovies(data.results || []); // Đảm bảo nowPlayingMovies là mảng rỗng nếu không có dữ liệu
       } catch (error) {
         console.error("Error fetching now playing movies:", error);
       }
@@ -41,7 +41,7 @@ const WatchMovie = () => {
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}&language=en-US`
         );
         const data = await response.json();
-        setVideos(data.results);
+        setVideos(data.results || []); // Đảm bảo setVideos luôn là mảng
       } catch (error) {
         console.error("Error fetching movie videos:", error);
       }
@@ -56,9 +56,11 @@ const WatchMovie = () => {
     return <div className="loading">Loading...</div>;
   }
 
-  // Lọc video từ YouTube và lấy video đầu tiên nếu có, nếu không có thì lấy video tiếp theo.
-  const youtubeVideos = videos.filter((video) => video.site === "YouTube");
-  const selectedVideo = youtubeVideos.length > 0 ? youtubeVideos[0] : videos[0];
+  // Kiểm tra dữ liệu videos trước khi cố gắng sử dụng length
+  const youtubeVideos = Array.isArray(videos)
+    ? videos.filter((video) => video.site === "YouTube")
+    : [];
+  const selectedVideo = youtubeVideos.length > 0 ? youtubeVideos[0] : null;
 
   return (
     <div className="movie-details">
@@ -106,10 +108,10 @@ const WatchMovie = () => {
         </h1>
       )}
 
-      <h2>Phim đang phát</h2>
+      <h2>Now Playing Movies</h2>
       <ul className="now-playing-list">
         <div className="movie-cards">
-          {nowPlayingMovies.length > 0 ? (
+          {Array.isArray(nowPlayingMovies) && nowPlayingMovies.length > 0 ? (
             nowPlayingMovies.map((movie) => (
               <div key={movie.id} className="movie-card">
                 <Link to={`/movie/${movie.id}`}>
