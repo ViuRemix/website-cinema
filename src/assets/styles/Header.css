@@ -435,4 +435,102 @@
   color: #0056b3; /* Chữ xanh đậm */
 }
 
-/* css cho thiết bị dí động nhỏ hơn */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Đặt header thành cột cho thiết bị di động */
+    padding: 3rem; /* Giảm padding cho vừa màn hình */
+    height: 200px;
+    padding-top: 2%;
+  }
+  .sticky-top {
+    position: static !important;
+  }
+  .header-logo {
+    font-size: 1rem; /* Giảm kích thước logo */
+    padding-right: 200px;
+  }
+
+  .header-nav a {
+    margin: 0.5rem 0; /* Thay đổi margin cho dễ dàng chạm */
+    font-size: 14px; /* Giảm kích thước chữ cho menu */
+  }
+
+  .header-search {
+    max-width: 100%; /* Đảm bảo thanh tìm kiếm chiếm toàn bộ chiều rộng */
+    margin-bottom: 1rem; /* Thêm khoảng cách dưới thanh tìm kiếm */
+    display: flex;
+    margin-top: 20px;
+    position: static !important;
+  }
+  .header-search .btn-search {
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+  }
+  .header-search .btn-search i {
+    justify-content: center;
+  }
+  .header-search input {
+    padding: 0.5rem; /* Giảm padding cho ô nhập liệu */
+    height: 40px;
+  }
+  .header-buttons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+  .header-buttons .login {
+    position: relative;
+    margin-top: 5px;
+    top: 0%;
+    left: 70%;
+    width: auto;
+    height: auto;
+    font-size: 13px;
+    background-color: #9f9635;
+  }
+  .header-buttons .login:hover {
+    background-color: #453939;
+  }
+
+  .header-buttons {
+    flex-direction: column; /* Đặt nút thành cột */
+    gap: 10px; /* Giảm khoảng cách giữa các nút */
+  }
+
+  .btn {
+    width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng */
+  }
+
+  .header-dropdown .dropdown-menu {
+    min-width: 100%; /* Đảm bảo dropdown rộng bằng chiều rộng của nút */
+  }
+
+  .profile-dropdown {
+    width: 90%; /* Đảm bảo dropdown chiếm 90% chiều rộng */
+  }
+
+  .notification-allow .btn {
+    width: 100%; /* Đảm bảo nút thông báo chiếm toàn bộ chiều rộng */
+  }
+
+  .notification-allow .dropdown-menu {
+    min-width: 100%; /* Đảm bảo dropdown thông báo rộng bằng chiều rộng của nút */
+  }
+
+  .notification-allow .dropdown-menu .dropdown-item {
+    padding: 10px 20px; /* Tăng khoảng cách bên trong cho dễ chạm */
+    font-size: 14px; /* Tăng kích thước chữ cho dễ đọc */
+  }
+
+  .logout {
+    padding: 10px 15px; /* Tăng padding cho nút logout */
+  }
+
+  .loading {
+    font-size: 14px; /* Giảm kích thước chữ cho loading */
+  }
+}

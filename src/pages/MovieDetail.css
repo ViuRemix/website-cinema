@@ -1,21 +1,21 @@
-/* Phong cách tổng quan */
+/* General styles for movie detail section */
 .movie-detail {
   margin: 2rem auto;
   padding: 1.5rem;
   background: linear-gradient(to right, #080808bf, #141313);
-
   color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
   font-family: "Arial", sans-serif;
   display: flex;
-  flex-wrap: wrap; /* Đảm bảo phản hồi tốt */
+  flex-wrap: wrap; /* Ensure good responsiveness */
   gap: 1.5rem;
 }
-/* Khu vực hình ảnh phim */
+
+/* Movie image area */
 .movie-image {
   flex: 1;
-  text-align: center; /* Căn giữa nội dung */
+  text-align: center; /* Center content */
 }
 
 .movie-poster {
@@ -25,8 +25,8 @@
   margin-bottom: 1rem;
 }
 
-/* Khu vực thông tin */
-.movie-tittle-right {
+/* Movie information area */
+.movie-title-right {
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
   color: #e50914;
 }
 
-/* Nút "Watch Now" */
+/* "Watch Now" button */
 .watch-button {
   background-color: #14142b;
   color: white;
@@ -65,7 +65,6 @@
 
 .watch-button:hover {
   background-color: #b51515;
-  color: white;
   transform: translateY(-2px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
@@ -75,16 +74,15 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Modal và nút chia sẻ */
+/* Modal styles */
 .modal-content {
-  background-color: #141414; /* Nền tối */
+  background-color: #141414; /* Dark background */
   border-radius: 10px;
   color: white;
   padding: 1rem;
-  height: auto;
 }
 
-/* Header modal */
+/* Modal header */
 .modal-header {
   border-bottom: none;
   text-align: center;
@@ -95,7 +93,7 @@
   font-size: 1.2rem;
 }
 
-/* Vùng chứa các nút chia sẻ */
+/* Share buttons area */
 .share-buttons {
   display: flex;
   justify-content: space-between;
@@ -103,12 +101,12 @@
   margin: 1rem 0;
 }
 
-/* Nút chia sẻ */
+/* Share button styles */
 .share-buttons button {
-  background-color: #282828; /* Nền tối */
+  background-color: #282828; /* Dark background */
   width: 50px;
   height: 50px;
-  border-radius: 50%; /* Bo tròn hoàn toàn */
+  border-radius: 50%; /* Fully rounded */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,9 +118,10 @@
 }
 
 .share-buttons button:hover {
-  background-color: #444444; /* Khi hover */
+  background-color: #444444; /* Hover effect */
 }
-/*  */
+
+/* Action button group */
 .btn-group-action {
   display: flex !important;
   align-items: center;
@@ -149,7 +148,7 @@
 }
 
 .btn-share:hover {
-  color: #e74c3c; /* Màu khi hover */
+  color: #e74c3c; /* Hover color */
 }
 
 h4 {
@@ -159,7 +158,7 @@ h4 {
   font-weight: normal;
 }
 
-/* Màu biểu tượng */
+/* Icon colors */
 .bi-facebook {
   color: #1877f2;
 }
@@ -172,7 +171,7 @@ h4 {
   color: #25d366;
 }
 
-.bi-envelope {
+.bi -envelope {
   color: #d44638;
 }
 
@@ -180,44 +179,127 @@ h4 {
   color: #0088cc;
 }
 
-/* Phong cách nút đóng modal */
+/* Close button style */
 .btn-close {
-  filter: invert(1); /* Màu trắng cho nút đóng */
+  filter: invert(1); /* White color for close button */
 }
 
-/* Ẩn viền giữa header và footer của modal */
+/* Remove border between modal header and footer */
 .modal-header,
 .modal-footer {
   border: none;
 }
 
-/* Phản hồi tốt trên thiết bị di động */
-@media (max-width: 768px) {
+/* Responsive design for mobile devices */
+@media (max-width: 1024px) {
   .movie-detail {
-    flex-direction: column; /* Xếp chồng các phần */
-    align-items: center;
-  }
-
-  .movie-image,
-  .movie-tittle-right {
-    flex: unset;
-    width: 100%;
+    padding: 12px; /* Reduce padding */
   }
 
   .movie-info {
-    grid-template-columns: 1fr; /* Chỉ 1 cột */
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .movie-info .col {
+    flex: 1 1 100%; /* Full width on smaller screens */
+  }
+
+  .movie-description {
+    font-size: 0.95rem; /* Slightly smaller font size */
+  }
+
+  .btn-group-action {
+    width: 100%; /* Full width for buttons */
   }
 
   .watch-button {
-    width: 100%;
-    text-align: center;
+    width: 100%; /* Full width button */
   }
 
-  .movie-poster {
-    max-width: 100%;
+  .btn-share {
+    width: 100%; /* Full width share button */
+  }
+}
+
+/* For medium smartphones */
+@media (max-width: 768px) {
+  .movie-detail {
+    padding: 10px; /* Further reduce padding */
+    background-color: #a12424; /* Change background color */
   }
 
-  .modal-content {
-    padding: 1rem;
+  .movie-image {
+    width: 200px;
+    border-radius: 4px; /* Smaller border radius */
+    box-shadow: none; /* Remove shadow for a cleaner look */
+  }
+
+  .movie-title-right h1 {
+    font-size: 1.8rem; /* Adjust title size */
+  }
+
+  .movie-info .order-first p {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .movie-description {
+    font-size: 0.9rem; /* Smaller font for description */
+  }
+
+  .movie-info {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .movie-info .col {
+    flex: 1 1 100%; /* Full width on small screens */
+  }
+
+  .btn-group-action {
+    width: 100%; /* Full width for buttons */
+  }
+
+  .watch-button {
+    width: 100%; /* Full width button */
+    font-size: 14px;
+    height: 60px;
+  }
+
+  .btn-share {
+    padding: 8px 16px; /* Smaller button padding */
+    font-size: 14px; /* Smaller font size for buttons */
+  }
+}
+
+/* For small smartphones */
+@media (max-width: 480px) {
+  .movie-title-right h1 {
+    font-size: 1.5rem; /* Further reduce title size */
+  }
+
+  .movie-description {
+    font-size: 0.85rem; /* Further reduce description font size */
+  }
+
+  .movie-info {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .movie-info .col {
+    flex: 1 1 100%; /* Full width on small screens */
+  }
+
+  .btn-group-action {
+    width: 100%; /* Full width for buttons */
+  }
+
+  .watch-button {
+    width: 100%; /* Full width button */
+  }
+
+  .btn-share {
+    padding: 6px 12px; /* Even smaller button padding */
+    font-size: 12px; /* Smaller font size for buttons */
   }
 }
