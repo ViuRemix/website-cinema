@@ -1,7 +1,9 @@
+// Import Firebase SDK modules
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore"; // Firestore
 import {
-  getAuth,
+  getAuth, // Auth
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
@@ -27,9 +29,16 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const auth = getAuth(app); // Export auth here
 
+// Initialize Analytics
+const analytics = getAnalytics(app);
+
+// Initialize Firebase Authentication
+export const auth = getAuth(app);
+
+// Initialize Firestore
+export const db = getFirestore(app); // Firestore instance
+export { createUserWithEmailAndPassword };
 // Sign up with email and password
 export const signUpWithEmail = async (email, password) => {
   try {

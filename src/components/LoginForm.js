@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   auth,
@@ -105,18 +105,17 @@ const LoginForm = ({ setUser }) => {
       <div className="login-form">
         <h2>Đăng Nhập</h2>
 
+        <label htmlFor="birthdate">Nhập Email</label>
         {/* Email Input */}
         <div className={`form-floating mb-3 ${emailError ? "error" : ""}`}>
           <input
             type="email"
-            className="form-control"
             id="floatingInput"
             placeholder="name@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onFocus={() => setEmailError("")} // Ẩn lỗi khi bắt đầu nhập
           />
-          <label htmlFor="floatingInput">Email </label>
           {emailError && (
             <p className="error-text">
               <i
@@ -127,19 +126,18 @@ const LoginForm = ({ setUser }) => {
             </p>
           )}
         </div>
+        <label htmlFor="birthdate">Nhập Mật khẩu</label>
 
         {/* Password Input */}
         <div className={`form-floating ${passwordError ? "error" : ""}`}>
           <input
             type="password"
-            className="form-control"
             id="floatingPassword"
-            placeholder="Password"
+            placeholder="Nhập mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onFocus={() => setPasswordError("")} // Ẩn lỗi khi bắt đầu nhập
           />
-          <label htmlFor="floatingPassword">Mật khẩu</label>
           {passwordError && (
             <p className="error-text">
               {/* icon lỗi */}
@@ -157,6 +155,7 @@ const LoginForm = ({ setUser }) => {
           disabled={loading}
           className="btn btn-primary btn-login"
         >
+          <i class="bi bi-box-arrow-in-right" style={{ paddingRight: 15 }}></i>
           {loading ? (
             <>
               <span
@@ -204,7 +203,7 @@ const LoginForm = ({ setUser }) => {
         {/* Thêm phần dưới */}
         <div className="additional-links">
           <p>
-            <a href="/forgot-password">Bạn quên mật khẩu?</a>
+            <Link to="/forgot-password">Bạn quên mật khẩu?</Link>
           </p>
           <div className="mb-3 form-check">
             <input
@@ -221,6 +220,9 @@ const LoginForm = ({ setUser }) => {
             Bạn chưa có tài khoản?
             <a href="/sign-up"> Đăng ký ngay.</a>
           </p>
+          <Link to="/loginAdmin" className="btn-admin-login">
+            <i class="bi bi-shield"></i> Admin
+          </Link>
         </div>
         <ToastContainer />
       </div>

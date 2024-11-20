@@ -233,7 +233,7 @@ const Header = () => {
       <div className="header-buttons">
         {loading ? (
           <span>Đang đăng nhập...</span>
-        ) : user ? (
+        ) : user && user.email ? (
           <div className="header-dropdown dropdown">
             <button
               className="btn dropdown-toggle"
@@ -332,9 +332,6 @@ const Header = () => {
             <Link to="/login" className="btn login">
               Đăng Nhập <i class="bi bi-person-square"></i>
             </Link>
-            {/* <Link to="/signup" className="btn signup">
-              Signup
-            </Link> */}
           </>
         )}
       </div>

@@ -5,7 +5,8 @@
   background-repeat: no-repeat;
   padding: 20px;
   background-attachment: fixed; /* Đảm bảo hình nền không di chuyển khi cuộn */
-  background-image: url(./login-images.jpg);
+  background-image: linear-gradient(#0000007e, #0000007e),
+    url(/src/assets/styles/login-images.jpg) !important;
 }
 .group-login-form h1 {
   color: #ef1010;
@@ -20,7 +21,7 @@
 }
 
 .login-form {
-  max-width: 450px;
+  max-width: 550px;
   margin: 0px auto;
   padding: 30px;
   background-color: #fff;
@@ -31,27 +32,46 @@
   overflow: hidden; /* Ẩn các phần nội dung tràn */
   margin-bottom: 50px;
 }
-.login-form h2 {
-  padding: 15px;
-  color: #ddd;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-}
 
+.login-form h2 {
+  font-size: 34px; /* Chữ lớn */
+  font-weight: bold;
+  text-shadow: 1px 6px 7px rgb(160, 111, 111); /* Tạo bóng đổ */
+  margin: 0 0 30px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  color: #f70000e4;
+}
 /* Định dạng input trong form đăng nhập */
 .login-form input {
+  background-color: #111010;
   width: 100%;
   padding: 10px;
+  color: white;
   margin: 10px 0;
-  border: 1px solid #ef1010;
+  border: 1px solid #eeecec;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 17px;
+  line-height: 90px;
   transition: border-color 0.3s;
 }
 
+.login-form input:focus {
+  background-color: #333333; /* Màu nền khi đang nhập */
+  border-color: #4caf50; /* Thay đổi màu viền khi focus */
+  outline: none; /* Tắt viền mặc định của trình duyệt */
+}
+.login-form .form-floating input {
+  height: 70px;
+}
+.login-form label {
+  font-size: 19px;
+  color: rgb(220, 217, 217);
+  font-weight: bold;
+}
 /* Thay đổi màu border khi focus vào input */
 .login-form input:focus {
-  border-color: #4e90fd;
+  border-color: #b7aeaeb5;
   outline: none;
 }
 
@@ -59,21 +79,22 @@
 .login-form button {
   width: 100%;
   padding: 10px;
-  margin: 20px 0;
-  background-color: #4e90fd;
+  margin: 50px 0;
+  background-color: #f43100;
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 19px;
   cursor: pointer;
   transition: background-color 0.3s;
+  height: 60px;
 }
 .login-form .btn-login:active {
   background-color: #404bc1 !important;
 }
 /* Hiệu ứng hover cho các button */
 .login-form button:hover {
-  background-color: #3577d3;
+  background-color: #d33535b7;
 }
 
 /* Định dạng các button đăng nhập với các dịch vụ (Google, Facebook, GitHub) */
@@ -106,8 +127,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px; /* Khoảng cách giữa các nút */
-  margin-top: 15px;
+  gap: 29px; /* Khoảng cách giữa các nút */
 }
 
 /* Định dạng chung cho các nút mạng xã hội */
@@ -115,9 +135,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px; /* Kích thước nút vuông */
-  height: 50px;
+  width: 60px; /* Kích thước nút vuông */
+  height: 60px;
   border: none;
+
   border-radius: 50%; /* Tạo nút tròn */
   cursor: pointer;
   color: white;
@@ -237,10 +258,25 @@
   border-color: rgb(255, 255, 255) !important; /* Ví dụ thay đổi màu viền */
 }
 
-.form-check-label {
-  color: #ffffff;
-  font-size: 17px;
-  padding-top: 8px;
-  position: relative; /* Đặt label ở vị trí tương đối để dễ dàng canh chỉnh */
-  margin-left: -190px; /* Khoảng cách giữa checkbox và label */
+/* css trên điện thoại  */
+/* Admin Pro */
+.btn-admin-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #ffc107; /* Vàng ánh kim */
+  color: #333333; /* Màu chữ tối hơn để dễ đọc */
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  gap: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-admin-login:hover {
+  background-color: #d4a107; /* Vàng đậm khi hover */
+  transform: translateY(-2px);
 }

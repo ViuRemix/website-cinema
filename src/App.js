@@ -1,80 +1,131 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useLocation,
+} from "react-router-dom";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-// import MovieDetail from "./pages/MovieDetail"; // Trang chi tiết phim
-import LoginForm from "./components/LoginForm"; // Trang đăng nhập
 import MovieDetail from "./pages/MovieDetail";
 import WatchMovie from "./pages/WatchMovies";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
+// quên mật khẩu
+import ForgotPassword from "./components/ForgotPassword";
 
-// các footer link
+// Admin components
+import Dashboard from "./components/admin/Dashboard";
+import AdminMovies from "./components/admin/AdminMovies";
+import LoginFormAdmin from "./components/admin/LoginFormAdmin";
 
-import Faq from "./pages/footerLinks/Faq"; // Trang Câu hỏi thường gặp
-import InvestorRelations from "./pages/footerLinks/InvestorRelations"; // Quan hệ với nhà đầu tư
-import PrivacyPolicy from "./pages/footerLinks/PrivacyPolicy"; // Trang Riêng tư
-import SpeedTest from "./pages/footerLinks/SpeedTest"; // Kiểm tra tốc độ
-import HelpCenter from "./pages/footerLinks/HelpCenter"; // Trung tâm trợ giúp
-import Jobs from "./pages/footerLinks/Jobs"; // Việc làm
-import CookieSettings from "./pages/footerLinks/CookieSettings"; // Tùy chọn cookie
-import LegalNotice from "./pages/footerLinks/LegalNotice"; // Thông báo pháp lý
-import Account from "./pages/footerLinks/Account"; // Tài khoản
-import ViewingOptions from "./pages/footerLinks/ViewingOptions"; // Các cách xem
-import CompanyInfo from "./pages/footerLinks/CompanyInfo"; // Thông tin doanh nghiệp
-import Exclusives from "./pages/footerLinks/Exclusives"; // Chỉ có trên Vieflix
-import MediaCenter from "./pages/footerLinks/MediaCenter"; // Trung tâm đa phương tiện
-import TermsOfService from "./pages/footerLinks/TermsOfService"; // Điều khoản sử dụng
-import Contact from "./pages/footerLinks/Contact"; // Liên hệ với chúng tôi
+// Footer links
+import Faq from "./pages/footerLinks/Faq";
+import InvestorRelations from "./pages/footerLinks/InvestorRelations";
+import PrivacyPolicy from "./pages/footerLinks/PrivacyPolicy";
+import SpeedTest from "./pages/footerLinks/SpeedTest";
+import HelpCenter from "./pages/footerLinks/HelpCenter";
+import Jobs from "./pages/footerLinks/Jobs";
+import CookieSettings from "./pages/footerLinks/CookieSettings";
+import LegalNotice from "./pages/footerLinks/LegalNotice";
+import Account from "./pages/footerLinks/Account";
+import ViewingOptions from "./pages/footerLinks/ViewingOptions";
+import CompanyInfo from "./pages/footerLinks/CompanyInfo";
+import Exclusives from "./pages/footerLinks/Exclusives";
+import MediaCenter from "./pages/footerLinks/MediaCenter";
+import TermsOfService from "./pages/footerLinks/TermsOfService";
+import Contact from "./pages/footerLinks/Contact";
 
-function App() {
+function AppContent() {
+  const location = useLocation(); // Lấy thông tin đường dẫn hiện tại
   const [user, setUser] = useState(null); // Quản lý trạng thái người dùng
+  const [movies, setMovies] = useState([]); // Quản lý danh sách phim
 
-  // Hàm cập nhật thông tin người dùng
-  const updateUser = (updatedInfo) => {
-    setUser((prevUser) => ({
-      ...prevUser,
-      ...updatedInfo, // Gộp thông tin mới với thông tin cũ
-    }));
-    console.log("User updated:", updatedInfo);
-  };
+  const isAdminPage = location.pathname.startsWith("/admin"); //khi vào trang admin thì header và footer sẽ ẩn đi
+
+  // Lấy dữ liệu phim từ localStorage hoặc JSON khi tải trang
+  // Lấy từ localStorage: Khi trang tải,
+  useEffect(() => {
+    const savedMovies = localStorage.getItem("movies");
+    if (savedMovies) {
+      setMovies(JSON.parse(savedMovies));
+    } else {
+      ///Nếu không có dữ liệu trong localStorage hi nhận được dữ liệu, nó sẽ được chuyển thành định dạng JSON và lưu vào trạng thái movies.
+      fetch("/movies.json")
+        .then((response) => response.json())
+        .then((data) => setMovies(data))
+        .catch((error) => console.error("Error loading movies:", error));
+    }
+  }, []);
+
+  // Cập nhật danh sách phim khi có sự thay đổi
+  useEffect(() => {
+    if (movies.length > 0) {
+      localStorage.setItem("movies", JSON.stringify(movies));
+    }
+  }, [movies]);
 
   return (
+    <div className="App">
+      {/* Ẩn Header và Footer nếu đang ở trang admin */}
+      {!isAdminPage && <Header user={user} setUser={setUser} />}
+
+      <Routes>
+        {/* Trang chính */}
+        <Route path="/" element={<Home />} />
+        {/* Chi tiết phim */}
+        <Route path="/movie/:id" element={<MovieDetail movies={movies} />} />
+        <Route path="/watch/:id" element={<WatchMovie />} />
+        {/* Trang đăng nhập */}
+        <Route path="/login" element={<LoginForm setUser={setUser} />} />
+        {/* Trang đăng ký */}
+        <Route path="/sign-up" element={<RegisterForm setUser={setUser} />} />
+        {/* Trang đquên mật khẩu */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />;
+        {/* Các route footer khác */}
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/investor-relations" element={<InvestorRelations />} />
+        <Route path="/speed-test" element={<SpeedTest />} />
+        <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/cookie-settings" element={<CookieSettings />} />
+        <Route path="/legal-notice" element={<LegalNotice />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/viewing-options" element={<ViewingOptions />} />
+        <Route path="/company-info" element={<CompanyInfo />} />
+        <Route path="/exclusives" element={<Exclusives />} />
+        <Route path="/media-center" element={<MediaCenter />} />
+        <Route path="/contact" element={<Contact />} />
+        {/* Trang quản lý admin */}
+        <Route
+          path="/loginAdmin"
+          element={<LoginFormAdmin setUser={setUser} />}
+        />
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/movies" element={<AdminMovies />} />
+      </Routes>
+
+      {/* Ẩn Footer nếu đang ở trang admin */}
+      {!isAdminPage && <Footer />}
+    </div>
+  );
+}
+
+function App() {
+  return (
     <Router>
-      <div className="App">
-        <Header user={user} setUser={setUser} />{" "}
-        {/* Truyền user và setUser vào Header */}
-        <Routes>
-          <Route path="/movie/:id" element={<MovieDetail />} />
-          <Route path="/watch/:id" element={<WatchMovie />} />
-          {/*
-          cho chọn phim
-          <Route path="/genres/:genre" element={<Home />} />
-          <Route path="/movie/:movieId" element={<MovieDetail />} /> */}
-          <Route path="/" element={<Home />} />
-          {/* nhớ chuyển prop không thì sẽ bị setUser is not a function */}
-          <Route path="/login" element={<LoginForm setUser={setUser} />} />
-          {/* CHO footer link chuyển trang*/}
-          <Route path="/terms" element={<TermsOfService />} />{" "}
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />{" "}
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/investor-relations" element={<InvestorRelations />} />
-          <Route path="/speed-test" element={<SpeedTest />} />
-          <Route path="/help-center" element={<HelpCenter />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/cookie-settings" element={<CookieSettings />} />
-          <Route path="/legal-notice" element={<LegalNotice />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/viewing-options" element={<ViewingOptions />} />
-          <Route path="/company-info" element={<CompanyInfo />} />
-          <Route path="/exclusives" element={<Exclusives />} />
-          <Route path="/media-center" element={<MediaCenter />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        {/* Footer nằm ngoài Routes để luôn hiển thị */}
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }
 
 export default App;
+{
+  /* <Router>: Đây là một component bọc toàn bộ ứ */
+}
+// tạo trải nghiệm người dùng mượt mà.

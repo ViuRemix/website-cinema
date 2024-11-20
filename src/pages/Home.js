@@ -8,6 +8,7 @@ const Home = () => {
     <div>
       <ImageSlider />
       <Movies />
+
       <CustomerForm />
     </div>
   );

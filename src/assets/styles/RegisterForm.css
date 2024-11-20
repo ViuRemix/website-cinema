@@ -1,0 +1,128 @@
+.complete-register-form {
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  background-attachment: fixed; /* Đảm bảo hình nền không di chuyển khi cuộn */
+  background-image: linear-gradient(#0000007e, #0000007e),
+    url(/src/assets/styles/login-images.jpg) !important;
+}
+.complete-register-form h1 {
+  font-size: 48px; /* Chữ lớn */
+  font-weight: bold;
+  text-shadow: 1px 6px 7px rgb(160, 111, 111); /* Tạo bóng đổ */
+  margin: 0 0 30px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+  color: #f70000e4;
+}
+.register-form {
+  max-width: 650px;
+  margin: 0px auto;
+  padding: 50px;
+  background-color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 254, 254, 0.402);
+  transition: height 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+  overflow: hidden; /* Ẩn các phần nội dung tràn */
+  margin-bottom: 50px;
+}
+.register-form .form-group label {
+  color: #fbf6f6f5; /* Màu chữ trắng cho label */
+}
+.register-form .form-floating label {
+  color: rgba(
+    142,
+    138,
+    138,
+    0.801
+  ); /* Màu chữ trắng cho label trong form-floating */
+}
+.form-group .form-floating input {
+  width: 100%;
+  height: 70px;
+  margin: 10px 0;
+  border: 1px solid #e40707;
+  color: #000000;
+  border-radius: 5px;
+  font-size: 19px;
+  background-color: #a8a8a8;
+  transition: border-color 0.3s;
+}
+
+.form-group .form-brithdate input {
+  width: 100%;
+  height: 70px;
+  margin: 10px 0;
+  border: 1px solid #a8a8a8;
+  color: #fff;
+  background-color: rgba(174, 174, 174, 0.767) !important;
+  border-radius: 5px;
+  font-size: 19px;
+  transition: border-color 0.3s;
+}
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+.form-check input {
+  height: 25px;
+}
+.form-check-label {
+  margin: 0; /* Loại bỏ margin mặc định của label nếu cần */
+}
+.btn-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Khoảng cách phía trên nếu cần */
+}
+
+.btn-primary {
+  background-color: #ff0000; /* Màu nền Bootstrap */
+  border: none;
+  color: white;
+  padding: 26px 70px;
+  font-size: 19px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #f719009e; /* Màu nền khi hover */
+}
+.register-form .form-login {
+  display: block; /* Giúp label nằm riêng một dòng */
+  font-size: 18px; /* Kích thước chữ vừa phải */
+  color: #dbdfe3; /* Màu xám nhã nhặn */
+  text-align: center; /* Căn giữa nội dung */
+  margin-top: 20px; /* Tạo khoảng cách phía trên */
+}
+
+.form-login a {
+  color: #ffffff; /* Màu xanh nổi bật cho liên kết */
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+  font-weight: bold; /* Làm chữ đậm */
+  transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+}
+
+.form-login a:hover {
+  color: #f72a01; /* Đổi sang màu xanh đậm khi hover */
+  text-decoration: underline; /* Thêm gạch chân khi hover */
+}
+/* hiện thị lỗi  */
+.text-danger {
+  margin-bottom: 0;
+  text-align: center;
+  font-weight: bold;
+  color: red; /* Màu đỏ Bootstrap */
+  font-size: 15px; /* Kích thước vừa phải */
+  display: inline-block; /* Tự động co lại theo nội dung */
+}
+.form-group i {
+  color: red;
+  padding-right: 10px;
+  font-size: 20px;
+}
