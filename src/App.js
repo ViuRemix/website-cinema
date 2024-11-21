@@ -7,20 +7,20 @@ import {
   useLocation,
 } from "react-router-dom";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import WatchMovie from "./pages/WatchMovies";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./components/LoginForm/LoginForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
 // quên mật khẩu
-import ForgotPassword from "./components/ForgotPassword";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
 // Admin components
-import Dashboard from "./components/admin/Dashboard";
-import AdminMovies from "./components/admin/AdminMovies";
-import LoginFormAdmin from "./components/admin/LoginFormAdmin";
+import Dashboard from "./pages/layouts/Dashboard";
+import AdminMovies from "./pages/layouts/AdminMovies";
+import LoginFormAdmin from "./pages/layouts/LoginFormAdmin";
 
 // Footer links
 import Faq from "./pages/footerLinks/Faq";

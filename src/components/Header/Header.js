@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../assets/styles/Header.css";
+import "../../assets/styles/Header.css";
 import logoPhim from "./logo-phim.jpg";
 
-import { auth, signInWithGoogle, logOut } from "../firebase"; // Nhớ import hàm logOut từ firebase.js
+import { auth, signInWithGoogle, logOut } from "../../firebase"; // Nhớ import hàm logOut từ firebase.js
 import { onAuthStateChanged } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Đảm bảo style cho Toast
-
+import SearchBar from "./SearchBar"; // Nhập khẩu SearchBar
 const Header = () => {
   const [user, setUser] = useState(null); // Trạng thái người dùng
   const [loading, setLoading] = useState(false); // Trạng thái loading khi đăng nhập
@@ -121,25 +121,8 @@ const Header = () => {
         <span>Cinema</span>
       </div>
 
-      <div className="input-group mb-3 header-search">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Tìm kiếm phim hay..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onKeyDown={handleSearch}
-          aria-label="Tìm kiếm phim hay..."
-          aria-describedby="search-icon"
-        />
-        <button
-          className="btn btn-search"
-          type="button"
-          onClick={handleSearchClick}
-        >
-          <i className="bx bx-search"></i>
-        </button>
-      </div>
+      {/* Chèn SearchBar vào đây */}
+      <SearchBar searchMovies={searchMovies} />
 
       <nav className="header-nav">
         <Link to="/">Trang chủ</Link>
@@ -194,6 +177,7 @@ const Header = () => {
                 Phim Khoa Học Viễn Tưởng
               </Link>
             </li>
+            s
             <li>
               <Link className="dropdown-item" to="/genres/hollywood">
                 Phim Mỹ

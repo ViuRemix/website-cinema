@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./style/CustomerForm.css";
+import "./CustomerForm.css";
 function CustomerForm() {
   const [question, setQuestion] = useState("");
   const [submitted, setSubmitted] = useState(false);

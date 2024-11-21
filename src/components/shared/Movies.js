@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./style/Movies.css";
+import "./Movies.css";
 
 // Import ảnh cho các bộ phim
-import inceptionImg from "../assets/incetion.jpg";
-import titanicImg from "../assets/titanic.jpg";
-import darkKnightImg from "../assets/thedarkknight.jpg";
-import avatarImg from "../assets/avatar.jpeg";
-import inter from "../assets/inters.jpg";
-import fault from "../assets/fault.webp";
-import gladiator from "../assets/gladiator1.jpg";
-import lala from "../assets/lala1.jpg";
-import forrest from "../assets/forrest.jpg";
-import matrix from "../assets/matrix.jpg";
-import godfather from "../assets/godfather.jpg";
+import inceptionImg from "../../assets/images/incetion.jpg";
+import titanicImg from "../../assets/images/titanic.jpg";
+import darkKnightImg from "../../assets/images/thedarkknight.jpg";
+import avatarImg from "../../assets/images/avatar.jpeg";
+import inter from "../../assets/images/inters.jpg";
+import fault from "../../assets/images/fault.webp";
+import gladiator from "../../assets/images/gladiator1.jpg";
+import lala from "../../assets/images/lala1.jpg";
+import forrest from "../../assets/images/forrest.jpg";
+import matrix from "../../assets/images/matrix.jpg";
+import godfather from "../../assets/images/godfather.jpg";
 
 // Mảng dữ liệu phim với ảnh đã được import
 const movies = [

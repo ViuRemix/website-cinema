@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./style/ImageSlider.css";
+import "./ImageSlider.css";
 
 // Import các ảnh từ thư mục assets
-import image1 from "../assets/quangcao1.jpg";
-import image2 from "../assets/quangcao2.jpeg";
-import image3 from "../assets/quangcao3.jpg";
+import image1 from "../../assets/images/quangcao1.jpg";
+import image2 from "../../assets/images/quangcao2.jpeg";
+import image3 from "../../assets/images/quangcao3.jpg";
 
 const images = [image1, image2, image3];
 
