@@ -5,10 +5,26 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../firebase";
 // Import cấu hình Firebase
 import { addDoc, getDocs, collection } from "firebase/firestore";
+// Hiển thị danh sách phim: T trên dữ liệu được truyền qua props.
+import Movies from "../../components/shared/Movies";
 
 // hiện thị thông báo
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// Import ảnh cho các bộ phim
+import inceptionImg from "../../assets/images/incetion.jpg";
+import titanicImg from "../../assets/images/titanic.jpg";
+import darkKnightImg from "../../assets/images/thedarkknight.jpg";
+import avatarImg from "../../assets/images/avatar.jpeg";
+import inter from "../../assets/images/inters.jpg";
+import fault from "../../assets/images/fault.webp";
+import gladiator from "../../assets/images/gladiator1.jpg";
+import forrest from "../../assets/images/forrest.jpg";
+import matrix from "../../assets/images/matrix.jpg";
+import godfather from "../../assets/images/godfather.jpg";
+
+// dư liệu bên dưới
 const Dashboard = () => {
   // Hiện thị thông báo thành công khi thêm người dùng
   const [successMessage, setSuccessMessage] = useState("");
@@ -24,13 +40,14 @@ const Dashboard = () => {
     navigate("/login");
   };
   const [selectedItem, setSelectedItem] = useState("Bảng điều khiển"); // Quản lý mục đang chọn (Ví dụ: "Thêm người dùng", "Người dùng")
+
+  // Mảng dữ liệu phim với ảnh đã được import
   const [movies, setMovies] = useState([
     {
       name: "Game Of Thrones",
       description:
         "Một bộ phim hành động, giả tưởng với những cuộc chiến tranh quyền lực.",
-      poster:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfz7f7nusorkYc3reuVpoWgMs1VxFODSpajA&s",
+      poster: inceptionImg,
       trailer: "https://via.placeholder.com/150",
       category: "Hành động",
       actors: "Emilia Clarke, Kit Harington",
@@ -43,8 +60,7 @@ const Dashboard = () => {
     {
       name: "The Beast",
       description: "Một bộ phim kinh dị về những sự kiện kỳ bí trong rừng rậm.",
-      poster:
-        "https://vnptmedia.vn/file/8a10a0d36ccebc89016cf4ff8bd72177/8a10a0d36e16e5b3016e261985ed51fc/012021/n5e8y5v61920x1080carouselwebchuyentausinhtu19201080_202101209529.jpg",
+      poster: titanicImg,
       trailer: "https://via.placeholder.com/150",
       category: "Kinh dị",
       actors: "Tom Hardy, Idris Elba",
@@ -58,8 +74,7 @@ const Dashboard = () => {
       name: "The School for Good and Evil",
       description:
         "Một câu chuyện kỳ diệu về một trường học nơi các học sinh được huấn luyện thành các anh hùng hoặc ác quái.",
-      poster:
-        "https://bazaarvietnam.vn/wp-content/uploads/2021/10/nhat-moi-thoi-dai-cuoi-be-bung-7-e1633333823834.jpg",
+      poster: darkKnightImg,
       trailer: "https://via.placeholder.com/150",
       category: "Chính kịch",
       actors: "Charlize Theron, Kerry Washington",
@@ -73,8 +88,7 @@ const Dashboard = () => {
       name: "Black Panther",
       description:
         "Phim siêu anh hùng với cuộc chiến bảo vệ Wakanda khỏi những thế lực đen tối.",
-      poster:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4T-uvnlvQd_aChUktiYmWQriIdCPPYtvMeQ&s",
+      poster: avatarImg,
       trailer: "https://via.placeholder.com/150",
       category: "Khoa học viễn tưởng",
       actors: "Chadwick Boseman, Michael B. Jordan",
@@ -87,27 +101,98 @@ const Dashboard = () => {
     {
       name: "365 Days",
       description:
-        "Một câu chuyện tình lãng mạn, với những cảm xúc mãnh liệt giữa hai con người đến từ hai thế giới khác nhau.",
-      poster:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEagqizTOMNb1pYiww1GozjSxGyX3hDD5OsQ&ss",
+        "Một câu chuyện tình lãng mạn và đầy tranh cãi giữa Massimo, một ông trùm mafia, và Laura, một phụ nữ trẻ. Massimo bắt cóc Laura và cho cô 365 ngày để yêu anh, dẫn đến một mối quan hệ đầy cảm xúc và thử thách.",
+      poster: inter,
       trailer: "https://via.placeholder.com/150",
-      category: "Lãng mạn",
-      actors: "Michele Morrone, Anna Maria Sieklucka",
+      category: "Tâm lý",
+      actors: "Michele Morrone, Anna Maria Sieklucka, Magdalena Lamparska",
       director: "Barbara Białowąs",
       year: 2020,
-      duration: "100 phút",
+      duration: "114 phút",
       quality: "HD",
-      language: "Tiếng Ả Rập",
+      language: "Tiếng Ý",
+    },
+    {
+      name: "The Fault in Our Stars",
+      description:
+        "Một câu chuyện tình lãng mạn giữa hai thanh thiếu niên, Hazel và Gus, những người mắc bệnh ung thư. Họ tìm thấy tình yêu và sự hỗ trợ lẫn nhau trong hành trình đầy khó khăn của cuộc sống.",
+      poster: fault,
+      trailer: "https://via.placeholder.com/150",
+      category: "Chính kịch",
+      actors: "Shailene Woodley, Ansel Elgort, Nat Wolff",
+      director: "Josh Boone",
+      year: 2014,
+      duration: "126 phút",
+      quality: "HD",
+      language: "Tiếng Anh",
+    },
+    {
+      name: "Gladiator",
+      description:
+        "Một bộ phim sử thi kể về Maximus, một vị tướng La Mã bị phản bội và trở thành nô lệ. Anh chiến đấu trong đấu trường để trả thù cho gia đình mình và khôi phục danh dự cho đế chế.",
+      poster: gladiator,
+      trailer: "https://via.placeholder.com/150",
+      category: "Phiêu lưu",
+      actors: "Russell Crowe, Joaquin Phoenix, Connie Nielsen",
+      director: "Ridley Scott",
+      year: 2000,
+      duration: "155 phút",
+      quality: "HD",
+      language: "Tiếng Anh",
+    },
+    {
+      name: "Forrest Gump",
+      description:
+        "Một câu chuyện về cuộc đời của Forrest Gump, một người đàn ông đơn giản nhưng có trái tim lớn, trải qua nhiều sự kiện lịch sử quan trọng và luôn tìm kiếm tình yêu với Jenny, người bạn thời thơ ấu của mình.",
+      poster: forrest,
+      trailer: "https://via.placeholder.com/150",
+      category: "Hài hước",
+      actors: "Tom Hanks, Robin Wright, Gary Sinise",
+      director: "Robert Zemeckis",
+      year: 1994,
+      duration: "142 phút",
+      quality: "HD",
+      language: "Tiếng Anh",
+    },
+    {
+      name: "The Matrix",
+      description:
+        "Một câu chuyện về Neo, một hacker phát hiện ra rằng thế giới mà anh sống thực chất là một ảo giác do máy tính tạo ra. Anh gia nhập một nhóm kháng chiến để chống lại những cỗ máy đang kiểm soát nhân loại.",
+      poster: matrix,
+      trailer: "https://via.placeholder.com/150",
+      category: "Hành động",
+      actors: "Keanu Reeves, Carrie-Anne Moss, Laurence Fishburne",
+      director: "Lana Wachowski, Lilly Wachowski",
+      year: 1999,
+      duration: "136 phút",
+      quality: "HD",
+      language: "Tiếng Anh",
+    },
+    {
+      name: "The Godfather",
+      description:
+        "Là một bộ phim kinh điển được phát hành vào năm 1972, do Francis Ford Coppola đạo diễn và dựa trên tiểu thuyết cùng tên của Mario Puzo. Phim theo chân gia đình mafia Corleone, đặc biệt là Don Vito Corleone, người đứng đầu gia đình, và con trai ông, Michael Corleone.",
+      poster: godfather,
+      trailer: "https://via.placeholder.com/150",
+      category: "Hình sự",
+      actors: "Marlon Brando, Al Pacino, James Caan",
+      director: "Francis Ford Coppola",
+      year: 1972,
+      duration: "175 phút",
+      quality: "HD",
+      language: "Tiếng Anh",
     },
   ]);
 
-  const [categories, setCategories] = useState([
-    "Hành động",
-    "Hài hước",
-    "Kinh dị",
-    "Chính kịch",
-    "Phim hoạt hình",
-  ]);
+  const [categories, setCategories] = useState([]);
+  // lấy THỂ LOẠI PHIM từ movies
+  useEffect(() => {
+    // Lấy danh sách thể loại từ danh sách phim
+    const uniqueCategories = [
+      ...new Set(movies.map((movie) => movie.category)),
+    ];
+    setCategories(uniqueCategories);
+  }, [movies]); // Chạy khi movies thay đổi
 
   const [editIndex, setEditIndex] = useState(null);
   const [editMovie, setEditMovie] = useState(null);
@@ -424,7 +509,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div className="content">
+      <div className="content ">
         {selectedItem === "Bảng điều khiển" && (
           <div className="stats">
             <div className="stat-item">
@@ -443,167 +528,172 @@ const Dashboard = () => {
         )}
 
         {selectedItem === "Danh sách phim" && (
-          <div className="star-movies-table">
-            <table className="movies-table">
-              <thead>
-                <tr>
-                  <th>Hình ảnh</th>
-                  <th>Tên phim</th>
-                  <th>Thể loại</th>
-                  <th>Ngôn ngữ</th>
-                  <th>Năm</th>
-                  <th>Thời lượng</th>
-                  <th>Hành động</th>
-                </tr>
-              </thead>
-              <tbody>
-                {movies.map((movie, index) => (
-                  <tr key={index}>
-                    <td>
-                      <img
-                        src={movie.poster}
-                        alt={movie.name}
-                        style={{ width: "50px", height: "auto" }}
-                      />
-                    </td>
-                    <td>{movie.name}</td>
-                    <td>{movie.category}</td>
-                    <td>{movie.language}</td>
-                    <td>{movie.year}</td>
-                    <td>{movie.duration}</td>
-                    <td>
-                      <button onClick={() => handleEditMovie(index)}>
-                        Sửa
-                      </button>
-                      <button onClick={() => handleDeleteMovie(index)}>
-                        Xóa
-                      </button>
-                    </td>
+          <div className="star-movies-list">
+            <div className="star-movies-table overflow-y-auto">
+              <table className="movies-table">
+                <thead className="sticky-top content-movies-table">
+                  <tr>
+                    <th>Hình ảnh</th>
+                    <th>Tên phim</th>
+                    <th>Thể loại</th>
+                    <th>Ngôn ngữ</th>
+                    <th>Năm</th>
+                    <th>Thời lượng</th>
+                    <th>Hành động</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {movies.map((movie, index) => (
+                    <tr key={index}>
+                      <td>
+                        <img
+                          src={movie.poster}
+                          alt={movie.name}
+                          style={{ width: "50px", height: "auto" }}
+                        />
+                      </td>
+                      <td>{movie.name}</td>
+                      <td>{movie.category}</td>
+                      <td>{movie.language}</td>
+                      <td>{movie.year}</td>
+                      <td>{movie.duration}</td>
+                      <td>
+                        <button onClick={() => handleEditMovie(index)}>
+                          Sửa
+                        </button>
+                        <button onClick={() => handleDeleteMovie(index)}>
+                          Xóa
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
         {selectedItem === "Thêm phim" && (
-          <div className="add-movie-form">
+          <div className="add-movie-form-overflow ">
             <h2>Thêm phim mới</h2>
-            <form onSubmit={handleAddMovie}>
-              <div className="form-group">
-                <label>Tên phim:</label>
-                <input
-                  type="text"
-                  value={newMovie.name}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, name: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Mô tả:</label>
-                <textarea
-                  value={newMovie.description}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, description: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Hình ảnh bìa:</label>
-                <input
-                  type="url" // Để người dùng nhập URL
-                  placeholder="Nhập URL hình ảnh"
-                  onChange={
-                    (e) => setNewMovie({ ...newMovie, poster: e.target.value }) // Lưu URL vào state
-                  }
-                />
-              </div>
+            <div className="add-movie-form overflow-y-auto">
+              <form onSubmit={handleAddMovie}>
+                <div className="form-group ">
+                  <label>Tên phim:</label>
+                  <input
+                    type="text"
+                    value={newMovie.name}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, name: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Mô tả:</label>
+                  <textarea
+                    value={newMovie.description}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, description: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Hình ảnh bìa:</label>
+                  <input
+                    type="url" // Để người dùng nhập URL
+                    placeholder="Nhập URL hình ảnh"
+                    onChange={
+                      (e) =>
+                        setNewMovie({ ...newMovie, poster: e.target.value }) // Lưu URL vào state
+                    }
+                  />
+                </div>
 
-              <div className="form-group">
-                <label>Trailer:</label>
-                <input
-                  type="url"
-                  value={newMovie.trailer}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, trailer: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Thể loại:</label>
-                <input
-                  type="text"
-                  value={newMovie.category}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, category: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Diễn viên:</label>
-                <input
-                  type="text"
-                  value={newMovie.actors}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, actors: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Đạo diễn:</label>
-                <input
-                  type="text"
-                  value={newMovie.director}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, director: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Năm:</label>
-                <input
-                  type="number"
-                  value={newMovie.year}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, year: e.target.value })
-                  }
-                  min="1900"
-                  max="2026"
-                />
-              </div>
-              <div className="form-group">
-                <label>Thời lượng:</label>
-                <input
-                  type="text"
-                  value={newMovie.duration}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, duration: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Chất lượng:</label>
-                <input
-                  type="text"
-                  value={newMovie.quality}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, quality: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Ngôn ngữ:</label>
-                <input
-                  type="text"
-                  value={newMovie.language}
-                  onChange={(e) =>
-                    setNewMovie({ ...newMovie, language: e.target.value })
-                  }
-                />
-              </div>
-              <button type="submit">Thêm phim</button>
-            </form>
+                <div className="form-group">
+                  <label>Trailer:</label>
+                  <input
+                    type="url"
+                    value={newMovie.trailer}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, trailer: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Thể loại:</label>
+                  <input
+                    type="text"
+                    value={newMovie.category}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, category: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Diễn viên:</label>
+                  <input
+                    type="text"
+                    value={newMovie.actors}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, actors: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Đạo diễn:</label>
+                  <input
+                    type="text"
+                    value={newMovie.director}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, director: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Năm:</label>
+                  <input
+                    type="number"
+                    value={newMovie.year}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, year: e.target.value })
+                    }
+                    min="1900"
+                    max="2026"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Thời lượng:</label>
+                  <input
+                    type="text"
+                    value={newMovie.duration}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, duration: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Chất lượng:</label>
+                  <input
+                    type="text"
+                    value={newMovie.quality}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, quality: e.target.value })
+                    }
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Ngôn ngữ:</label>
+                  <input
+                    type="text"
+                    value={newMovie.language}
+                    onChange={(e) =>
+                      setNewMovie({ ...newMovie, language: e.target.value })
+                    }
+                  />
+                </div>
+                <button type="submit">Thêm phim</button>
+              </form>
+            </div>
           </div>
         )}
 
@@ -612,12 +702,47 @@ const Dashboard = () => {
             <h2>Thể loại phim</h2>
             <ul>
               {categories.map((category, index) => (
-                <li key={index}>{category}</li>
+                <li key={index}>
+                  {index + 1}: {category}
+                </li>
               ))}
             </ul>
+            <div
+              className="sum-categories"
+              style={{
+                padding: "10px 15px",
+                backgroundColor: "#f8f9fa",
+                borderRadius: "8px",
+                fontSize: 20,
+                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+              }}
+            >
+              <i
+                className="bi bi-bookmark-plus"
+                style={{
+                  fontSize: "24px",
+                  marginRight: "10px",
+                  color: "#007bff",
+                }}
+              ></i>
+              Tổng số thể loại:{" "}
+              <span
+                style={{
+                  fontSize: "23px",
+                  color: "red",
+                  fontWeight: "bold",
+                  marginLeft: "5px",
+                }}
+              >
+                {categories.length}
+              </span>
+            </div>
+
             <form onSubmit={handleAddCategory}>
               <div className="form-group">
-                <label>Thêm thể loại mới:</label>
+                <label style={{ fontSize: 19 }}>
+                  <b>Thêm thể loại mới:</b>
+                </label>
                 <input
                   type="text"
                   value={newCategory}

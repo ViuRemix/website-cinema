@@ -62,7 +62,7 @@
   outline: none; /* Tắt viền mặc định của trình duyệt */
 }
 .login-form .form-floating input {
-  height: 70px;
+  height: 60px;
 }
 .login-form label {
   font-size: 19px;
@@ -224,6 +224,7 @@
 
 /* Định dạng cho text lỗi */
 .error-text {
+  margin-top: 0;
   font-size: 14px;
   color: red;
   text-align: left;
