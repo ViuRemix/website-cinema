@@ -178,7 +178,6 @@ const Header = () => {
                 Phim Khoa Học Viễn Tưởng
               </Link>
             </li>
-            s
             <li>
               <Link className="dropdown-item" to="/genres/hollywood">
                 Phim Mỹ
