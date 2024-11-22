@@ -17,16 +17,26 @@ import godfather from "../../assets/images/godfather.jpg";
 
 // Mảng dữ liệu phim với ảnh đã được import
 const movies = [
-  { id: 1, title: "Inception", genre: "Sci-Fi", imageUrl: inceptionImg },
-  { id: 2, title: "Titanic", genre: "Romance", imageUrl: titanicImg },
-  { id: 3, title: "The Dark Knight", genre: "Action", imageUrl: darkKnightImg },
-  { id: 4, title: "Avatar", genre: "Sci-Fi", imageUrl: avatarImg },
-  { id: 5, title: "Interstellar", genre: "Sci-Fi", imageUrl: inter },
-  { id: 6, title: "The Fault in Our Stars", genre: "Romance", imageUrl: fault },
-  { id: 7, title: "Gladiator", genre: "Action", imageUrl: gladiator },
-  { id: 8, title: "Forrest Gump", genre: "Comedy", imageUrl: forrest },
-  { id: 9, title: "The Matrix", genre: "Action", imageUrl: matrix },
-  { id: 10, title: "The Godfather", genre: "Crime", imageUrl: godfather },
+  { id: 27205, title: "Inception", genre: "Sci-Fi", imageUrl: inceptionImg },
+  { id: 44918, title: "Titanic", genre: "Romance", imageUrl: titanicImg },
+  {
+    id: 155,
+    title: "The Dark Knight",
+    genre: "Action",
+    imageUrl: darkKnightImg,
+  },
+  { id: 76600, title: "Avatar", genre: "Sci-Fi", imageUrl: avatarImg },
+  { id: 157336, title: "Interstellar", genre: "Sci-Fi", imageUrl: inter },
+  {
+    id: 222935,
+    title: "The Fault in Our Stars",
+    genre: "Romance",
+    imageUrl: fault,
+  },
+  { id: 98, title: "Gladiator", genre: "Action", imageUrl: gladiator },
+  { id: 13, title: "Forrest Gump", genre: "Comedy", imageUrl: forrest },
+  { id: 603, title: "The Matrix", genre: "Action", imageUrl: matrix },
+  { id: 238, title: "The Godfather", genre: "Crime", imageUrl: godfather },
 ];
 
 function Movies() {
