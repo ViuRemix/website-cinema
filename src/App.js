@@ -14,6 +14,9 @@ import MovieDetail from "./pages/MovieDetail";
 import WatchMovie from "./pages/WatchMovies";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+
+// hỗ sơ người dùng
+import Profile from "./components/Profile/Profile";
 // quên mật khẩu
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
@@ -108,6 +111,8 @@ function AppContent() {
         />
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/movies" element={<AdminMovies />} />
+        {/* Profile người dùng */}
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
 
       {/* Ẩn Footer nếu đang ở trang admin */}

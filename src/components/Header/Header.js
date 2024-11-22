@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../assets/styles/Header.css";
 import logoPhim from "./logo-phim.jpg";
+import Profile from "../Profile/Profile"; // Import component Profile
 
 import { auth, signInWithGoogle, logOut } from "../../firebase"; // Nhớ import hàm logOut từ firebase.js
 import { onAuthStateChanged } from "firebase/auth";
