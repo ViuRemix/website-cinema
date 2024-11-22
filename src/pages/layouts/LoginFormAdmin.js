@@ -68,6 +68,8 @@ function LoginFormAdmin({ setUser }) {
             errorMessage ? "admin-error" : ""
           }`}
         >
+          <label htmlFor="admin-floatingInput">Email</label>
+
           <input
             type="email"
             className="admin-form-control"
@@ -77,7 +79,6 @@ function LoginFormAdmin({ setUser }) {
             onChange={(e) => setUsername(e.target.value)}
             onFocus={() => setErrorMessage("")} // Ẩn lỗi khi bắt đầu nhập
           />
-          <label htmlFor="admin-floatingInput">Email</label>
           {errorMessage && (
             <p className="admin-error-text">
               <i
@@ -93,6 +94,8 @@ function LoginFormAdmin({ setUser }) {
         <div
           className={`admin-form-floating ${errorMessage ? "admin-error" : ""}`}
         >
+          <label htmlFor="admin-floatingPassword">Mật khẩu</label>
+
           <input
             type="password"
             className="admin-form-control"
@@ -102,7 +105,6 @@ function LoginFormAdmin({ setUser }) {
             onChange={(e) => setPassword(e.target.value)}
             onFocus={() => setErrorMessage("")} // Ẩn lỗi khi bắt đầu nhập
           />
-          <label htmlFor="admin-floatingPassword">Mật khẩu</label>
           {errorMessage && (
             <p className="admin-error-text">
               <i
