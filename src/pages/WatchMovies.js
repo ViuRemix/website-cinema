@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const WatchMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]); // Đổi tên state thành popularMovies
   const [videos, setVideos] = useState([]); // Đảm bảo videos luôn là mảng rỗng
   const apiKey = "ca2ef8efffeadbb2449d15ba0ae016fa";
 
@@ -22,16 +22,16 @@ const WatchMovie = () => {
         console.error("Error fetching movie details:", error);
       }
     };
-    // video đang phát
-    const fetchNowPlayingMovies = async () => {
+
+    const fetchPopularMovies = async () => {
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`
+          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
         );
         const data = await response.json();
-        setNowPlayingMovies(data.results || []); // Đảm bảo nowPlayingMovies là mảng rỗng nếu không có dữ liệu
+        setPopularMovies(data.results || []); // Đảm bảo popularMovies là mảng rỗng nếu không có dữ liệu
       } catch (error) {
-        console.error("Error fetching now playing movies:", error);
+        console.error("Error fetching popular movies:", error);
       }
     };
 
@@ -48,7 +48,7 @@ const WatchMovie = () => {
     };
 
     fetchMovieDetails();
-    fetchNowPlayingMovies();
+    fetchPopularMovies(); // Gọi hàm mới
     fetchMovieVideos();
   }, [id]);
 
@@ -56,7 +56,6 @@ const WatchMovie = () => {
     return <div className="loading">Loading...</div>;
   }
 
-  // Kiểm tra dữ liệu videos trước khi cố gắng sử dụng length
   const youtubeVideos = Array.isArray(videos)
     ? videos.filter((video) => video.site === "YouTube")
     : [];
@@ -77,7 +76,6 @@ const WatchMovie = () => {
           <button className="download">Download</button>
         </div>
       </div>
-
       {selectedVideo ? (
         <div className="video-list">
           <div key={selectedVideo.id} className="video-item">
@@ -107,12 +105,11 @@ const WatchMovie = () => {
           Không có video nào cho phim này.
         </h1>
       )}
-
-      <h2>Now Playing Movies</h2>
+      <h2>Phim Phổ Biến</h2>
       <ul className="now-playing-list">
         <div className="movie-cards">
-          {Array.isArray(nowPlayingMovies) && nowPlayingMovies.length > 0 ? (
-            nowPlayingMovies.map((movie) => (
+          {Array.isArray(popularMovies) && popularMovies.length > 0 ? (
+            popularMovies.map((movie) => (
               <div key={movie.id} className="movie-card">
                 <Link to={`/movie/${movie.id}`}>
                   <img
@@ -127,6 +124,9 @@ const WatchMovie = () => {
                   <h3>{movie.title}</h3>
                   <p>Genre: {movie.genre}</p>
                 </Link>
+                <div className="movie-card-details">
+                  <Link to={`/movie/${movie.id}`}>Xem Chi Tiết</Link>
+                </div>
               </div>
             ))
           ) : (

@@ -13,12 +13,12 @@
 }
 
 /* Movie image area */
-.movie-image {
+.movie-detail .movie-image {
   flex: 1;
   text-align: center; /* Center content */
 }
 
-.movie-poster {
+.movie-detail .movie-image .movie-poster {
   width: 100%;
   max-width: 350px;
   border-radius: 10px;
@@ -26,7 +26,7 @@
 }
 
 /* Movie information area */
-.movie-title-right {
+.movie-detail .movie-title-right {
   flex: 2;
   display: flex;
   flex-direction: column;
@@ -34,20 +34,27 @@
   justify-content: center;
 }
 
-.movie-description {
+.movie-detail .movie-title-right h1 {
+  font-family: '"Lato", sans-serif';
+}
+
+.movie-detail .movie-description {
   margin: 3rem 0;
   font-size: 1.1rem;
   line-height: 1.5;
   max-width: 720px;
+  text-align: left;
+  color: #c0c0c0;
+  font-family: '"Nanum Gothic", sans-serif';
 }
 
-.movie-info div span {
+.movie-detail .movie-info div span {
   font-weight: bold;
   color: #e50914;
 }
 
 /* "Watch Now" button */
-.watch-button {
+.movie-detail .watch-button {
   background-color: #14142b;
   color: white;
   border: 2px solid red;
@@ -63,19 +70,19 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.443);
 }
 
-.watch-button:hover {
+.movie-detail .watch-button:hover {
   background-color: #b51515;
   transform: translateY(-2px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.watch-button:active {
+.movie-detail .watch-button:active {
   transform: translateY(1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Modal styles */
-.modal-content {
+.movie-detail .modal-content {
   background-color: #141414; /* Dark background */
   border-radius: 10px;
   color: white;
@@ -83,18 +90,18 @@
 }
 
 /* Modal header */
-.modal-header {
+.movie-detail .modal-header {
   border-bottom: none;
   text-align: center;
 }
 
-.modal-header h5 {
+.movie-detail .modal-header h5 {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 1.2rem;
 }
 
 /* Share buttons area */
-.share-buttons {
+.movie-detail .share-buttons {
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
@@ -102,7 +109,7 @@
 }
 
 /* Share button styles */
-.share-buttons button {
+.movie-detail .share-buttons button {
   background-color: #282828; /* Dark background */
   width: 50px;
   height: 50px;
@@ -117,12 +124,12 @@
   cursor: pointer;
 }
 
-.share-buttons button:hover {
+.movie-detail .share-buttons button:hover {
   background-color: #444444; /* Hover effect */
 }
 
 /* Action button group */
-.btn-group-action {
+.movie-detail .btn-group-action {
   display: flex !important;
   align-items: center;
   gap: 2rem;
@@ -132,7 +139,7 @@
   max-width: 560px;
 }
 
-.btn-share {
+.movie-detail .btn-share {
   background-color: transparent;
   border: none;
   color: white;
@@ -143,15 +150,15 @@
   font-size: 1rem;
 }
 
-.btn-share i {
+.movie-detail .btn-share i {
   font-size: 1.2rem;
 }
 
-.btn-share:hover {
+.movie-detail .btn-share:hover {
   color: #e74c3c; /* Hover color */
 }
 
-h4 {
+.movie-detail h4 {
   color: white;
   margin: 0;
   font-size: 1rem;
@@ -159,34 +166,34 @@ h4 {
 }
 
 /* Icon colors */
-.bi-facebook {
+.movie-detail .bi-facebook {
   color: #1877f2;
 }
 
-.bi-twitter {
+.movie-detail .bi-twitter {
   color: #1da1f2;
 }
 
-.bi-whatsapp {
+.movie-detail .bi-whatsapp {
   color: #25d366;
 }
 
-.bi -envelope {
+.movie-detail .bi-envelope {
   color: #d44638;
 }
 
-.bi-telegram {
+.movie-detail .bi-telegram {
   color: #0088cc;
 }
 
 /* Close button style */
-.btn-close {
+.movie-detail .btn-close {
   filter: invert(1); /* White color for close button */
 }
 
 /* Remove border between modal header and footer */
-.modal-header,
-.modal-footer {
+.movie-detail .modal-header,
+.movie-detail .modal-footer {
   border: none;
 }
 
@@ -196,27 +203,27 @@ h4 {
     padding: 12px; /* Reduce padding */
   }
 
-  .movie-info {
+  .movie-detail .movie-info {
     flex-direction: column; /* Stack items vertically */
   }
 
-  .movie-info .col {
+  .movie-detail .movie-info .col {
     flex: 1 1 100%; /* Full width on smaller screens */
   }
 
-  .movie-description {
+  .movie-detail .movie-description {
     font-size: 0.95rem; /* Slightly smaller font size */
   }
 
-  .btn-group-action {
+  .movie-detail .btn-group-action {
     width: 100%; /* Full width for buttons */
   }
 
-  .watch-button {
+  .movie-detail .watch-button {
     width: 100%; /* Full width button */
   }
 
-  .btn-share {
+  .movie-detail .btn-share {
     width: 100%; /* Full width share button */
   }
 }
@@ -228,45 +235,45 @@ h4 {
     background-color: #a12424; /* Change background color */
   }
 
-  .movie-image {
+  .movie-detail .movie-image {
     width: 200px;
     border-radius: 4px; /* Smaller border radius */
     box-shadow: none; /* Remove shadow for a cleaner look */
   }
 
-  .movie-title-right h1 {
+  .movie-detail .movie-title-right h1 {
     font-size: 1.8rem; /* Adjust title size */
   }
 
-  .movie-info .order-first p {
+  .movie-detail .movie-info .order-first p {
     display: flex;
     justify-content: center;
     flex-direction: column;
   }
 
-  .movie-description {
+  .movie-detail .movie-description {
     font-size: 0.9rem; /* Smaller font for description */
   }
 
-  .movie-info {
+  .movie-detail .movie-info {
     flex-direction: column; /* Stack items vertically */
   }
 
-  .movie-info .col {
+  .movie-detail .movie-info .col {
     flex: 1 1 100%; /* Full width on small screens */
   }
 
-  .btn-group-action {
+  .movie-detail .btn-group-action {
     width: 100%; /* Full width for buttons */
   }
 
-  .watch-button {
+  .movie-detail .watch-button {
     width: 100%; /* Full width button */
     font-size: 14px;
     height: 60px;
   }
 
-  .btn-share {
+  .movie-detail .btn-share {
     padding: 8px 16px; /* Smaller button padding */
     font-size: 14px; /* Smaller font size for buttons */
   }
@@ -274,31 +281,31 @@ h4 {
 
 /* For small smartphones */
 @media (max-width: 480px) {
-  .movie-title-right h1 {
+  .movie-detail .movie-title-right h1 {
     font-size: 1.5rem; /* Further reduce title size */
   }
 
-  .movie-description {
+  .movie-detail .movie-description {
     font-size: 0.85rem; /* Further reduce description font size */
   }
 
-  .movie-info {
+  .movie-detail .movie-info {
     flex-direction: column; /* Stack items vertically */
   }
 
-  .movie-info .col {
+  .movie-detail .movie-info .col {
     flex: 1 1 100%; /* Full width on small screens */
   }
 
-  .btn-group-action {
+  .movie-detail .btn-group-action {
     width: 100%; /* Full width for buttons */
   }
 
-  .watch-button {
+  .movie-detail .watch-button {
     width: 100%; /* Full width button */
   }
 
-  .btn-share {
+  .movie-detail .btn-share {
     padding: 6px 12px; /* Even smaller button padding */
     font-size: 12px; /* Smaller font size for buttons */
   }

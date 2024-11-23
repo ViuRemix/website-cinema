@@ -113,6 +113,25 @@ const Header = () => {
   };
   // END ALLOW AND MUTE
 
+  // api cho tất cả phim khi mà click vô
+  const fetchAllMovies = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/popular`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYTJlZjhlZmZmZWFkYmIyNDQ5ZDE1YmEwYWUwMTZmYSIsIm5iZiI6MTczMTg1MjMwMy45MTgwMDYyLCJzdWIiOiI2NzM1N2VlZTgwZmRhNmUzZTM3NDJkNzQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.l8pM0QqjZVzqo5gg0Por5R1tqGWhQAzV1wrY7bOoolI`, // Thay <API_KEY> bằng API key thực tế
+          },
+        }
+      );
+      const data = await response.json();
+      setMovies(data.results || []); // Lưu danh sách phim vào state
+      navigate("/movies", { state: { movies: data.results || [] } }); // Điều hướng đến trang "Phim"
+    } catch (error) {
+      console.error("Lỗi khi gọi API lấy tất cả phim:", error);
+    }
+  };
+
   return (
     <header className="header sticky-top">
       <div className="header-logo">
@@ -128,35 +147,53 @@ const Header = () => {
       <nav className="header-nav">
         <Link to="/">Trang chủ</Link>
         <div className="dropdown">
-          <Link to="/movies">
+          <Link
+            to="/movies"
+            onClick={fetchAllMovies} // Gọi API lấy tất cả phim
+          >
             Phim
             <i className="bx bx-chevron-down"></i>
           </Link>
           <ul className="dropdown-menu">
             <li>
-              <Link className="dropdown-item" to="/genres/action">
+              <button
+                className="dropdown-item"
+                onClick={() => searchMovies("action")}
+              >
                 Phim Hành động
-              </Link>
+              </button>
             </li>
             <li>
-              <Link className="dropdown-item" to="/genres/comedy">
+              <button
+                className="dropdown-item"
+                onClick={() => searchMovies("comedy")}
+              >
                 Phim Hài
-              </Link>
+              </button>
             </li>
             <li>
-              <Link className="dropdown-item" to="/genres/horror">
+              <button
+                className="dropdown-item"
+                onClick={() => searchMovies("horror")}
+              >
                 Phim Kinh Dị
-              </Link>
+              </button>
             </li>
             <li>
-              <Link className="dropdown-item" to="/genres/romance">
+              <button
+                className="dropdown-item"
+                onClick={() => searchMovies("romance")}
+              >
                 Phim Tình Cảm
-              </Link>
+              </button>
             </li>
             <li>
-              <Link className="dropdown-item" to="/genres/animation">
+              <button
+                className="dropdown-item"
+                onClick={() => searchMovies("animation")}
+              >
                 Phim Hoạt Hình
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

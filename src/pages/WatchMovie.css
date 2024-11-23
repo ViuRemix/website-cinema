@@ -1,144 +1,189 @@
+/* Phần header của movie-details */
 .movie-details .header-movies {
   margin-left: 5%;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.header-movies {
+.movie-details .header-movies {
   display: flex; /* Hiển thị các mục theo hàng ngang */
   justify-content: space-between; /* Giãn đều các mục hai đầu */
   align-items: center; /* Căn giữa theo chiều dọc */
   width: 90%; /* Chiếm toàn bộ chiều rộng của phần tử cha */
-  background-color: #0b0b0c; /* Màu nền xanh đậm */
+  background-color: #212121; /* Màu nền xám đậm */
   padding: 30px 20px; /* Thêm khoảng cách bên trong */
-  border-radius: 8px; /* Bo góc mềm mại */
-  color: rgb(84, 75, 75); /* Màu chữ trắng */
-  border: #5b5858 1px solid;
+  border-radius: 12px; /* Bo góc mềm mại */
+  color: white; /* Màu chữ trắng */
+  border: 1px solid #3a3a3a;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Thêm bóng mờ sáng */
+}
 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ nhẹ */
-}
-.header .title {
-  border-radius: 10px;
-  font-family: "Times New Roman", Times, serif;
-}
-.title {
-  font-size: 28px;
-  background-color: #0b0b0c;
-  color: white;
-  font-weight: 500;
+/* Phần tiêu đề trong header */
+.movie-details .header-movies .title {
+  font-size: 30px;
+  color: #ffeb3b; /* Màu vàng sáng */
+  font-weight: 600;
+  font-family: "Arial", sans-serif;
+  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.4); /* Hiệu ứng bóng mờ cho tiêu đề */
   border: none;
+  border-radius: 10px;
+  background-color: transparent;
 }
 
-.actions {
+/* Các nút action trong header */
+.movie-details .header-movies .actions {
   display: flex;
   align-items: center;
-  gap: 29px;
+  gap: 25px;
 }
 
-.favorite {
-  background-color: #444; /* Nền nút yêu thích */
+/* Nút yêu thích */
+.movie-details .header-movies .actions .favorite {
+  background-color: #ff4081; /* Nền màu hồng tươi */
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 1.5rem;
+  width: 55px;
+  height: 55px;
+  font-size: 1.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   color: white;
+  transition: background-color 0.3s ease;
 }
 
-.download {
-  background-color: #ff0000; /* Màu đỏ */
+/* Nút yêu thích khi hover */
+.movie-details .header-movies .actions .favorite:hover {
+  background-color: #ff80ab; /* Màu hồng sáng khi hover */
+}
+
+/* Nút download */
+.movie-details .header-movies .actions .download {
+  background-color: #ff5722; /* Nền màu cam đỏ */
   color: white;
   border: none;
-  padding: 13px 45px;
-  border-radius: 5px;
+  padding: 15px 50px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-.download:hover {
-  background-color: #cc0000; /* Màu đỏ đậm hơn khi hover */
+/* Nút download khi hover */
+.movie-details .header-movies .actions .download:hover {
+  background-color: #ff3d00; /* Màu đỏ đậm khi hover */
 }
-s .video-list {
-  margin-bottom: 90px;
-}
-.video-frame {
+
+/* Phần hiển thị video */
+
+.movie-details .video-list .video-item .video-frame {
   width: 100%;
-  max-width: 1400px; /* Đặt kích thước tối đa cho video */
+  max-width: 1300px; /* Đặt kích thước tối đa cho video */
   margin: 20px auto; /* Căn giữa video */
-  padding-left: 5%;
-  height: 80%;
-  border-radius: 20px; /* Bo góc video */
+  height: 70%;
+  padding-left: 15%;
+  border-radius: 15px; /* Bo góc video */
   overflow: hidden; /* Ẩn phần video ngoài khung */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng chuyển động khi hover */
 }
 
-.video-frame iframe {
+/* Đảm bảo video luôn chiếm toàn bộ chiều rộng trong iframe */
+.movie-details .video-list .video-item .video-frame iframe {
   width: 100%;
   height: 100%;
   border: 0; /* Xóa border của iframe */
   border-radius: 10px; /* Bo góc của iframe */
 }
 
-h2 {
-  font-size: 2rem;
-  color: #ffcc00; /* Màu vàng nổi bật */
+/* Tiêu đề "Now Playing Movies" */
+.movie-details h2 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  color: #ffeb3b; /* Màu vàng sáng nổi bật */
   text-align: center;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 5px rgba(255, 204, 0, 0.7);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.6); /* Tăng độ sáng của bóng chữ */
 }
 
-.now-playing-list {
+/* Danh sách các bộ phim đang chiếu */
+.movie-details .now-playing-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
   padding: 0;
   list-style: none;
 }
 
-.now-playing-item {
+/* Card của từng phim trong danh sách "Now Playing" */
+.movie-details .now-playing-list .movie-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
+  position: relative;
+  background-color: #212121; /* Màu nền xám đậm */
 }
 
-.now-playing-item:hover {
+/* Hiệu ứng hover cho movie card */
+.movie-details .now-playing-list .movie-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(145, 145, 145, 0.2);
+  box-shadow: 0 10px 25px rgba(255, 254, 252, 0.3); /* Hiệu ứng bóng mờ sáng */
 }
 
-.now-playing-poster {
+/* Thêm phần chi tiết khi hover (đặt ở giữa card) */
+.movie-details .now-playing-list .movie-card .movie-card-details {
+  position: absolute;
+  top: 50%; /* Đặt phần chi tiết ở giữa card */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Căn giữa cả chiều ngang và chiều dọc */
+  background-color: rgba(0, 0, 0, 0.7); /* Nền mờ */
+  color: white;
+  padding: 15px;
+  text-align: center;
+  visibility: hidden; /* Ẩn phần chi tiết khi không hover */
+  opacity: 0; /* Ẩn khi không hover */
+  transition: opacity 0.3s ease; /* Chuyển động mượt mà khi hiện lên */
+}
+
+/* Hiển thị phần chi tiết khi hover */
+.movie-details .now-playing-list .movie-card:hover .movie-card-details {
+  visibility: visible; /* Hiển thị phần chi tiết khi hover */
+  opacity: 1; /* Làm phần chi tiết hiện lên */
+}
+
+.movie-details .now-playing-list .movie-card .movie-card-img {
   width: 100%;
-  max-width: 200px;
+  max-width: 250px;
   height: auto;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.now-playing-item:hover .now-playing-poster {
-  opacity: 0.9;
+/* Hiệu ứng hover cho ảnh poster */
+.movie-details .now-playing-list .movie-card:hover .movie-card-img {
+  opacity: 0.85;
   transform: scale(1.05);
 }
 
-.now-playing-item p {
+/* Tiêu đề và mô tả phim trong card */
+.movie-details .now-playing-list .movie-card h3 {
   margin-top: 10px;
-  font-size: 1rem;
-  color: #34495e;
+  font-size: 1.1rem;
+  color: #f1f1f1;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
-.now-playing-item:hover p {
-  color: #e74c3c;
+/* Thay đổi màu chữ khi hover lên movie card */
+.movie-details .now-playing-list .movie-card:hover h3 {
+  color: #ff5722; /* Màu cam đậm khi hover */
 }

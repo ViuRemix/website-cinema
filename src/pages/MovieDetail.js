@@ -10,6 +10,8 @@ import {
 import { useTranslation } from "react-i18next"; // Thêm hook i18n
 import "./MovieDetail.css";
 
+import "../i18n";
+
 const MovieDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,16 +21,33 @@ const MovieDetail = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
+        // Gọi API lấy thông tin chung của phim
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${id}?api_key=ca2ef8efffeadbb2449d15ba0ae016fa`
         );
-        const data = await response.json();
-        setMovie(data);
+        const movieData = await response.json();
+
+        // Gọi API lấy thông tin đội ngũ làm phim (đạo diễn)
+        const creditsResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=ca2ef8efffeadbb2449d15ba0ae016fa`
+        );
+        const creditsData = await creditsResponse.json();
+
+        // Lọc ra thông tin đạo diễn từ danh sách crew
+        const director = creditsData.crew.find(
+          (person) => person.job === "Director"
+        );
+
+        // Kết hợp thông tin phim và đạo diễn
+        setMovie({
+          ...movieData,
+          director: director?.name || t("notAvailable"),
+        });
       } catch (error) {
         console.error(t("Error fetching movie details:"), error);
       }
     };
-    // gọi api
+
     fetchMovieDetails();
   }, [id, t]);
 
@@ -56,9 +75,10 @@ const MovieDetail = () => {
           <div className="movie-info row">
             <div className="col-3 order-first">
               <p>
-                {" "}
-                <span style={{ paddingRight: 8 }}>Đạo diễn: </span>
-                {movie.director || t("notAvailable")}
+                <span style={{ paddingRight: 8 }}>Đạo diễn:</span>
+                {movie.director
+                  ? movie.director.split(" ")[0] // Lấy phần đầu tiên của tên đạo diễn
+                  : t("notAvailable")}
               </p>
             </div>
             <div className="col order-first">
