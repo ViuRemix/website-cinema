@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const WatchMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  const [popularMovies, setPopularMovies] = useState([]); // Đổi tên state thành popularMovies
-  const [videos, setVideos] = useState([]); // Đảm bảo videos luôn là mảng rỗng
+  const [popularMovies, setPopularMovies] = useState([]); // Phim phổ biến
+  const [videos, setVideos] = useState([]); // Videos phim
   const apiKey = "ca2ef8efffeadbb2449d15ba0ae016fa";
 
   useEffect(() => {
@@ -29,7 +29,8 @@ const WatchMovie = () => {
           `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
         );
         const data = await response.json();
-        setPopularMovies(data.results || []); // Đảm bảo popularMovies là mảng rỗng nếu không có dữ liệu
+        const shuffledMovies = randomizeArray(data.results || []); // Sắp xếp ngẫu nhiên
+        setPopularMovies(shuffledMovies);
       } catch (error) {
         console.error("Error fetching popular movies:", error);
       }
@@ -41,7 +42,7 @@ const WatchMovie = () => {
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}&language=en-US`
         );
         const data = await response.json();
-        setVideos(data.results || []); // Đảm bảo setVideos luôn là mảng
+        setVideos(data.results || []);
       } catch (error) {
         console.error("Error fetching movie videos:", error);
       }
@@ -51,6 +52,11 @@ const WatchMovie = () => {
     fetchPopularMovies(); // Gọi hàm mới
     fetchMovieVideos();
   }, [id]);
+
+  // Hàm sắp xếp ngẫu nhiên
+  const randomizeArray = (array) => {
+    return array.sort(() => Math.random() - 0.5); // Sắp xếp ngẫu nhiên
+  };
 
   if (!movie) {
     return <div className="loading">Loading...</div>;
