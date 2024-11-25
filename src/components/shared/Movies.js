@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Movies.css";
 
-// Import ảnh cho các bộ phim
 import inceptionImg from "../../assets/images/incetion.jpg";
 import titanicImg from "../../assets/images/titanic.jpg";
 import darkKnightImg from "../../assets/images/thedarkknight.jpg";
@@ -15,24 +14,13 @@ import forrest from "../../assets/images/forrest.jpg";
 import matrix from "../../assets/images/matrix.jpg";
 import godfather from "../../assets/images/godfather.jpg";
 
-// Mảng dữ liệu phim với ảnh đã được import
 const movies = [
   { id: 27205, title: "Inception", genre: "Sci-Fi", imageUrl: inceptionImg },
   { id: 44918, title: "Titanic", genre: "Romance", imageUrl: titanicImg },
-  {
-    id: 155,
-    title: "The Dark Knight",
-    genre: "Action",
-    imageUrl: darkKnightImg,
-  },
+  { id: 155, title: "The Dark Knight", genre: "Action", imageUrl: darkKnightImg },
   { id: 76600, title: "Avatar", genre: "Sci-Fi", imageUrl: avatarImg },
   { id: 157336, title: "Interstellar", genre: "Sci-Fi", imageUrl: inter },
-  {
-    id: 222935,
-    title: "The Fault in Our Stars",
-    genre: "Romance",
-    imageUrl: fault,
-  },
+  { id: 222935, title: "The Fault in Our Stars", genre: "Romance", imageUrl: fault },
   { id: 98, title: "Gladiator", genre: "Action", imageUrl: gladiator },
   { id: 13, title: "Forrest Gump", genre: "Comedy", imageUrl: forrest },
   { id: 603, title: "The Matrix", genre: "Action", imageUrl: matrix },
@@ -41,10 +29,17 @@ const movies = [
 
 function Movies() {
   const [selectedGenre, setSelectedGenre] = useState("All");
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const location = useLocation();
-  const searchResults = location.state?.movies || []; // Lấy danh sách phim từ location (nếu có)
+  const navigate = useNavigate();
 
-  // Lọc các bộ phim theo thể loại
+  const searchResults = location.state?.movies || [];
+
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+    setFavoriteMovies(savedFavorites);
+  }, []);
+
   const filteredMovies =
     selectedGenre === "All"
       ? searchResults.length > 0
@@ -54,31 +49,44 @@ function Movies() {
           (movie) => movie.genre === selectedGenre
         );
 
+  const handleAddToFavorites = (movie) => {
+    if (!favoriteMovies.some((fav) => fav.id === movie.id)) {
+      const updatedFavorites = [...favoriteMovies, movie];
+      setFavoriteMovies(updatedFavorites);
+      localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites));
+      alert("Đã thêm vào mục yêu thích!");
+    } else {
+      alert("Phim này đã có trong mục yêu thích!");
+    }
+  };
+
+  const handleWatchMovie = (movieId) => {
+    navigate(`/movie/${movieId}`);
+  };
+
   return (
     <div>
-      {/* Dropdown để chọn thể loại */}
       <select
         onChange={(e) => setSelectedGenre(e.target.value)}
         value={selectedGenre}
       >
-        <option value="All">All</option>
-        <option value="Sci-Fi">Sci-Fi</option>
-        <option value="Romance">Romance</option>
-        <option value="Action">Action</option>
+        <option value="All">Chọn thể loại</option>
+        <option value="Sci-Fi">Khoa học viễn tưởng</option>
+        <option value="Romance">Lãng mạn</option>
+        <option value="Action">Hành động</option>
       </select>
 
-      {/* Hiển thị các card phim */}
       <div className="movie-cards">
         {filteredMovies.length > 0 ? (
           filteredMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
               <Link to={`/movie/${movie.id}`}>
                 {/* Kiểm tra nếu không có poster_path thì dùng ảnh mặc định */}
-                <img
+                <img 
                   src={
                     movie.imageUrl || // Dùng ảnh đã import từ local
                     `https://image.tmdb.org/t/p/w500${movie.poster_path}` || // Nếu có poster từ API, dùng ảnh đó
-                    "/default-image.jpg" // Nếu không có gì, dùng ảnh mặc định
+                    '../../assets/images/godfather.jpg' // Nếu không có gì, dùng ảnh mặc định
                   }
                   alt={movie.title}
                   className="movie-card-img"
@@ -86,6 +94,19 @@ function Movies() {
                 <h3>{movie.title}</h3>
                 <p>Genre: {movie.genre}</p>
               </Link>
+              <button
+                onClick={() => handleWatchMovie(movie.id)}
+                className="watch-movie"
+              >
+                Xem phim
+              </button>
+              <button
+                onClick={() => handleAddToFavorites(movie)}
+                className="add-to-favorites"
+              >
+                Yêu thích
+              </button>
+              
             </div>
           ))
         ) : (

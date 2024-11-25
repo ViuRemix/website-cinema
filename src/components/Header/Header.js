@@ -199,54 +199,79 @@ const Header = () => {
         </div>
 
         <div className="dropdown">
-          <Link to="/genres">
-            Thể loại
-            <i className="bx bx-chevron-down"></i>
-          </Link>
+  <Link to="/genres">
+    Thể loại
+    <i className="bx bx-chevron-down"></i>
+  </Link>
 
-          <ul className="dropdown-menu">
-            <li>
-              <Link className="dropdown-item" to="/genres/drama">
-                Phim Tâm Lý
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/scifi">
-                Phim Khoa Học Viễn Tưởng
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/hollywood">
-                Phim Mỹ
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/fantasy">
-                Phim Huyền Bí
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/documentary">
-                Phim Tài Liệu
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/musical">
-                Phim Âm Nhạc
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/family">
-                Phim Gia Đình
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/genres/historical">
-                Phim Lịch Sử
-              </Link>
-            </li>
-          </ul>
-        </div>
+  <ul className="dropdown-menu">
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("drama")} // Tìm phim thể loại Drama
+      >
+        Phim Tâm Lý
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("scifi")} // Tìm phim thể loại Sci-Fi
+      >
+        Phim Khoa Học Viễn Tưởng
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("hollywood")} // Tìm phim thể loại Hollywood
+      >
+        Phim Mỹ
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("fantasy")} // Tìm phim thể loại Fantasy
+      >
+        Phim Huyền Bí
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("documentary")} // Tìm phim thể loại Documentary
+      >
+        Phim Tài Liệu
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("musical")} // Tìm phim thể loại Musical
+      >
+        Phim Âm Nhạc
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("family")} // Tìm phim thể loại Family
+      >
+        Phim Gia Đình
+      </button>
+    </li>
+    <li>
+      <button
+        className="dropdown-item"
+        onClick={() => searchMovies("historical")} // Tìm phim thể loại Historical
+      >
+        Phim Lịch Sử
+      </button>
+    </li>
+  </ul>
+</div>
+
         <Link to="/favorites">Yêu thích</Link>
         <Link to="/about">Giới thiệu</Link>
       </nav>

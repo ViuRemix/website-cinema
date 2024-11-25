@@ -45,7 +45,10 @@
 /* Style cho thông tin thể loại phim */
 .movie-card p {
   font-size: 14px;
-  color: #b8b8b8; /* Màu chữ nhẹ nhàng */
+  color: #b8b8b8;/* Màu chữ nhẹ nhàng */
+}
+.movie-card a {
+  text-decoration: none;
 }
 
 /* Style cho dropdown */
@@ -57,9 +60,43 @@ select {
   font-size: 16px;
   background-color: black;
   color: white;
+  width: 250px;
 }
 
 /* Hiệu ứng hover cho dropdown */
 select:hover {
   border-color: #888;
 }
+
+.add-to-favorites {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-to-favorites:hover {
+  background-color: #0056b3;
+}
+
+
+/* Nút xem phim */
+.watch-movie {
+  background-color: #00b903;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.watch-movie:hover {
+  background-color: #00813c;
+}
+
+

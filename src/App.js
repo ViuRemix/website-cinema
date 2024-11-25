@@ -41,6 +41,7 @@ import Exclusives from "./pages/footerLinks/Exclusives";
 import MediaCenter from "./pages/footerLinks/MediaCenter";
 import TermsOfService from "./pages/footerLinks/TermsOfService";
 import Contact from "./pages/footerLinks/Contact";
+import Favorites from "./pages/Favorites";
 
 function AppContent() {
   const location = useLocation(); // Lấy thông tin đường dẫn hiện tại
@@ -77,6 +78,7 @@ function AppContent() {
       {!isAdminPage && <Header user={user} setUser={setUser} />}
 
       <Routes>
+        <Route path="/favorites" element={<Favorites/>} />
         {/* Trang chính */}
         <Route path="/" element={<Home />} />
         {/* Chi tiết phim */}
