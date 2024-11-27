@@ -67,7 +67,10 @@ function Favorites() {
     boxSizing: 'border-box', // Đảm bảo padding không làm thay đổi kích thước thẻ
   }}
 >
-  Quay lại
+  <Link to="/" className="back-button">
+    Quay lại
+  </Link>
+
 </Link>
 
 

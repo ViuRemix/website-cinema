@@ -20,6 +20,10 @@
   font-size: 16px;
 }
 
+.footer-question p {
+  float: left;
+}
+
 .footer-question a {
   color: #ffffff;
   text-decoration: underline;

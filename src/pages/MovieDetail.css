@@ -310,3 +310,46 @@
     font-size: 12px; /* Smaller font size for buttons */
   }
 }
+
+/* Movie info row chỉnh sửa */
+.movie-info {
+  display: flex; /* Dùng flexbox để căn chỉnh */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: space-between; /* Phân phối đều các cột */
+  gap: 1rem; /* Khoảng cách giữa các phần tử */
+  flex-wrap: wrap; /* Đảm bảo hàng xuống dòng khi không đủ chỗ */
+  margin-top: 1rem; /* Tạo khoảng cách phía trên */
+}
+
+/* Định dạng từng cột thông tin */
+.movie-info .col {
+  flex: 1; /* Chia đều không gian cho các cột */
+  text-align: left; /* Căn chữ về bên trái */
+  min-width: 150px; /* Đảm bảo kích thước tối thiểu */
+}
+
+/* Icon và nội dung trong các cột */
+.movie-info .col p {
+  margin: 0; /* Xóa khoảng cách thừa */
+  font-size: 1rem; /* Điều chỉnh kích thước chữ */
+  color: #ffffff; /* Đặt màu chữ trắng */
+}
+
+.movie-info .col span {
+  font-weight: bold; /* Làm nổi bật tiêu đề */
+  color: #e50914; /* Màu đỏ cho tiêu đề */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+  .movie-info {
+    flex-direction: column; /* Đặt các cột thành hàng dọc */
+    align-items: flex-start; /* Căn đều từ trái */
+  }
+
+  .movie-info .col {
+    width: 100%; /* Mỗi cột chiếm toàn bộ chiều rộng */
+    margin-bottom: 0.5rem; /* Tạo khoảng cách giữa các cột */
+  }
+}
+

@@ -52,7 +52,7 @@ const MovieDetail = () => {
   }, [id, t]);
 
   if (!movie) {
-    return <div>{t("loading...")}</div>; // Hiển thị "Đang tải" theo ngôn ngữ
+    return <div>{t("loading...")} </div>; // Hiển thị "Đang tải" theo ngôn ngữ
   }
 
   const url = window.location.href;
@@ -72,42 +72,37 @@ const MovieDetail = () => {
           <b>{movie.title}</b>{" "}
         </h1>
         <div class="container">
-          <div className="movie-info row">
-            <div className="col-3 order-first">
-              <p>
-                <span style={{ paddingRight: 8 }}>Đạo diễn:</span>
-                {movie.director
-                  ? movie.director.split(" ")[0] // Lấy phần đầu tiên của tên đạo diễn
-                  : t("notAvailable")}
-              </p>
-            </div>
-            <div className="col order-first">
-              <p>
-                {" "}
-                <span style={{ paddingRight: 8 }}>
-                  <i class="bi bi-calendar2-week"></i>
-                  {"  "}
-                </span>
-                {new Date(movie.release_date).getFullYear()}
-              </p>
-            </div>
-            <div className="col-7 order-first">
-              <b>
-                <span style={{ paddingRight: 8 }}>
-                  <i class="bi bi-clock"></i>
-                </span>
-                {movie.runtime
-                  ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`
-                  : "N/A"}
-              </b>
-            </div>
-            <div className="col-7 order-first">
-              <p>
-                <span style={{ paddingRight: 8 }}> Thể loại: </span>
-                {movie.genres.map((genre) => genre.name).join(", ")}
-              </p>
-            </div>
+        <div class="movie-info">
+          <div class="col">
+            <p>
+              <span>Đạo diễn: </span>
+              {movie.director
+                ? movie.director.split(" ")[0]
+                : t("notAvailable")}
+            </p>
           </div>
+          <div class="col">
+            <p>
+              <span><i class="bi bi-calendar2-week"> </i></span>
+              {new Date(movie.release_date).getFullYear()}
+            </p>
+          </div>
+          <div class="col">
+            <p>
+              <span><i class="bi bi-clock"> </i></span>
+              {movie.runtime
+                ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`
+                : "N/A"}
+            </p>
+          </div>
+          <div class="col">
+            <p>
+              <span>Thể loại: </span>
+              {movie.genres.map((genre) => genre.name).join(", ")}
+            </p>
+          </div>
+        </div>
+
           <div
             className="movie-description"
             style={{
