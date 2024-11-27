@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Link,
   useLocation,
 } from "react-router-dom";
 
@@ -14,6 +13,7 @@ import MovieDetail from "./pages/MovieDetail";
 import WatchMovie from "./pages/WatchMovies";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+import About from "./pages/About";
 
 // hỗ sơ người dùng
 import Profile from "./components/Profile/Profile";
@@ -81,6 +81,8 @@ function AppContent() {
         <Route path="/favorites" element={<Favorites/>} />
         {/* Trang chính */}
         <Route path="/" element={<Home />} />
+        {/* Trang giới thiệu */}
+        <Route path="/about" element={<About />} />
         {/* Chi tiết phim */}
         <Route path="/movie/:id" element={<MovieDetail movies={movies} />} />
         <Route path="/watch/:id" element={<WatchMovie />} />
@@ -132,7 +134,3 @@ function App() {
 }
 
 export default App;
-{
-  /* <Router>: Đây là một component bọc toàn bộ ứ */
-}
-// tạo trải nghiệm người dùng mượt mà.
