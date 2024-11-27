@@ -3,15 +3,18 @@ import React from "react";
 
 const SpeedTest = () => {
   return (
-    <div>
-      <h1>Kiểm tra tốc độ</h1>
+    <div className="container">
+      <h1>Kiểm tra tốc độ Internet</h1>
       <p>
         Kiểm tra tốc độ kết nối internet của bạn với công cụ này. Đảm bảo bạn có
-        kết nối ổn định trước khi sử dụng.
+        kết nối ổn định trước khi sử dụng để có kết quả chính xác nhất.
       </p>
-      <button>Kiểm tra tốc độ</button>
+      <a href="https://fast.com/" target="_blank" rel="noopener noreferrer">
+        <button>Kiểm tra tốc độ</button>
+      </a>
     </div>
   );
 };
 
 export default SpeedTest;
+
