@@ -4,13 +4,15 @@ import "../../assets/styles/PrivacyPolicy.css";
 const PrivacyPolicy = () => {
   return (
     <div className="privacy-container">
-      <h1>Chính Sách Quyền Riêng Tư</h1>
+      <div className="policy">
+        <h1>Chính Sách Quyền Riêng Tư</h1>
 
-      <p>
-        Chúng tôi cam kết bảo vệ quyền riêng tư của người dùng khi truy cập và
-        sử dụng dịch vụ của chúng tôi. Chính sách này giải thích cách chúng tôi
-        thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn.
-      </p>
+        <p>
+          Chúng tôi cam kết bảo vệ quyền riêng tư của người dùng khi truy cập và
+          sử dụng dịch vụ của chúng tôi. Chính sách này giải thích cách chúng tôi
+          thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn.
+        </p>
+      </div>
 
       <h2>1. Thông Tin Chúng Tôi Thu Thập</h2>
       <p>
