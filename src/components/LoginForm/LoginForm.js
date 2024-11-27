@@ -112,22 +112,22 @@ const LoginForm = ({ setUser }) => {
         <div className="social-login">
           <SocialLoginButton
             icon="bi-google"
-            onClick={() => signInWithGoogle(setUser, setLoading, navigate)}
+            onClick={() => signInWithGoogle(setUser, navigate)} // Truyền navigate vào hàm đăng nhập
             disabled={loading}
           />
           <SocialLoginButton
             icon="bi-facebook"
-            onClick={() => signInWithFacebook(setUser, setLoading, navigate)}
+            onClick={() => signInWithFacebook(setUser, navigate)}
             disabled={loading}
           />
           <SocialLoginButton
             icon="bi-github"
-            onClick={() => signInWithGithub(setUser, setLoading, navigate)}
+            onClick={() => signInWithGithub(setUser, navigate)}
             disabled={loading}
           />
           <SocialLoginButton
             icon="bi-twitter"
-            onClick={() => signInWithTwitter(setUser, setLoading, navigate)}
+            onClick={() => signInWithTwitter(setUser, navigate)}
             disabled={loading}
           />
         </div>
