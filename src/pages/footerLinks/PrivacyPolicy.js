@@ -3,13 +3,7 @@ import "../../assets/styles/PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   return (
-    <div
-      style={{
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
-        lineHeight: "1.6",
-      }}
-    >
+    <div className="privacy-container">
       <h1>Chính Sách Quyền Riêng Tư</h1>
 
       <p>
