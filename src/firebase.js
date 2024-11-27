@@ -40,51 +40,48 @@ export const auth = getAuth(app);
 export const db = getFirestore(app); // Firestore instance
 export { createUserWithEmailAndPassword };
 // Sign up with email and password
-export const signUpWithEmail = async (email, password) => {
+export const signUpWithEmail = async (email, password, navigate) => {
   try {
     await createUserWithEmailAndPassword(auth, email, password);
     toast.success("Sign Up Successful!");
+    navigate("/"); // Chuyển đến trang Home sau khi đăng nhập
   } catch (error) {
     toast.error(error.message);
   }
 };
 
 // Sign in with email and password
-export const signInWithEmail = async (email, password) => {
+export const signInWithEmail = async (email, password, navigate) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     toast.success("Sign In Successful!");
+    navigate("/"); // Chuyển đến trang Home sau khi đăng nhập
   } catch (error) {
     toast.error(error.message);
   }
 };
 
-// Đăng nhập với Google
-export const signInWithGoogle = async (setUser, setLoading) => {
+// Hàm đăng nhập với Google
+export const signInWithGoogle = async (setUser, navigate) => {
   const provider = new GoogleAuthProvider();
+
   try {
-    setLoading(true);
-    const result = await signInWithPopup(auth, provider);
-    setUser(result.user); // Cập nhật user sau khi đăng nhập
-    toast.success("Đăng nhập thành công với Google!");
+    const result = await signInWithPopup(auth, provider); // Mở popup đăng nhập
+    setUser(result.user); // Lưu thông tin người dùng
+    navigate("/"); // Chuyển đến trang Home sau khi đăng nhập
+    console.log("Đăng nhập thành công:", result.user);
   } catch (error) {
-    // Kiểm tra lỗi 'popup-closed-by-user'
-    if (error.code === "auth/popup-closed-by-user") {
-      toast.info("Bạn đã đóng cửa sổ xác thực trước khi hoàn tất.");
-    } else {
-      toast.error(error.message);
-    }
-  } finally {
-    setLoading(false);
+    console.error("Lỗi khi đăng nhập:", error.message);
+    alert(`Đăng nhập thất bại: ${error.message}`);
   }
 };
-
 // Sign in with Facebook
-export const signInWithFacebook = async (setUser, setLoading) => {
+export const signInWithFacebook = async (setUser, setLoading, navigate) => {
   const provider = new FacebookAuthProvider();
   try {
     setLoading(true);
     const result = await signInWithPopup(auth, provider);
+    navigate("/"); // Chuyển đến trang Home sau khi đăng nhập
     setUser(result.user); // Set user after login
     toast.success("Đăng nhập thành công với Facebook!");
   } catch (error) {
@@ -95,13 +92,14 @@ export const signInWithFacebook = async (setUser, setLoading) => {
 };
 
 // Sign in with Github
-export const signInWithGithub = async (setUser, setLoading) => {
+export const signInWithGithub = async (setUser, setLoading, navigate) => {
   const provider = new GithubAuthProvider();
   try {
     setLoading(true);
     const result = await signInWithPopup(auth, provider);
     setUser(result.user); // Set user after login
     toast.success("Đăng nhập thành công với Github!");
+    navigate("/"); // Chuyển đến trang Home sau khi đăng nhập
   } catch (error) {
     toast.error(error.message);
   } finally {
@@ -109,13 +107,14 @@ export const signInWithGithub = async (setUser, setLoading) => {
   }
 };
 
-export const signInWithTwitter = async (setUser, setLoading) => {
+export const signInWithTwitter = async (setUser, setLoading, navigate) => {
   const provider = new TwitterAuthProvider();
   try {
     setLoading(true);
     const result = await signInWithPopup(auth, provider);
     setUser(result.user); // Cập nhật user sau khi đăng nhập
     toast.success("Đăng nhập thành công với Twitter!");
+    navigate("/"); // Chuyển đến trang Home sau khi đăng nhập
   } catch (error) {
     toast.error(error.message);
   } finally {
