@@ -10,11 +10,10 @@
     font-family: 'Arial', sans-serif;
     line-height: 1.8;
     box-sizing: border-box;
-    text-align: center; /* Căn giữa tất cả nội dung trong container */
 }
 
 .policy {
-margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 h1, h2 {
@@ -37,7 +36,6 @@ h2 {
 p {
     font-size: 1.1rem;
     margin-bottom: 20px;
-    text-align: center; /* Căn giữa các đoạn văn bản */
 }
 
 ul {
