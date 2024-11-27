@@ -138,7 +138,7 @@ const Header = () => {
         <Link to="/">
           <img src={logoPhim} alt="Logo" className="logo-icon" />
         </Link>
-        <span>Cinema</span>
+        <span>Vieflix</span>
       </div>
 
       {/* Chèn SearchBar vào đây */}
