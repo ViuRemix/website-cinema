@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Movies.css";
 
+// hiện thị thông báo
+import { toast, ToastContainer } from "react-toastify";
+// các hình ảnh
 import inceptionImg from "../../assets/images/incetion.jpg";
 import titanicImg from "../../assets/images/titanic.jpg";
 import darkKnightImg from "../../assets/images/thedarkknight.jpg";
@@ -17,10 +20,20 @@ import godfather from "../../assets/images/godfather.jpg";
 const movies = [
   { id: 27205, title: "Inception", genre: "Sci-Fi", imageUrl: inceptionImg },
   { id: 44918, title: "Titanic", genre: "Romance", imageUrl: titanicImg },
-  { id: 155, title: "The Dark Knight", genre: "Action", imageUrl: darkKnightImg },
+  {
+    id: 155,
+    title: "The Dark Knight",
+    genre: "Action",
+    imageUrl: darkKnightImg,
+  },
   { id: 76600, title: "Avatar", genre: "Sci-Fi", imageUrl: avatarImg },
   { id: 157336, title: "Interstellar", genre: "Sci-Fi", imageUrl: inter },
-  { id: 222935, title: "The Fault in Our Stars", genre: "Romance", imageUrl: fault },
+  {
+    id: 222935,
+    title: "The Fault in Our Stars",
+    genre: "Romance",
+    imageUrl: fault,
+  },
   { id: 98, title: "Gladiator", genre: "Action", imageUrl: gladiator },
   { id: 13, title: "Forrest Gump", genre: "Comedy", imageUrl: forrest },
   { id: 603, title: "The Matrix", genre: "Action", imageUrl: matrix },
@@ -36,7 +49,8 @@ function Movies() {
   const searchResults = location.state?.movies || [];
 
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+    const savedFavorites =
+      JSON.parse(localStorage.getItem("favoriteMovies")) || [];
     setFavoriteMovies(savedFavorites);
   }, []);
 
@@ -54,9 +68,9 @@ function Movies() {
       const updatedFavorites = [...favoriteMovies, movie];
       setFavoriteMovies(updatedFavorites);
       localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites));
-      alert("Đã thêm vào mục yêu thích!");
+      toast.success("Đã thêm vào mục yêu thích!");
     } else {
-      alert("Phim này đã có trong mục yêu thích!");
+      toast.success("Phim này đã có trong mục yêu thích!");
     }
   };
 
@@ -82,11 +96,11 @@ function Movies() {
             <div key={movie.id} className="movie-card">
               <Link to={`/movie/${movie.id}`}>
                 {/* Kiểm tra nếu không có poster_path thì dùng ảnh mặc định */}
-                <img 
+                <img
                   src={
                     movie.imageUrl || // Dùng ảnh đã import từ local
                     `https://image.tmdb.org/t/p/w500${movie.poster_path}` || // Nếu có poster từ API, dùng ảnh đó
-                    '../../assets/images/godfather.jpg' // Nếu không có gì, dùng ảnh mặc định
+                    "../../assets/images/godfather.jpg" // Nếu không có gì, dùng ảnh mặc định
                   }
                   alt={movie.title}
                   className="movie-card-img"
@@ -106,13 +120,13 @@ function Movies() {
               >
                 Yêu thích
               </button>
-              
             </div>
           ))
         ) : (
           <p>Không tìm thấy phim nào.</p>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }
