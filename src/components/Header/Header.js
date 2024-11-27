@@ -148,8 +148,8 @@ const Header = () => {
         <Link to="/">Trang chủ</Link>
         <div className="dropdown">
           <Link
-            to="/movies"
-            onClick={fetchAllMovies} // Gọi API lấy tất cả phim
+            // to="/movies"
+            // onClick={fetchAllMovies} // Gọi API lấy tất cả phim
           >
             Phim
             <i className="bx bx-chevron-down"></i>
@@ -199,7 +199,7 @@ const Header = () => {
         </div>
 
         <div className="dropdown">
-  <Link to="/genres">
+  <Link to="">
     Thể loại
     <i className="bx bx-chevron-down"></i>
   </Link>
