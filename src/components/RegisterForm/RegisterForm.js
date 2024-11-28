@@ -78,7 +78,7 @@ const RegisterForm = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       toast.success("Đăng ký thành công!");
-      navigate("/");
+      navigate("/login");
 
       // Reset form
       setFullName("");
