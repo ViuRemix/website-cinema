@@ -34,7 +34,6 @@ import HelpCenter from "./pages/footerLinks/HelpCenter";
 import Jobs from "./pages/footerLinks/Jobs";
 import CookieSettings from "./pages/footerLinks/CookieSettings";
 import LegalNotice from "./pages/footerLinks/LegalNotice";
-import Account from "./pages/footerLinks/Account";
 import ViewingOptions from "./pages/footerLinks/ViewingOptions";
 import CompanyInfo from "./pages/footerLinks/CompanyInfo";
 import TermsOfService from "./pages/footerLinks/TermsOfService";
@@ -100,7 +99,6 @@ function AppContent() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/cookie-settings" element={<CookieSettings />} />
         <Route path="/legal-notice" element={<LegalNotice />} />
-        <Route path="/account" element={<Account />} />
         <Route path="/viewing-options" element={<ViewingOptions />} />
         <Route path="/company-info" element={<CompanyInfo />} />
         <Route path="/contact" element={<Contact />} />
