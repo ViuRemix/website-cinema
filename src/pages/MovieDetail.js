@@ -86,19 +86,24 @@ const MovieDetail = () => {
             </div>
             <div class="col">
               <p>
-                <span><i class="bi bi-calendar2-week"> </i></span>
+                <span>
+                  <i class="bi bi-calendar2-week"> </i>
+                </span>
                 {new Date(movie.release_date).getFullYear()}
               </p>
             </div>
             <div class="col">
               <p>
-                <span><i class="bi bi-clock"> </i></span>
+                <span>
+                  <i class="bi bi-clock"> </i>
+                </span>
                 {movie.runtime
                   ? `${Math.floor(movie.runtime / 60)}h ${movie.runtime % 60}m`
                   : "N/A"}
               </p>
             </div>
             <div class="col">
+              {/* thể loại của phim */}
               <p>
                 <span>Thể loại: </span>
                 {movie.genres.map((genre) => genre.name).join(", ")}

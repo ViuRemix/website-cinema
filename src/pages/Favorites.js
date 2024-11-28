@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Favorites.css";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPlay, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faPlay,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,8 +22,8 @@ function Favorites() {
   // useEffect: Hook này chạy sau khi component được render lần đầu tiên.
   useEffect(() => {
     const savedFavorites =
-    // localStorage.getItem("favoriteMovies"): Lấy dữ liệu phim yêu thích đã lưu trữ trong localStorage.
-    // JSON.parse(): Chuyển chuỗi JSON thành một mảng.
+      // localStorage.getItem("favoriteMovies"): Lấy dữ liệu phim yêu thích đã lưu trữ trong localStorage.
+      // JSON.parse(): Chuyển chuỗi JSON thành một mảng.
       JSON.parse(localStorage.getItem("favoriteMovies")) || [];
     setFavoriteMovies(savedFavorites);
   }, []);
@@ -48,14 +53,28 @@ function Favorites() {
         <div className="movie-cards">
           {favoriteMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
+              {/* Kiểm tra poster_path và imageUrl */}
               <Link to={`/movie/${movie.id}`} className="movie-link">
                 <img
-                  src={movie.imageUrl || "/default-image.jpg"}
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                      : movie.imageUrl || "/default-image.jpg"
+                  }
                   alt={movie.title}
                   className="movie-card-img"
                 />
                 <h3>{movie.title}</h3>
-                <p>Genre: {movie.genre}</p>
+
+                {/* Kiểm tra genres hoặc genre */}
+                <p>
+                  Thể loại:{" "}
+                  {movie.genres &&
+                  Array.isArray(movie.genres) &&
+                  movie.genres.length > 0
+                    ? movie.genres.map((genre) => genre.name).join(", ")
+                    : "Unknown"}
+                </p>
               </Link>
 
               <Link to={`/movie/${movie.id}`}>
@@ -84,6 +103,7 @@ function Favorites() {
       ) : (
         <p>Không có phim nào trong mục yêu thích.</p>
       )}
+
       <Link
         to="/"
         style={{
