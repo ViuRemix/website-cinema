@@ -1,7 +1,7 @@
 .container-legal-notice {
     text-align: center;
     margin: 2rem auto;
-    padding: 1.5rem;
+    padding: 3rem;
     max-width: 800px;
     background-color: #141313;
     color: #fff;
@@ -27,4 +27,9 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+.container-legal-notice a {
+    color: #e50914;
+    text-decoration: none;
 }

@@ -1,7 +1,7 @@
 .container-jobs {
     text-align: center;
     margin: 2rem auto;
-    padding: 1.5rem;
+    padding: 4.5rem;
     max-width: 800px;
     background-color: #141313;
     color: #fff;
@@ -27,6 +27,7 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
+    text-align: left;
 }
 
 .container-jobs ul {
@@ -34,8 +35,22 @@
     padding-left: 1.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    list-style-type: none;
 }
 
 .container-jobs ul li {
     margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.container-jobs a {
+    color: #e50914;
+    text-decoration: none;
+}
+
+.container-jobs h3 {
+    font-size: 1.25rem;
+    color: #e50914;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
