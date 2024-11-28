@@ -1,14 +1,9 @@
 import React from "react";
+import "../../assets/styles/TeamOfService.css";
 
 const TermsOfService = () => {
   return (
-    <div
-      style={{
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
-        lineHeight: "1.6",
-      }}
-    >
+    <div className="container-service">
       <h1>Điều khoản sử dụng</h1>
       <p>
         Chào mừng bạn đến với ứng dụng của chúng tôi! Khi sử dụng ứng dụng, bạn

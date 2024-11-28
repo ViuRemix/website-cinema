@@ -1,0 +1,45 @@
+.container-cookie {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    max-width: 800px;
+    background-color: #141313;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    font-family: Arial, sans-serif;
+}
+
+.container-cookie h1 {
+    font-size: 2.5rem;
+    color: #e50914;
+    margin-bottom: 1.5rem;
+}
+
+.container-cookie h2 {
+    font-size: 1.5rem;
+    color: #e50914;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.container-cookie p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.container-cookie button {
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+}
+
+.container-cookie button:hover {
+    background-color: #b00808;
+}

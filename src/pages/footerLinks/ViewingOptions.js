@@ -1,9 +1,10 @@
 // ViewingOptions.js
 import React from "react";
+import "../../assets/styles/ViewingOptions.css"
 
 const ViewingOptions = () => {
   return (
-    <div>
+    <div className="container-viewing">
       <h1>Các cách xem</h1>
       <p>
         Tìm hiểu về các lựa chọn xem nội dung trên nền tảng Vieflix, bao gồm

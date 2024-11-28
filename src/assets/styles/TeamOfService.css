@@ -1,0 +1,45 @@
+.container-service {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    max-width: 800px;
+    background-color: #141313;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    font-family: Arial, sans-serif;
+}
+
+.container-service h1 {
+    font-size: 2.5rem;
+    color: #e50914;
+    margin-bottom: 1.5rem;
+}
+
+.container-service h2 {
+    font-size: 1.5rem;
+    color: #e50914;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.container-service p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.container-service ul {
+    text-align: left;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.container-service ul li {
+    margin-bottom: 0.5rem;
+}
+
+.container-service a {
+    color: #e50914;
+    text-decoration: none;
+}

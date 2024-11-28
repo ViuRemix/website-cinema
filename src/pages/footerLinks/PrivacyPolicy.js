@@ -1,17 +1,15 @@
 import React from "react";
+import "../../assets/styles/PrivacyPolicy.css";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="privacy-container">
-      <div className="policy">
-        <h1>Chính Sách Quyền Riêng Tư</h1>
-
-        <p>
-          Chúng tôi cam kết bảo vệ quyền riêng tư của người dùng khi truy cập và
-          sử dụng dịch vụ của chúng tôi. Chính sách này giải thích cách chúng tôi
-          thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn.
-        </p>
-      </div>
+    <div className="container-privacy-policy">
+      <h1>Chính Sách Quyền Riêng Tư</h1>
+      <p>
+        Chúng tôi cam kết bảo vệ quyền riêng tư của người dùng khi truy cập và
+        sử dụng dịch vụ của chúng tôi. Chính sách này giải thích cách chúng tôi
+        thu thập, sử dụng và bảo vệ thông tin cá nhân của bạn.
+      </p>
 
       <h2>1. Thông Tin Chúng Tôi Thu Thập</h2>
       <p>
@@ -19,7 +17,9 @@ const PrivacyPolicy = () => {
         thông tin sau:
       </p>
       <ul>
-        <li>Thông tin cá nhân: tên, địa chỉ email, số điện thoại, v.v.</li>
+        <li>
+          Thông tin cá nhân: tên, địa chỉ email, số điện thoại, v.v.
+        </li>
         <li>
           Thông tin tự động: địa chỉ IP, loại trình duyệt, hệ điều hành, v.v.
         </li>
@@ -45,7 +45,9 @@ const PrivacyPolicy = () => {
       </p>
       <ul>
         <li>Khi được sự đồng ý của bạn.</li>
-        <li>Để tuân thủ yêu cầu pháp lý hoặc quy định.</li>
+        <li>
+          Để tuân thủ yêu cầu pháp lý hoặc quy định.
+        </li>
         <li>Để bảo vệ quyền lợi và tài sản của chúng tôi.</li>
       </ul>
 
@@ -60,9 +62,11 @@ const PrivacyPolicy = () => {
       <p>
         Người dùng có quyền yêu cầu xóa dữ liệu cá nhân của họ khỏi hệ thống của
         chúng tôi. Để yêu cầu xóa dữ liệu, vui lòng liên hệ với chúng tôi qua
-        email:
-        <a href="mailto:viu106018@donga.edu.vn"> viu106018@donga.edu.vn</a>.
-        Chúng tôi cam kết xử lý yêu cầu xóa dữ liệu trong thời gian tối đa 30
+        email:{" "}
+        <a href="mailto:viu106018@donga.edu.vn">
+          viu106018@donga.edu.vn
+        </a>
+        . Chúng tôi cam kết xử lý yêu cầu xóa dữ liệu trong thời gian tối đa 30
         ngày làm việc.
       </p>
 
@@ -75,11 +79,15 @@ const PrivacyPolicy = () => {
 
       <p>
         Nếu bạn có bất kỳ câu hỏi hoặc thắc mắc nào về chính sách quyền riêng
-        tư, vui lòng liên hệ với chúng tôi qua email:
-        <a href="mailto:viu106018@donga.edu.vn"> viu106018@donga.edu.vn</a>.
+        tư, vui lòng liên hệ với chúng tôi qua email:{" "}
+        <a href="mailto:viu106018@donga.edu.vn">
+          viu106018@donga.edu.vn
+        </a>
+        .
       </p>
     </div>
   );
 };
 
 export default PrivacyPolicy;
+

@@ -1,9 +1,10 @@
 // InvestorRelations.js
 import React from "react";
+import "../../assets/styles/InvestorRelations.css"
 
 const InvestorRelations = () => {
   return (
-    <div>
+    <div className="container-investor">
       <h1>Quan hệ với nhà đầu tư</h1>
       <p>
         Chào mừng đến với trang Quan hệ với nhà đầu tư. Tại đây, bạn sẽ tìm thấy

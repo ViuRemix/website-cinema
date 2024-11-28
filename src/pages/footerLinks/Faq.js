@@ -1,9 +1,10 @@
 // Faq.js
 import React from "react";
+import "../../assets/styles/Faq.css"
 
 const Faq = () => {
   return (
-    <div>
+    <div className="container-faq">
       <h1>Câu hỏi thường gặp</h1>
       <p>
         Đây là phần câu hỏi thường gặp của chúng tôi. Bạn có thể tìm thấy câu

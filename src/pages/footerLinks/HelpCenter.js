@@ -1,9 +1,10 @@
 // HelpCenter.js
 import React from "react";
+import "../../assets/styles/HelpCenter.css";
 
 const HelpCenter = () => {
   return (
-    <div>
+    <div className="container-help-center">
       <h1>Trung tâm trợ giúp</h1>
       <p>
         Đây là nơi bạn có thể tìm thấy các hướng dẫn sử dụng, câu hỏi thường gặp

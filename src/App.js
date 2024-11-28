@@ -37,8 +37,6 @@ import LegalNotice from "./pages/footerLinks/LegalNotice";
 import Account from "./pages/footerLinks/Account";
 import ViewingOptions from "./pages/footerLinks/ViewingOptions";
 import CompanyInfo from "./pages/footerLinks/CompanyInfo";
-import Exclusives from "./pages/footerLinks/Exclusives";
-import MediaCenter from "./pages/footerLinks/MediaCenter";
 import TermsOfService from "./pages/footerLinks/TermsOfService";
 import Contact from "./pages/footerLinks/Contact";
 import Favorites from "./pages/Favorites";
@@ -78,7 +76,6 @@ function AppContent() {
       {!isAdminPage && <Header user={user} setUser={setUser} />}
 
       <Routes>
-        {/* Trang yêu thích */}
         <Route path="/favorites" element={<Favorites/>} />
         {/* Trang chính */}
         <Route path="/" element={<Home />} />
@@ -106,8 +103,6 @@ function AppContent() {
         <Route path="/account" element={<Account />} />
         <Route path="/viewing-options" element={<ViewingOptions />} />
         <Route path="/company-info" element={<CompanyInfo />} />
-        <Route path="/exclusives" element={<Exclusives />} />
-        <Route path="/media-center" element={<MediaCenter />} />
         <Route path="/contact" element={<Contact />} />
         {/* Trang quản lý admin */}
         <Route

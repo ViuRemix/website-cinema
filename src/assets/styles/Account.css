@@ -1,0 +1,39 @@
+.container-account {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    max-width: 800px;
+    background-color: #141313;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+    font-family: Arial, sans-serif;
+}
+
+.container-account h1 {
+    font-size: 2.5rem;
+    color: #e50914;
+    margin-bottom: 1.5rem;
+}
+
+.container-account p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.container-account button {
+    background-color: #e50914;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin: 0px 10px;
+}
+
+.container-account button:hover {
+    background-color: #b2060e;
+}

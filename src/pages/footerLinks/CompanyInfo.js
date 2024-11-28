@@ -1,9 +1,10 @@
 // CompanyInfo.js
 import React from "react";
+import "../../assets/styles/CompanyInfo.css";
 
 const CompanyInfo = () => {
   return (
-    <div>
+    <div className="container-company-info">
       <h1>Thông tin doanh nghiệp</h1>
       <p>
         Vieflix là một dịch vụ phát trực tuyến cung cấp các bộ phim, chương

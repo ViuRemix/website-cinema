@@ -1,6 +1,6 @@
 .about-container {
   padding: 50px;
-  background-color: #000; /* Chuyển nền thành màu đen */
+  background-color: #141313; /* Chuyển nền thành màu đen */
   color: #f0f0f0; /* Màu chữ sáng để dễ đọc trên nền đen */
   text-align: center;
   max-width: 800px;
@@ -34,7 +34,7 @@
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
-  background-color: #000; /* Nền đen nhạt cho container */
+  background-color: #141313; /* Nền đen nhạt cho container */
   padding: 20px;
   border-radius: 10px;
 }

@@ -1,9 +1,10 @@
 // Jobs.js
 import React from "react";
+import "../../assets/styles/Jobs.css";
 
 const Jobs = () => {
   return (
-    <div>
+    <div className="container-jobs">
       <h1>Việc làm</h1>
       <p>
         Chúng tôi luôn tìm kiếm những nhân viên tài năng để gia nhập đội ngũ.

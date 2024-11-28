@@ -1,9 +1,10 @@
 // LegalNotice.js
 import React from "react";
+import "../../assets/styles/LegalNotice.css";
 
 const LegalNotice = () => {
   return (
-    <div>
+    <div className="container-legal-notice">
       <h1>Thông báo pháp lý</h1>
       <p>
         Thông báo pháp lý này cung cấp thông tin về quyền lợi và nghĩa vụ của
