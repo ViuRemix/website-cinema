@@ -187,3 +187,205 @@
 .movie-details .now-playing-list .movie-card:hover h3 {
   color: #ff5722; /* Màu cam đậm khi hover */
 }
+.group-video-list {
+  position: relative;
+}
+
+/* ---------------------- */
+/* css cho phần dưới phim */
+/* Phần chứa thông tin chi tiết phim */
+/* .video-list {
+  position: relative;
+} */
+.movie-detail-content {
+  position: absolute;
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  color: #fff; /* Chữ màu trắng để dễ đọc trên nền đen */
+  border-radius: 8px;
+  top: 20%;
+}
+
+/* Tiêu đề phim */
+.movie-detail-content .movie-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #fff; /* Tiêu đề cũng có màu chữ trắng */
+}
+
+/* Phần đánh giá phim */
+.movie-detail-content .movie-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.movie-detail-content .movie-rating .rating-score {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff; /* Màu chữ trắng cho điểm số */
+}
+
+.movie-detail-content .movie-rating .rating-count {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: #ccc; /* Màu chữ sáng cho số lượt đánh giá */
+}
+
+.movie-detail-content .movie-rating .stars {
+  margin-left: 1rem;
+  font-size: 1.6rem;
+  color: gold;
+}
+
+/* Phần thông tin bên trái */
+.movie-detail-content .conten-infor {
+  margin-top: 2rem;
+  font-weight: normal; /* Sử dụng giá trị hợp lệ cho font-weight */
+}
+
+.movie-detail-content .conten-infor p {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #fff; /* Màu chữ trắng */
+  text-align: left;
+}
+
+.movie-detail-content .conten-infor .movie-genre,
+.movie-detail-content .conten-infor .movie-description {
+  font-style: italic;
+}
+.movie-detail-content .conten-infor .movie-genre {
+  width: 100%;
+  font-size: 1rem;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.movie-detail-content .conten-infor .movie-description {
+  color: #ddd; /* Màu chữ sáng cho mô tả phim */
+  max-width: 650px;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal !important;
+}
+
+/* Các chi tiết phim */
+.movie-detail-content .movie-info {
+  margin-left: 50px;
+  margin-top: 0;
+  padding: 20px;
+}
+.movie-detail-content .movie-info .movie-details .movie-information-movie p {
+  text-align: left;
+  color: #f1f1f1;
+  max-width: 340px;
+  font-weight: normal !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Các nút hành động (Theo dõi và Chia sẻ) */
+.movie-detail-content .movie-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.movie-detail-content .movie-actions .follow-btn,
+.movie-detail-content .movie-actions .btn-share-movie {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #050506;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  height: 50px;
+  font-size: 1.1rem;
+}
+
+.movie-detail-content .movie-actions .follow-btn:hover,
+.movie-detail-content .movie-actions .btn-share-movie:hover {
+  background-color: #2e2828;
+}
+
+/* Phần thông tin diễn viên, đạo diễn, thể loại nằm bên phải */
+.movie-detail-content .movie-information-movie {
+  flex-basis: 45%;
+  text-align: right;
+}
+
+.movie-detail-content .movie-information-movie p {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #fff; /* Màu chữ trắng */
+}
+
+.movie-detail-content .movie-information-movie span {
+  font-weight: bold;
+  color: #fff; /* Màu chữ trắng */
+}
+
+.movie-detail-content .movie-information-movie .movie-info-right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.movie-detail-content .movie-information-movie .movie-info-right p {
+  font-size: 1rem;
+  color: #fff; /* Màu chữ trắng */
+}
+
+/* Các phần tử chia sẻ */
+.movie-detail-content .movie-actions .bi-share-fill {
+  margin-right: 0.5rem;
+}
+
+/* Căn lề cho các thông tin chia sẻ */
+.movie-detail-content .movie-actions .btn-share-movie {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* phim phổ biến */
+.movie-trailer-movie {
+  margin-top: 200px;
+}
+/* css trên thiết bị lớn hơn
+ */
+@media (max-width: 768px) {
+  .movie-detail-content {
+    width: 90%; /* Tăng độ rộng cho thiết bị di động */
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-detail-content {
+    top: 10px !important;
+
+    width: 95%; /* Điều chỉnh độ rộng cho thiết bị di động nhỏ */
+  }
+}
+
+@media (min-width: 1200px) {
+  .movie-detail-content {
+    left: 17%;
+    top: 22%;
+    max-width: 1900px; /* Giới hạn chiều rộng tối đa trên màn hình rất lớn */
+  }
+}
+@media (max-width: 1300px) {
+  .movie-detail-content {
+    left: 17%;
+    top: 16%;
+    max-width: 1900px; /* Giới hạn chiều rộng tối đa trên màn hình rất lớn */
+  }
+}
+
+@media (min-width: 1600px) {
+  .movie-detail-content {
+    top: 25%;
+    max-width: 1900px; /* Giới hạn chiều rộng tối đa trên màn hình rất lớn */
+  }
+}
