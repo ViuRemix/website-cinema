@@ -20,7 +20,7 @@ import matrix from "../../assets/images/matrix.jpg";
 import godfather from "../../assets/images/godfather.jpg";
 
 // khi tìm kiếm mà không có hình ảnh
-import search_No_movie from "../../assets/images/search_No_movies.jpeg";
+import search_No_movie from "../../assets/images/search_No_movies.png";
 
 const genres = [
   { id: 28, name: "Action" },

@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next"; // Thêm hook i18n
 import "./MovieDetail.css";
 
 import "../i18n";
+import search_No_movie from "../assets/images/search_No_movies.png";
 
 const MovieDetail = () => {
   // Lấy id của bộ phim từ URL để xác định phim cần hiển thị.
@@ -65,9 +66,13 @@ const MovieDetail = () => {
     <div className="movie-detail">
       <div className="movie-image">
         <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          src={
+            movie.poster_path
+              ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` // Nếu có poster từ API, dùng ảnh đó
+              : search_No_movie // Nếu không có poster, dùng ảnh mặc định
+          }
           alt={movie.title}
-          className="movie-poster"
+          className="movie-poster" // Giữ nguyên className cho CSS
         />
       </div>
       <div className="movie-tittle-right">
