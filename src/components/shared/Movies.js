@@ -17,27 +17,57 @@ import forrest from "../../assets/images/forrest.jpg";
 import matrix from "../../assets/images/matrix.jpg";
 import godfather from "../../assets/images/godfather.jpg";
 
+// khi tìm kiếm mà không có hình ảnh
+import search_No_movie from "../../assets/images/search_No_movies.jpeg";
+
+const genres = [
+  { id: 28, name: "Action" },
+  { id: 12, name: "Adventure" },
+  { id: 16, name: "Animation" },
+  { id: 35, name: "Comedy" },
+  { id: 80, name: "Crime" },
+  { id: 99, name: "Documentary" },
+  { id: 18, name: "Drama" },
+  { id: 10751, name: "Family" },
+  { id: 14, name: "Fantasy" },
+  { id: 36, name: "History" },
+  { id: 27, name: "Horror" },
+  { id: 10402, name: "Music" },
+  { id: 9648, name: "Mystery" },
+  { id: 10749, name: "Romance" },
+  { id: 878, name: "Science Fiction" },
+  { id: 10770, name: "TV Movie" },
+  { id: 53, name: "Thriller" },
+  { id: 10752, name: "War" },
+  { id: 37, name: "Western" },
+];
+
 const movies = [
-  { id: 27205, title: "Inception", genre: "Sci-Fi", imageUrl: inceptionImg },
-  { id: 44918, title: "Titanic", genre: "Romance", imageUrl: titanicImg },
+  {
+    id: 27205,
+    title: "Inception",
+    genre_ids: [878, 28],
+    imageUrl: inceptionImg,
+  },
+  { id: 44918, title: "Titanic", genre_ids: [10749], imageUrl: titanicImg },
   {
     id: 155,
     title: "The Dark Knight",
-    genre: "Action",
+    genre_ids: [28, 80],
     imageUrl: darkKnightImg,
   },
-  { id: 76600, title: "Avatar", genre: "Sci-Fi", imageUrl: avatarImg },
-  { id: 157336, title: "Interstellar", genre: "Sci-Fi", imageUrl: inter },
+  { id: 76600, title: "Avatar", genre_ids: [878, 12], imageUrl: avatarImg },
+  { id: 157336, title: "Interstellar", genre_ids: [878], imageUrl: inter },
   {
     id: 222935,
     title: "The Fault in Our Stars",
-    genre: "Romance",
+    genre_ids: [10749],
     imageUrl: fault,
   },
-  { id: 98, title: "Gladiator", genre: "Action", imageUrl: gladiator },
-  { id: 13, title: "Forrest Gump", genre: "Comedy", imageUrl: forrest },
-  { id: 603, title: "The Matrix", genre: "Action", imageUrl: matrix },
-  { id: 238, title: "The Godfather", genre: "Crime", imageUrl: godfather },
+  { id: 98, title: "Gladiator", genre_ids: [28, 80], imageUrl: gladiator },
+  { id: 13, title: "Forrest Gump", genre_ids: [35], imageUrl: forrest },
+  { id: 603, title: "The Matrix", genre_ids: [28, 878], imageUrl: matrix },
+  { id: 238, title: "The Godfather", genre_ids: [80], imageUrl: godfather },
 ];
 
 function Movies() {
@@ -60,7 +90,13 @@ function Movies() {
         ? searchResults
         : movies
       : (searchResults.length > 0 ? searchResults : movies).filter(
-          (movie) => movie.genre === selectedGenre
+          (movie) =>
+            movie.genre_ids &&
+            movie.genre_ids.some((id) =>
+              genres.some(
+                (genre) => genre.id === id && genre.name === selectedGenre
+              )
+            )
         );
 
   const handleAddToFavorites = (movie) => {
@@ -76,6 +112,13 @@ function Movies() {
 
   const handleWatchMovie = (movieId) => {
     navigate(`/movie/${movieId}`);
+  };
+
+  const getGenres = (genreIds) => {
+    return genreIds
+      .map((id) => genres.find((genre) => genre.id === id)?.name)
+      .filter((name) => name) // Lọc những tên thể loại hợp lệ
+      .join(", ");
   };
 
   return (
@@ -99,14 +142,21 @@ function Movies() {
                 <img
                   src={
                     movie.imageUrl || // Dùng ảnh đã import từ local
-                    `https://image.tmdb.org/t/p/w500${movie.poster_path}` || // Nếu có poster từ API, dùng ảnh đó
-                    "../../assets/images/godfather.jpg" // Nếu không có gì, dùng ảnh mặc định
+                    (movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` // Nếu có poster từ API, dùng ảnh đó
+                      : null) ||
+                    search_No_movie // Nếu không có gì, dùng ảnh mặc định
                   }
                   alt={movie.title}
                   className="movie-card-img"
                 />
+
                 <h3>{movie.title}</h3>
-                <p>Genre: {movie.genre}</p>
+                {/* Hiển thị thể loại phim */}
+                <p>
+                  <span>Thể loại: </span>
+                  {getGenres(movie.genre_ids) || "Không có thể loại"}
+                </p>
               </Link>
               <button
                 onClick={() => handleWatchMovie(movie.id)}
@@ -126,6 +176,7 @@ function Movies() {
           <p>Không tìm thấy phim nào.</p>
         )}
       </div>
+
       <ToastContainer />
     </div>
   );
