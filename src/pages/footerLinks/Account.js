@@ -2,7 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../assets/styles/Account.css";
-import Profile from "../../components/Profile/Profile";
 
 const Account = () => {
   return (
