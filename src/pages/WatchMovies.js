@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./WatchMovie.css"; // Import CSS
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const WatchMovie = () => {
   const { id } = useParams();
@@ -67,6 +68,19 @@ const WatchMovie = () => {
     : [];
   const selectedVideo = youtubeVideos.length > 0 ? youtubeVideos[0] : null;
 
+  // thêm vào yêu thích
+  const handleAddToFavorites = (movie) => {
+    const savedFavorites =
+      JSON.parse(localStorage.getItem("favoriteMovies")) || [];
+    if (savedFavorites.some((fav) => fav.id === movie.id)) {
+      toast.info(`"${movie.title}" đã có trong danh sách yêu thích!`);
+      return;
+    }
+    const updatedFavorites = [...savedFavorites, movie];
+    localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites));
+    toast.success(`Đã thêm "${movie.title}" vào danh sách yêu thích!`);
+  };
+
   return (
     <div className="movie-details">
       <div className="header-movies">
@@ -74,11 +88,15 @@ const WatchMovie = () => {
           <i className="bi bi-arrow-left"></i> The Last Dance
         </button>
         <div className="actions">
-          <button className="favorite btn btn-danger">
+          <button
+            className="favorite btn btn-danger"
+            onClick={() => handleAddToFavorites(movie)}
+          >
             <span role="img" aria-label="heart">
               ❤️
             </span>
           </button>
+
           <button className="download">Download</button>
         </div>
       </div>
@@ -140,6 +158,17 @@ const WatchMovie = () => {
           )}
         </div>
       </ul>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
