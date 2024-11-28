@@ -68,35 +68,64 @@ select:hover {
   border-color: #888;
 }
 
+/* Nút xem phim */
+/* Container chứa các nút */
+.button-container {
+  display: flex; /* Sử dụng Flexbox */
+  flex-direction: column; /* Xếp các nút theo chiều dọc */
+  align-items: center; /* Căn giữa các nút theo chiều ngang */
+  margin-top: 10px; /* Khoảng cách giữa container và các thành phần khác */
+}
+
+/* Nút xem phim */
+.watch-movie {
+  display: block;
+  background-color: #00b903;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 10px; /* Khoảng cách giữa hai nút */
+}
+
+/* Hiệu ứng hover cho nút xem phim */
+.watch-movie:hover {
+  background-color: #00813c;
+  transform: scale(1.05);
+}
+
+/* Nút thêm vào yêu thích */
 .add-to-favorites {
-  margin-left: 10px;
-  padding: 5px 10px;
+  display: block;
+  padding: 8px 15px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
+/* Hiệu ứng hover cho nút yêu thích */
 .add-to-favorites:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 
-/* Nút xem phim */
-.watch-movie {
-  background-color: #00b903;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.watch-movie:hover {
-  background-color: #00813c;
-}
+
+
+
 
 

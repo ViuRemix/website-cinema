@@ -13,11 +13,14 @@ import "./MovieDetail.css";
 import "../i18n";
 
 const MovieDetail = () => {
+  // Lấy id của bộ phim từ URL để xác định phim cần hiển thị.
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [movie, setMovie] = useState(null);
   const { t } = useTranslation(); // Sử dụng hook t để dịch văn bản
 
+  // Thực hiện các thao tác bất đồng bộ (gọi API) khi component được tải.
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {

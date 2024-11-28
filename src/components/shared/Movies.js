@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Movies.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 // hiện thị thông báo
 import { toast, ToastContainer } from "react-toastify";
@@ -41,30 +43,45 @@ const movies = [
 ];
 
 function Movies() {
+  // Trạng thái và các Hook
+  // Lưu thể loại phim được chọn (mặc định là "All").
   const [selectedGenre, setSelectedGenre] = useState("All");
+  // Danh sách phim yêu thích được lưu trong localStorage.
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  // Truy xuất trạng thái hoặc thông tin từ đường dẫn hiện tại.
+  // Lấy dữ liệu từ URL
   const location = useLocation();
+  // Chuyển hướng đến trang chi tiết phim.
   const navigate = useNavigate();
 
+  // searchResults: Nếu có kết quả tìm kiếm được truyền qua URL, nó sẽ được ưu tiên hiển thị.
   const searchResults = location.state?.movies || [];
 
+  // Khi component được tải, lấy danh sách phim yêu thích từ localStorage và lưu vào favoriteMovies.
   useEffect(() => {
     const savedFavorites =
       JSON.parse(localStorage.getItem("favoriteMovies")) || [];
     setFavoriteMovies(savedFavorites);
   }, []);
 
+  // Lọc phim theo thể loại
   const filteredMovies =
     selectedGenre === "All"
-      ? searchResults.length > 0
-        ? searchResults
+      ? // Nếu chọn "All": Hiển thị toàn bộ phim.
+        searchResults.length > 0
+        ? // Nếu có searchResults: Sử dụng kết quả tìm kiếm.
+          searchResults
         : movies
-      : (searchResults.length > 0 ? searchResults : movies).filter(
+      : // Nếu không: Lọc từ danh sách movies.
+        (searchResults.length > 0 ? searchResults : movies).filter(
           (movie) => movie.genre === selectedGenre
         );
 
+  // Thêm vào danh sách yêu thích
   const handleAddToFavorites = (movie) => {
+    // Kiểm tra nếu phim chưa có trong danh sách yêu thích
     if (!favoriteMovies.some((fav) => fav.id === movie.id)) {
+      // Thêm phim vào danh sách favoriteMovies.
       const updatedFavorites = [...favoriteMovies, movie];
       setFavoriteMovies(updatedFavorites);
       localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites));
@@ -74,6 +91,7 @@ function Movies() {
     }
   };
 
+  // Xem chi tiết phim
   const handleWatchMovie = (movieId) => {
     navigate(`/movie/${movieId}`);
   };
@@ -90,17 +108,17 @@ function Movies() {
         <option value="Action">Hành động</option>
       </select>
 
+      {/* Hiển thị danh sách phim */}
       <div className="movie-cards">
         {filteredMovies.length > 0 ? (
           filteredMovies.map((movie) => (
             <div key={movie.id} className="movie-card">
               <Link to={`/movie/${movie.id}`}>
-                {/* Kiểm tra nếu không có poster_path thì dùng ảnh mặc định */}
                 <img
                   src={
-                    movie.imageUrl || // Dùng ảnh đã import từ local
-                    `https://image.tmdb.org/t/p/w500${movie.poster_path}` || // Nếu có poster từ API, dùng ảnh đó
-                    "../../assets/images/godfather.jpg" // Nếu không có gì, dùng ảnh mặc định
+                    movie.imageUrl ||
+                    `https://image.tmdb.org/t/p/w500${movie.poster_path}` ||
+                    "../../assets/images/godfather.jpg"
                   }
                   alt={movie.title}
                   className="movie-card-img"
@@ -108,18 +126,28 @@ function Movies() {
                 <h3>{movie.title}</h3>
                 <p>Genre: {movie.genre}</p>
               </Link>
-              <button
-                onClick={() => handleWatchMovie(movie.id)}
-                className="watch-movie"
-              >
-                Xem phim
-              </button>
-              <button
-                onClick={() => handleAddToFavorites(movie)}
-                className="add-to-favorites"
-              >
-                Yêu thích
-              </button>
+              <div className="button-container">
+                <button
+                  onClick={() => handleWatchMovie(movie.id)}
+                  className="watch-movie"
+                >
+                  <FontAwesomeIcon
+                    icon={faPlay}
+                    style={{ marginRight: "8px" }}
+                  />
+                  Xem phim
+                </button>
+                <button
+                  onClick={() => handleAddToFavorites(movie)}
+                  className="add-to-favorites"
+                >
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    style={{ marginRight: "8px", color: "red" }}
+                  />
+                  Yêu thích
+                </button>
+              </div>
             </div>
           ))
         ) : (

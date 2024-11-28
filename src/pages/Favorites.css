@@ -61,3 +61,8 @@ p {
   background-color: #0056b3; /* Màu xanh đậm khi hover */
   transform: scale(1.05); /* Tăng nhẹ kích thước */
 }
+
+.watch-movie{
+  margin: auto;
+  margin-bottom: 10px;
+}

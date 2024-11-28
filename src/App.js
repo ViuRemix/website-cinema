@@ -78,6 +78,7 @@ function AppContent() {
       {!isAdminPage && <Header user={user} setUser={setUser} />}
 
       <Routes>
+        {/* Trang yêu thích */}
         <Route path="/favorites" element={<Favorites/>} />
         {/* Trang chính */}
         <Route path="/" element={<Home />} />
