@@ -1,6 +1,8 @@
 // Account.js
 import React from "react";
+import { Link } from "react-router-dom";
 import "../../assets/styles/Account.css";
+import Profile from "../../components/Profile/Profile";
 
 const Account = () => {
   return (
@@ -10,7 +12,9 @@ const Account = () => {
         Quản lý thông tin tài khoản của bạn. Bạn có thể thay đổi mật khẩu, cập
         nhật thông tin cá nhân hoặc hủy tài khoản.
       </p>
-      <button>Chỉnh sửa tài khoản</button>
+      <Link to="/Profile">
+        <button>Chỉnh sửa tài khoản</button>
+      </Link>
       <button>Đổi mật khẩu</button>
       <button>Hủy tài khoản</button>
     </div>
