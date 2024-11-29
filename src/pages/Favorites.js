@@ -13,30 +13,18 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Favorites() {
-  // Khởi tạo trạng thái (useState)
-  // favoriteMovies: Lưu trữ danh sách các phim yêu thích của người dùng.
-  // setFavoriteMovies: Hàm để cập nhật danh sách phim yêu thích.
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
-  // Lấy danh sách phim yêu thích từ localStorage (useEffect)
-  // useEffect: Hook này chạy sau khi component được render lần đầu tiên.
   useEffect(() => {
     const savedFavorites =
-      // localStorage.getItem("favoriteMovies"): Lấy dữ liệu phim yêu thích đã lưu trữ trong localStorage.
-      // JSON.parse(): Chuyển chuỗi JSON thành một mảng.
       JSON.parse(localStorage.getItem("favoriteMovies")) || [];
     setFavoriteMovies(savedFavorites);
   }, []);
 
-  // ID của phim cần xóa.
   const handleRemoveFromFavorites = (movieId) => {
-    // movieToRemove: Tìm phim có id trùng với movieId trong danh sách phim yêu thích.
     const movieToRemove = favoriteMovies.find((fav) => fav.id === movieId);
-    // updatedFavorites: Lọc danh sách phim yêu thích, loại bỏ phim có id trùng với movieId.
     const updatedFavorites = favoriteMovies.filter((fav) => fav.id !== movieId);
-    // setFavoriteMovies(updatedFavorites): Cập nhật lại danh sách phim yêu thích trong trạng thái.
     setFavoriteMovies(updatedFavorites);
-    // localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites)): Lưu lại danh sách phim yêu thích đã được cập nhật vào localStorage.
     localStorage.setItem("favoriteMovies", JSON.stringify(updatedFavorites));
 
     if (movieToRemove) {
@@ -47,14 +35,13 @@ function Favorites() {
   };
 
   return (
-    <div>
-      <h2>Mục yêu thích</h2>
+    <div className="favorites-container">
+      <h2 className="favorites-title">Mục yêu thích</h2>
       {favoriteMovies.length > 0 ? (
-        <div className="movie-cards">
+        <div className="movies-list">
           {favoriteMovies.map((movie) => (
-            <div key={movie.id} className="movie-card">
-              {/* Kiểm tra poster_path và imageUrl */}
-              <Link to={`/movie/${movie.id}`} className="movie-link">
+            <div key={movie.id} className="movie-item">
+              <Link to={`/movie/${movie.id}`} className="movie-link-link">
                 <img
                   src={
                     movie.poster_path
@@ -62,12 +49,11 @@ function Favorites() {
                       : movie.imageUrl || "/default-image.jpg"
                   }
                   alt={movie.title}
-                  className="movie-card-img"
+                  className="movie-image"
                 />
-                <h3>{movie.title}</h3>
+                <h3 className="movie-title">{movie.title}</h3>
 
-                {/* Kiểm tra genres hoặc genre */}
-                <p>
+                <p className="movie-genres">
                   Thể loại:{" "}
                   {movie.genres &&
                   Array.isArray(movie.genres) &&
@@ -77,19 +63,14 @@ function Favorites() {
                 </p>
               </Link>
 
-              <Link to={`/movie/${movie.id}`}>
-                <button className="watch-movie">
-                  <FontAwesomeIcon
-                    icon={faPlay}
-                    style={{ marginRight: "8px" }}
-                  />
-                  Xem phim
-                </button>
+              <Link to={`/movie/${movie.id}`} className="watch-movie-btn">
+                <FontAwesomeIcon icon={faPlay} style={{ marginRight: "8px" }} />
+                Xem phim
               </Link>
 
               <button
                 onClick={() => handleRemoveFromFavorites(movie.id)}
-                className="remove-from-favorites"
+                className="remove-movie-btn"
               >
                 <FontAwesomeIcon
                   icon={faTrash}
@@ -101,29 +82,16 @@ function Favorites() {
           ))}
         </div>
       ) : (
-        <p>Không có phim nào trong mục yêu thích.</p>
+        <p className="no-movies-message">
+          Không có phim nào trong mục yêu thích.
+        </p>
       )}
 
-      <Link
-        to="/"
-        style={{
-          fontSize: "18px",
-          color: "white",
-          textDecoration: "none",
-          padding: "10px 15px",
-          borderRadius: "5px",
-          marginTop: "20px",
-          display: "inline-block",
-          textAlign: "center",
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-      >
-        <Link to="/" className="back-button">
-          <FontAwesomeIcon icon={faArrowLeft} style={{ marginRight: "8px" }} />
-          Quay lại
-        </Link>
+      <Link to="/" className="back-button">
+        <FontAwesomeIcon icon={faArrowLeft} style={{ marginRight: "8px" }} />
+        Quay lại
       </Link>
+
       <ToastContainer
         position="top-right"
         autoClose={3000}

@@ -136,7 +136,20 @@ const WatchMovie = () => {
             </span>
           </button>
 
-          <button className="download">Download</button>
+          <button
+            className="download"
+            onClick={() => {
+              const videoUrl = `https://www.youtube.com/watch?v=${selectedVideo.key}`;
+              const y2mateUrl = `https://y2meta.net//youtube/${encodeURIComponent(
+                videoUrl
+              )}`;
+
+              // Mở trang y2mate trong cửa sổ mới
+              window.open(y2mateUrl, "_blank");
+            }}
+          >
+            Download
+          </button>
         </div>
       </div>
       <div className="group-video-list">

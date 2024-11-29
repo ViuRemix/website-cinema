@@ -1,68 +1,136 @@
-/* Kiểu cho tiêu đề h2 */
-h2 {
-    font-size: 24px; /* Kích thước chữ */
-    font-weight: bold; /* Làm đậm chữ */
-    color: #ffffff; /* Màu chữ */
-    text-align: center; /* Căn giữa */
-    margin-top: 30px; /* Khoảng cách trên */
-    margin-bottom: 20px; /* Khoảng cách dưới */
-    font-family: 'Arial', sans-serif; /* Font chữ */
-    text-transform: uppercase; /* Chuyển tất cả chữ thành in hoa */
-    letter-spacing: 1px; /* Khoảng cách giữa các chữ */
-    border-bottom: 2px solid #007bff; /* Gạch chân bằng đường kẻ mỏng màu xanh */
-    padding-bottom: 10px; /* Khoảng cách giữa chữ và đường kẻ */
-  }
-
-  .remove-from-favorites {
-    background-color: #f44336; /* Màu đỏ */
-    color: white; /* Màu chữ trắng */
-    border: none; /* Bỏ viền */
-    padding: 5px 10px; /* Khoảng cách trong nút */
-    font-size: 16px; /* Kích thước chữ */
-    cursor: pointer; /* Thêm hiệu ứng khi hover */
-    border-radius: 5px; /* Bo tròn các góc */
-    transition: background-color 0.3s ease; /* Hiệu ứng khi hover */
-    margin-left: 10px;
-  }
-  
-  .remove-from-favorites:hover {
-    background-color: #d32f2f; /* Màu đỏ đậm khi hover */
-  }
-  
-/* Kiểu cho thông báo "Không có phim nào trong mục yêu thích." */
-p {
-  font-size: 18px; /* Kích thước chữ */
-  color: #ccc; /* Màu chữ xám nhạt */
-  text-align: center; /* Căn giữa */
-  margin-top: 20px; /* Khoảng cách phía trên */
-  font-family: 'Arial', sans-serif; /* Font chữ */
-  line-height: 1.5; /* Độ cao dòng */
+/* favorites-container - Chứa toàn bộ phần yêu thích */
+.favorites-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  min-height: 60vh;
 }
 
-/* Kiểu cho nút "Quay lại" */
-.back-button {
-  font-size: 18px; /* Kích thước chữ */
-  color: white; /* Màu chữ */
-  text-decoration: none; /* Bỏ gạch chân */
-  padding: 10px 15px; /* Khoảng cách trong nút */
-  border-radius: 5px; /* Bo tròn các góc */
-  margin-top: 20px; /* Khoảng cách phía trên */
-  display: inline-block; /* Hiển thị dạng khối nhỏ */
-  text-align: center; /* Căn giữa chữ */
-  background-color: #007bff; /* Màu nền xanh */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
-  margin-left: auto; /* Canh giữa */
-  margin-right: auto;
-  width: fit-content; /* Chiều rộng vừa đủ */
+/* favorites-container đến favorites-title */
+.favorites-container .favorites-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
 }
 
-/* Hiệu ứng hover cho nút "Quay lại" */
-.back-button:hover {
-  background-color: #0056b3; /* Màu xanh đậm khi hover */
-  transform: scale(1.05); /* Tăng nhẹ kích thước */
+/* favorites-container đến movies-list - Danh sách các phim */
+.favorites-container .movies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-.watch-movie{
-  margin: auto;
+/* favorites-container đến movie-item - Một item của phim yêu thích */
+.favorites-container .movie-item {
+  background-color: #282626;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+/* favorites-container đến movie-image - Ảnh poster của phim */
+.favorites-container .movie-item .movie-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng mượt mà */
+}
+
+.favorites-container .movie-item .movie-image:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* favorites-container đến movie-title - Tiêu đề phim */
+.favorites-container .movie-item .movie-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 0;
+  color: #efebeb;
+}
+
+/* favorites-container đến movie-genres - Thể loại của phim */
+.favorites-container .movie-item .movie-genres {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+/* favorites-container đến watch-movie-btn - Nút xem phim */
+.favorites-container .movie-item .watch-movie-btn {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  padding-top: 15px;
+  cursor: pointer;
+  font-size: 16px;
   margin-bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.favorites-container .movie-item .watch-movie-btn:hover {
+  background-color: #e67e22;
+}
+
+.favorites-container .movie-item .watch-movie-btn svg {
+  margin-right: 8px;
+}
+
+/* favorites-container đến remove-movie-btn - Nút xóa phim khỏi yêu thích */
+.favorites-container .movie-item .remove-movie-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  margin-left: 9px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 17px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.favorites-container .movie-item .remove-movie-btn:hover {
+  background-color: #c0392b;
+}
+
+.favorites-container .movie-item .remove-movie-btn svg {
+  margin-right: 8px;
+}
+
+/* favorites-container đến no-movies-message - Thông báo khi không có phim nào trong yêu thích */
+.favorites-container .no-movies-message {
+  font-size: 18px;
+  color: #777;
+  text-align: center;
+}
+
+/* favorites-container đến back-button - Nút quay lại */
+.favorites-container .back-button {
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: inline-block;
+  background-color: #0869d9;
+  text-align: center;
+}
+
+.favorites-container .back-button:hover {
+  background-color: #183393;
+}
+
+.favorites-container .back-button svg {
+  margin-right: 8px;
 }

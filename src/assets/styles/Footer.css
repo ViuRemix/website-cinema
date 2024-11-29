@@ -46,7 +46,14 @@
   min-width: 200px;
   margin: 10px 0;
 }
+.footer-question a {
+  color: #ffffff;
+  text-decoration: underline;
+}
 
+.footer-question a:hover {
+  text-decoration: none;
+}
 .footer-column a {
   display: block;
   color: #ffffff;
