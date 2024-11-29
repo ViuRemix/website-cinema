@@ -1,48 +1,158 @@
-/* Định dạng cho slider */
+/* Slider Container */
 .slider {
   position: relative;
-  width: 77%;
-  /* max-width: 600px; */
-  height: 300px;
-  object-fit: cover;
+  width: 100%;
+  max-width: 1600px;
   margin: auto;
   overflow: hidden;
   border-radius: 10px;
-  margin-top: 10px;
+  box-shadow: 0px 40px 770px rgba(96, 94, 94, 0.301);
 }
 
-/* Định dạng cho ảnh trong slider */
-.slide-image {
+/* Slider Background Blur */
+.slider .slider-background {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  transition: transform 0.5s ease-in-out; /* Hiệu ứng chuyển đổi mượt mà */
+  height: 100%;
+  z-index: -1;
+  filter: blur(10px) brightness(0.5);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s ease;
 }
 
-/* Định dạng cho các nút chuyển ảnh */
-.prev,
-.next {
+/* Slider Content */
+.slider .slider-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 20px;
+  color: white;
+  overflow: hidden;
+}
+
+/* Buttons for Navigation */
+.slider .prev,
+.slider .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 2rem;
   border: none;
-  cursor: pointer;
+  font-size: 24px;
   padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
   z-index: 10;
 }
 
-.prev {
+.slider .prev {
   left: 10px;
 }
 
-.next {
+.slider .next {
   right: 10px;
 }
 
-/* Hiệu ứng khi hover vào nút chuyển ảnh */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+.slider .prev:hover,
+.slider .next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Slide Container (Left Info + Right Poster) */
+.slider .slide-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  transition: transform 0.8s ease;
+  position: relative;
+}
+
+/* Movie Information (Text Left Side) */
+.slider .slide-container .movie-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transform: translateY(50px); /* Start from below */
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slider .slide-container:hover .movie-info {
+  opacity: 1; /* Show when hovered */
+  transform: translateY(0); /* Slide into view */
+}
+
+.slider .slide-container .movie-info h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #ffcc00;
+  transition: color 0.3s ease;
+}
+
+.slider .slide-container .movie-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #e0e0e0;
+  transition: color 0.3s ease;
+}
+
+.slider .slide-container .movie-info p strong {
+  color: #ff5733;
+}
+/* mô tả của phim */
+.slider-content .slide-container .movie-info .movie-description-slide {
+  font-size: 16px;
+  max-width: 600px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Watch Button */
+.slider .slide-container .movie-info .watch-button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 25px;
+  background-color: #ff5733;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(255, 87, 51, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.slider .slide-container .movie-info .watch-button:hover {
+  background-color: #ff4500;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 87, 51, 0.7);
+}
+
+/* Poster (Right Side) */
+.slider .slide-container .slide-image {
+  flex: 0 0 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.slider .slide-container:hover .slide-image {
+  opacity: 0.5; /* Fade image on hover */
+}
+
+.slider .slide-container .slide-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }

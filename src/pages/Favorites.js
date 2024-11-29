@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Favorites.css";
 
+import { useTranslation } from "react-i18next"; // Thêm hook i18n
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
@@ -14,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Favorites() {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const { t } = useTranslation(); // Sử dụng hook t để dịch văn bản
 
   useEffect(() => {
     const savedFavorites =
