@@ -10,7 +10,7 @@
   text-align: center;
   font-size: 32px;
   margin-bottom: 30px;
-  color: #333;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -133,4 +133,7 @@
 
 .favorites-container .back-button svg {
   margin-right: 8px;
+}
+a {
+  text-decoration: none; /* Bỏ gạch chân */
 }

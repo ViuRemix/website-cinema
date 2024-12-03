@@ -126,7 +126,8 @@ function Movies() {
         onChange={(e) => setSelectedGenre(e.target.value)}
         value={selectedGenre}
       >
-        <option value="All">Chọn thể loại</option>
+        <option value="All">
+        Choose genre</option>
         {limitedGenres.map((genre) => (
           <option key={genre.id} value={genre.name}>
             {genre.name}

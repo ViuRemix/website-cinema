@@ -4,7 +4,7 @@ import EmailForm from "./EmailForm";
 import PasswordResetForm from "./PasswordResetForm";
 import ConfirmationMessage from "./ConfirmationMessage";
 import { sendPasswordResetEmail, confirmPasswordReset } from "firebase/auth";
-import { auth } from "../../firebase"; // Đảm bảo đã cấu hình firebase đúng
+import { auth } from "../../utils/Firebase/firebase"; // Đảm bảo đã cấu hình firebase đúng
 import { toast } from "react-toastify";
 import "../../assets/styles/ForgotPassword.css";
 

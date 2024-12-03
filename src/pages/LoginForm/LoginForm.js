@@ -7,7 +7,7 @@ import {
   signInWithFacebook,
   signInWithGithub,
   signInWithTwitter,
-} from "../../firebase";
+} from "../../utils/Firebase/firebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../assets/styles/LoginForm.css";

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 
-import { db } from "../../firebase";
+import { db } from "../../utils/Firebase/firebase";
 // Import cấu hình Firebase
 import { addDoc, getDocs, collection } from "firebase/firestore";
 // Hiển thị danh sách phim: T trên dữ liệu được truyền qua props.

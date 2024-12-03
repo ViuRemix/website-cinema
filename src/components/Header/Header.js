@@ -4,7 +4,7 @@ import "../../assets/styles/Header.css";
 import logoPhim from "./logo-phim.jpg";
 import Profile from "../../pages/Profile/Profile"; // Import component Profile
 
-import { auth, signInWithGoogle, logOut } from "../../firebase"; // Nhớ import hàm logOut từ firebase.js
+import { auth, signInWithGoogle, logOut } from "../../utils/Firebase/firebase"; // Nhớ import hàm logOut từ firebase.js
 import { onAuthStateChanged } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Đảm bảo style cho Toast

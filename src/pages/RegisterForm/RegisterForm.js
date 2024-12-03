@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../assets/styles/RegisterForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase"; // Đảm bảo đã cấu hình firebase đúng
+import { auth } from "../../utils/Firebase/firebase"; // Đảm bảo đã cấu hình firebase đúng
 import InputField from "./InputField"; // Import component
 import Checkbox from "./Checkbox"; // Import component
 import FormError from "./FormError"; // Import component
