@@ -8,37 +8,37 @@ import {
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home";
-import MovieDetail from "./pages/MovieDetail";
-import WatchMovie from "./pages/WatchMovies";
-import LoginForm from "./components/LoginForm/LoginForm";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
-import About from "./pages/About";
+import Home from "./pages/Home/Home";
+import MovieDetail from "./pages/MovieDetail/MovieDetail";
+import WatchMovie from "./pages/WatchMovie/WatchMovies";
+import LoginForm from "./pages/LoginForm/LoginForm";
+import RegisterForm from "./pages/RegisterForm/RegisterForm";
+import About from "./pages/About/About";
 
 // hỗ sơ người dùng
-import Profile from "./components/Profile/Profile";
+import Profile from "./pages/Profile/Profile";
 // quên mật khẩu
-import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 
 // Admin components
-import Dashboard from "./pages/layouts/Dashboard";
-import AdminMovies from "./pages/layouts/AdminMovies";
-import LoginFormAdmin from "./pages/layouts/LoginFormAdmin";
+import Dashboard from "./pages/Admin/Dashboard";
+import AdminMovies from "./pages/Admin/AdminMovies";
+import LoginFormAdmin from "./pages/Admin/LoginFormAdmin";
 
 // Footer links
-import Faq from "./pages/footerLinks/Faq";
-import InvestorRelations from "./pages/footerLinks/InvestorRelations";
-import PrivacyPolicy from "./pages/footerLinks/PrivacyPolicy";
-import SpeedTest from "./pages/footerLinks/SpeedTest";
-import HelpCenter from "./pages/footerLinks/HelpCenter";
-import Jobs from "./pages/footerLinks/Jobs";
-import CookieSettings from "./pages/footerLinks/CookieSettings";
-import LegalNotice from "./pages/footerLinks/LegalNotice";
-import ViewingOptions from "./pages/footerLinks/ViewingOptions";
-import CompanyInfo from "./pages/footerLinks/CompanyInfo";
-import TermsOfService from "./pages/footerLinks/TermsOfService";
-import Contact from "./pages/footerLinks/Contact";
-import Favorites from "./pages/Favorites";
+import Faq from "./components/FooterLinks/Faq";
+import InvestorRelations from "./components/FooterLinks/InvestorRelations";
+import PrivacyPolicy from "./components/FooterLinks/PrivacyPolicy";
+import SpeedTest from "./components/FooterLinks/SpeedTest";
+import HelpCenter from "./components/FooterLinks/HelpCenter";
+import Jobs from "./components/FooterLinks/Jobs";
+import CookieSettings from "./components/FooterLinks/CookieSettings";
+import LegalNotice from "./components/FooterLinks/LegalNotice";
+import ViewingOptions from "./components/FooterLinks/ViewingOptions";
+import CompanyInfo from "./components/FooterLinks/CompanyInfo";
+import TermsOfService from "./components/FooterLinks/TermsOfService";
+import Contact from "./components/FooterLinks/Contact";
+import Favorites from "./pages/Favorites/Favorites";
 
 function AppContent() {
   const location = useLocation(); // Lấy thông tin đường dẫn hiện tại
@@ -75,7 +75,7 @@ function AppContent() {
       {!isAdminPage && <Header user={user} setUser={setUser} />}
 
       <Routes>
-        <Route path="/favorites" element={<Favorites/>} />
+        <Route path="/favorites" element={<Favorites />} />
         {/* Trang chính */}
         <Route path="/" element={<Home />} />
         {/* Trang giới thiệu */}

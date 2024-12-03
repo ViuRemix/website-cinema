@@ -1,0 +1,168 @@
+/* Tổng thể container */
+.admin-movies-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+/* Tiêu đề chính */
+.admin-movies-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Thông báo */
+.success-message {
+  color: #4caf50;
+  background-color: #e8f5e9;
+  padding: 10px;
+  border: 1px solid #4caf50;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Container của form thêm/sửa phim */
+.movie-form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+/* Tiêu đề của form */
+.movie-form-container h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input */
+.movie-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.movie-input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* Preview ảnh phim */
+.movie-preview {
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Nút submit */
+.submit-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Danh sách phim */
+.movie-list-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề danh sách phim */
+.movie-list-container h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Danh sách phim */
+.movie-list-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Mỗi item trong danh sách phim */
+.movie-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.movie-list-item button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.edit-button {
+  background-color: #008cba;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #e53935;
+}
+
+.edit-button:hover {
+  background-color: #006f8c;
+}
+
+/* Tối ưu hóa responsive */
+@media (max-width: 768px) {
+  .admin-movies-container {
+    width: 90%;
+  }
+
+  .movie-input {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+
+  .movie-list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .movie-list-item button {
+    margin-top: 5px;
+  }
+}
